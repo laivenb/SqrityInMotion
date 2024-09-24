@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQrityinMotion | Home</title>
+    <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <img src="logo.png" alt="Logo" class="sidebar-logo">
+            <nav>
+                <ul>
+                    <li><a href="home.html"><img src="icons/home.png" alt="Home Icon">Home</a></li>
+
+                    <li><a href="scan.html"><img src="icons/scan.png" alt="Scan Icon">Scan</a></li>
+
+                    <li><a href="orchestrated-scan.html"><img src="icons/orchestrated-scan.png"
+                                alt="Orchestrated Scan Icon">Orchestrated
+                            Scan</a></li>
+
+                    <li><a href="e.html"><img src="icons/e.png" alt="Dashboard Icon">EDIT</a></li>
+
+                    <li><a href="profile.html"><img src="icons/profile.png" alt="Profile Icon">Profile</a></li>
+                </ul>
+            </nav>
+        </div>
+
+
+
+        <div class="main-content">
+            <!-- Header  -->
+            <div class="header">
+                <h1>IP ADDRESS: <span class="ip-address">192.168.5.110</span></h1>
+                <h1>VULNERABILITY: <span class="vulnerability">100%</span></h1>
+            </div>
+
+            <!-- Alerts  -->
+            <div class="alerts-section">
+                <div class="alert-circle">
+
+                    <img src="circle.png" alt="Alert Circle">
+                </div>
+                <div class="alert-levels">
+                    <div class="alert high">HIGH ALERT</div>
+                    <div class="alert medium">MEDIUM ALERT</div>
+                    <div class="alert low">LOW ALERT</div>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <table class="port-table">
+                <thead>
+                    <tr>
+                        <th>Port</th>
+                        <th>State</th>
+                        <th>Service</th>
+                        <th>Version</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>21/tcp</td>
+                        <td class="state open">open</td>
+                        <td>ftp</td>
+                        <td>vsftp</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>
