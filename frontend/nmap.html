@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SQrityinMotion | NMap Scan/title>
-        <link rel="stylesheet" href="css/nmap.css">
+    <title>SQrity | NMap Scan </title>
+    <link rel="stylesheet" href="css/nmap.css">
 </head>
 
 <body>
@@ -26,11 +26,13 @@
         </div>
 
 
+
         <div class="main-content">
             <div class="nmap-modal">
                 <h2><img src="icons/nmap-icon.png" alt="NMap Icon"> NMap Scan</h2>
 
-                <form action="/submit-scan" method="POST">
+                <!-- Add an id to the form for easy selection -->
+                <form id="nmapForm" action="#" method="POST">
                     <div class="form-group">
                         <label for="service">Choose Service:</label>
                         <select id="service" name="service">
@@ -41,7 +43,7 @@
 
                     <div class="form-group">
                         <label for="ip-address">Please Enter IP Address:</label>
-                        <input type="text" id="ip-address" name="ip-address" placeholder="e.g., 192.168.1.1">
+                        <input type="text" id="ip-address" name="ip-address" placeholder="e.g., 192.168.1.1" required>
                     </div>
 
                     <div class="form-group">
@@ -54,20 +56,14 @@
                     </div>
 
                     <div class="form-group buttons">
-                        <button type="submit">SCAN</button>
-                        <button type="button" onclick="cancelScan()">CANCEL</button>
+                        <button type="submit" class="scan-btn">SCAN</button>
+                        <button type="button" id="cancel-button" class="cancel-btn">CANCEL</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-
-    <script>
-        function cancelScan() {
-            // Redirect to a different page if scan is canceled, or just close the modal
-            window.location.href = "dashboard.html"; // Redirect back to dashboard
-        }
-    </script>
+    <script src="js/nmap.js"></script>
 </body>
 
 </html>
