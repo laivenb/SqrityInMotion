@@ -63,7 +63,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
-
+        function redirectToScan() {
+        window.location.href = "vulnerability_scanning.html";
+    }
 
 
     console.log(scanResult);
