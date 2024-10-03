@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medusa | Penetration Testing</title>
+    <link rel="stylesheet" href="css/p-test.css">
+    <link rel="stylesheet" href="css/popup.css">
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <div class="sidebar">
+                <img src="logo.png" alt="Logo" class="sidebar-logo">
+                <nav>
+                    <ul>
+                        <li><a href="home.html"><img src="icons/home.png" alt="Home Icon">Home</a></li>
+
+                        <li><a href="nmap.html"><img src="icons/scan.png" alt="Scan Icon">Scan</a></li>
+
+                        <li><a href="orchestrated.html"><img src="icons/orchestrated-scan.png"
+                                    alt="Orchestrated Scan Icon">Orchestrated
+                                Scan</a></li>
+
+                        <li><a href="e.html"><img src="icons/e.png" alt="Dashboard Icon">EDIT</a></li>
+
+                        <li><a href="profile.html"><img src="icons/profile.png" alt="Profile Icon">Profile</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <h2>Penetration Testing</h2>
+            <div class="tool-header">
+                <h3>Hydra Test</h3>
+            </div>
+            <div class="tool-options">
+                <button class="tool-btn" id="defaultCredentialsBtn">Default Credentials</button>
+                <button class="tool-btn" id="configuredCredentialsBtn">Configured Credentials</button>
+                <button class="tool-btn">Open Terminal</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal success-modal">
+        <div class="modal-content">
+            <h2>Success</h2>
+            <p>Username: user123</p>
+            <p>Password: pass123</p>
+            <button class="close-btn" onclick="closeModal('successModal')">Close</button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div id="errorModal" class="modal error-modal">
+        <div class="modal-content">
+            <h2>Unsuccessful</h2>
+            <p>Try again</p>
+            <button class="close-btn" onclick="closeModal('errorModal')">Close</button>
+        </div>
+    </div>
+
+    <!-- Configured Credentials Modal -->
+    <div id="configuredModal" class="modal">
+        <div class="modal-content">
+            <h2>Enter Credentials</h2>
+            <form id="credentialsForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" required><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required><br><br>
+                <div class="modal-actions">
+                    <button type="button" class="close-btn" onclick="closeModal('configuredModal')">Close</button>
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <script src="js/popup.js"></script>
+
+</body>
+
+</html>
