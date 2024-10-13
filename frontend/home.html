@@ -38,35 +38,55 @@
                     </div>
                 </div>
 
-                <table class="table table-striped port-table">
-                    <thead>
-                        <tr>
-                            <th>Port</th>
-                            <th>State</th>
-                            <th>Service</th>
-                            <th>Version</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>21/tcp</td>
-                            <td class="state open">open</td>
-                            <td>ftp</td>
-                            <td>vsftp</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-wrapper">
+                    <table id="portTable" class="table table-striped table-bordered port-table">
+                        <thead>
+                            <tr>
+                                <th>Port</th>
+                                <th>State</th>
+                                <th>Service</th>
+                                <th>Version</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>21/tcp</td>
+                                <td class="state open">open</td>
+                                <td>ftp</td>
+                                <td>vsftp</td>
+                            </tr>
+                            <tr>
+                                <td>22/tcp</td>
+                                <td class="state open">open</td>
+                                <td>ssh</td>
+                                <td>OpenSSH 7.4p1</td>
+                            </tr>
+                            <tr>
+                                <td>80/tcp</td>
+                                <td class="state open">open</td>
+                                <td>http</td>
+                                <td>Apache httpd 2.4.46</td>
+                            </tr>
+                            <tr>
+                                <td>443/tcp</td>
+                                <td class="state open">open</td>
+                                <td>https</td>
+                                <td>nginx 1.18.0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <!-- Load Sidebar -->
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="js/home.js"></script>
     <script src="js/sidebar.js"></script>
+
 </body>
 
 </html>
