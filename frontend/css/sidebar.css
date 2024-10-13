@@ -1,0 +1,121 @@
+/* Sidebar general styles */
+.sidebar {
+    width: 260px;
+    background-color: #2A3F54;
+    color: white;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 0;
+    font-size: 16px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo-section {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.logo-section img {
+    width: 150px;
+}
+
+.profile-section {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.profile-section img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.profile-section p {
+    margin: 0;
+    font-size: 14px;
+    color: #bfc1c3;
+}
+
+.profile-section h5 {
+    margin: 5px 0 0;
+    font-size: 16px;
+    color: white;
+}
+
+/* Adjust the list item and link */
+.sidebar nav ul {
+    list-style-type: none;
+    padding-left: 0;
+
+}
+
+.sidebar nav ul li {
+    margin-bottom: 15px;
+
+}
+
+.sidebar nav ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 19px;
+    padding: 15px 20px;
+    width: 100%;
+    box-sizing: border-box;
+    /* Ensure padding is included in width */
+    transition: background-color 0.3s ease;
+    padding-left: 20px;
+    /* Adjust this to move text more to the left */
+    padding-right: 30px;
+    /* Add more padding to the right for spacing */
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #505050;
+    /* Flush full width hover */
+}
+
+.sidebar nav ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    /* Increase font size for bigger text */
+    padding: 20px 20px;
+    /* Increase padding for taller tabs */
+    width: 100%;
+    box-sizing: border-box;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar .section-title {
+    font-size: 12px;
+    font-weight: bold;
+    color: #bfc1c3;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+}
+
+/* Icons */
+.sidebar nav ul li a i {
+    width: 24px;
+    height: 24px;
+    margin-right: 15px;
+}
+
+/* Sidebar sections */
+.section-title {
+    color: #bfc1c3;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 15px;
+}

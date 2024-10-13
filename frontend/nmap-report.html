@@ -5,103 +5,103 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SQrity | NMap Scan Report</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/nmap-report.css">
 </head>
 
 <body>
-    <div class="dashboard-container">
-
-        <div class="sidebar">
-            <img src="logo.png" alt="Logo" class="sidebar-logo">
-            <nav>
-                <ul>
-                    <li><a href="home.html"><img src="icons/home.png" alt="Home Icon">Home</a></li>
-                    <li><a href="scan.html"><img src="icons/scan.png" alt="Scan Icon">Scan</a></li>
-                    <li><a href="orchestrated-scan.html"><img src="icons/orchestrated-scan.png"
-                                alt="Orchestrated Scan Icon">Orchestrated Scan</a></li>
-                    <li><a href="dashboard.html"><img src="icons/dashboard.png" alt="Dashboard Icon">Dashboard</a></li>
-                    <li><a href="profile.html"><img src="icons/profile.png" alt="Profile Icon">Profile</a></li>
-                </ul>
-            </nav>
-        </div>
-
-
-        <div class="main-content">
-            <div class="report-modal">
-                <h2>REPORT</h2>
-                <div class="report-info">
-                    <div>Service: <span>to edit</span></div>
-                    <div>IP Address: <span>to edit</span></div>
-                    <div>Scanning Device: <span>to edit</span></div>
-                </div>
-
-                <div class="report-content">
-                    <p>Nmap scan report for <span class="highlighted">10.0.2.2</span> (10.0.2.2)</p>
-                    <p>Host is up (0.0040s latency)</p>
-                    <p>Not shown: 998 filtered tcp ports (no response)</p>
-                    <table class="scan-table">
-                        <thead>
-                            <tr>
-                                <th>PORT</th>
-                                <th>STATE</th>
-                                <th>SERVICE</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>445/tcp</td>
-                                <td>open</td>
-                                <td>microsoft-ds</td>
-                            </tr>
-                            <tr>
-                                <td>135/tcp</td>
-                                <td>open</td>
-                                <td>msrpc</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <p>MAC Address: 52:54:00:12:35:02 (QEMU virtual NIC)</p>
-                </div>
-
-                <div class="bottom-actions">
-                    <button class="btn save-btn">Save</button>
-                    <button class="btn exit-btn">EXIT</button>
-                </div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div id="sidebar-container">
+                <!-- Sidebar content will be injected here dynamically -->
             </div>
 
-            <div class="secondary-popup">
-                <button class="icon-btn">
-                    <img src="path/to/icon1.png" alt="New Scan">
-                    <span class="btn-label">New Scan</span>
-                </button>
+            <div class="main-content">
+                <div class="report-modal">
+                    <h2>REPORT</h2>
+                    <div class="report-info">
+                        <div>Service: <span>to edit</span></div>
+                        <div>IP Address: <span>to edit</span></div>
+                        <div>Scanning Device: <span>to edit</span></div>
+                    </div>
 
-                <button class="icon-btn">
-                    <img src="path/to/icon2.png" alt="Command Wizard">
-                    <span class="btn-label">Command Wizard</span>
-                </button>
+                    <div class="report-content">
+                        <p>Nmap scan report for <span class="highlighted">10.0.2.2</span> (10.0.2.2)</p>
+                        <p>Host is up (0.0040s latency)</p>
+                        <p>Not shown: 998 filtered tcp ports (no response)</p>
+                        <table class="scan-table">
+                            <thead>
+                                <tr>
+                                    <th>PORT</th>
+                                    <th>STATE</th>
+                                    <th>SERVICE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>445/tcp</td>
+                                    <td>open</td>
+                                    <td>microsoft-ds</td>
+                                </tr>
+                                <tr>
+                                    <td>135/tcp</td>
+                                    <td>open</td>
+                                    <td>msrpc</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <p>MAC Address: 52:54:00:12:35:02 (QEMU virtual NIC)</p>
+                    </div>
 
-                <button class="icon-btn">
-                    <img src="path/to/icon3.png" alt="Open Scan">
-                    <span class="btn-label">Open Scan</span>
-                </button>
-
-                <div class="download-stack">
-                    <button class="icon-btn blue-download-btn">
-                        <img src="path/to/icon4.png" alt="Download">
-                        <span class="btn-label">Download</span>
-                    </button>
-
-                    <button class="icon-btn gray-download-btn">
-                        <img src="path/to/icon5.png" alt="Download Icon">
-                        <span class="btn-label">Download</span>
-                    </button>
+                    <div class="bottom-actions">
+                        <button class="btn save-btn">Save</button>
+                        <button class="btn exit-btn">EXIT</button>
+                    </div>
                 </div>
+
+                <div class="secondary-popup">
+                    <button class="icon-btn">
+                        <img src="path/to/icon1.png" alt="New Scan">
+                        <span class="btn-label">New Scan</span>
+                    </button>
+
+                    <button class="icon-btn">
+                        <img src="path/to/icon2.png" alt="Command Wizard">
+                        <span class="btn-label">Command Wizard</span>
+                    </button>
+
+                    <button class="icon-btn">
+                        <img src="path/to/icon3.png" alt="Open Scan">
+                        <span class="btn-label">Open Scan</span>
+                    </button>
+
+                    <div class="download-stack">
+                        <button class="icon-btn blue-download-btn">
+                            <img src="path/to/icon4.png" alt="Download">
+                            <span class="btn-label">Download</span>
+                        </button>
+
+                        <button class="icon-btn gray-download-btn">
+                            <img src="path/to/icon5.png" alt="Download Icon">
+                            <span class="btn-label">Download</span>
+                        </button>
+                    </div>
+                </div>
+
+
             </div>
-
-
         </div>
-    </div>
-    <script src="js/nmap-report.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script src="js/sidebar.js"></script>
+        <script src="js/nmap-report.js"></script>
 </body>
 
 </html>

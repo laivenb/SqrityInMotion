@@ -5,32 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SQrity | Orchestrated Scan</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/orchestrated.css">
 </head>
 
 <body>
-    <div class="dashboard-container">
-
-        <div class="dashboard-container">
-
-            <div class="sidebar">
-                <img src="logo.png" alt="Logo" class="sidebar-logo">
-                <nav>
-                    <ul>
-                        <li><a href="home.html"><img src="icons/home.png" alt="Home Icon">Home</a></li>
-
-                        <li><a href="nmap.html"><img src="icons/scan.png" alt="Scan Icon">Scan</a></li>
-
-                        <li><a href="orchestrated.html"><img src="icons/orchestrated-scan.png"
-                                    alt="Orchestrated Scan Icon">Orchestrated
-                                Scan</a></li>
-
-                        <li><a href="e.html"><img src="icons/e.png" alt="Dashboard Icon">EDIT</a></li>
-
-                        <li><a href="profile.html"><img src="icons/profile.png" alt="Profile Icon">Profile</a></li>
-                    </ul>
-                </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div id="sidebar-container">
+                <!-- Sidebar content will be injected here dynamically -->
             </div>
+
 
             <div class="main-content">
                 <input type="text" placeholder="IP Address" class="ip-input">
@@ -58,6 +47,10 @@
                 </div>
             </div>
         </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
         <script src="js/sidebar.js"></script>
         <script src="js/orchestrated.js"></script>
