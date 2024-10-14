@@ -22,7 +22,7 @@
 
         <div class="main-content">
             <div class="nmap-modal">
-                <h2><img src="./icons/nmap-icon.jpg" alt="NMap Icon"> NMap Scan</h2>
+                <h2><img src="icons/nmap-icon.png" alt="NMap Icon"> NMap Scan</h2>
 
                 <form id="nmapForm" action="#" method="POST">
                     <div class="form-group">
@@ -64,32 +64,42 @@
 </div>
 
 <script>
-    document.getElementById('nmapForm').addEventListener('submit', function(event) {
-        event.preventDefault(); // Prevent the default form submission
+        document.getElementById('nmapForm').addEventListener('submit', function(event) {
+        event.preventDefault();
         document.getElementById('loading').style.display = 'block';
 
-        const formData = new FormData(this);
-        fetch(this.action, {
-            method: this.method,
-            body: formData,
-        })
-            .then(response => response.json()) // Assuming the server responds with JSON
-            .then(data => {
-                console.log('Success:', data);
-                // Handle success (e.g., display success message)
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                // Handle error (e.g., display error message)
-            })
-            .finally(() => {
-                // Hide the loading image after the request is complete
-                document.getElementById('loading').style.display = 'none';
-            });
-    });
+        console.log('Loading image should be visible now.');
 
-    document.getElementById('cancel-button').addEventListener('click', function() {
-        document.getElementById('nmapForm').reset();
+        const formData = new FormData(this);
+
+        // Get values from the form
+        const service = formData.get('service');
+        const ipAddress = formData.get('ip-address');
+        const subnetMask = formData.get('subnet-mask');
+
+        // Log the values to the console
+        console.log('Service:', service);
+        console.log('IP Address:', ipAddress);
+        console.log('Subnet Mask:', subnetMask);
+
+        // Proceed with fetch request
+        fetch(this.action, {
+        method: this.method,
+        body: formData,
+    })
+        .then(response => {
+        console.log('Response received');
+        return response.json();
+    })
+        .then(data => {
+        console.log('Success:', data);
+    })
+        .catch(error => {
+        console.error('Error:', error);
+    })
+        .finally(() => {
+        document.getElementById('loading').style.display = 'none';
+    });
     });
 </script>
 
