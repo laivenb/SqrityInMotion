@@ -26,8 +26,20 @@ body {
 .header {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 10px;
 }
+
+.scan-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.vulnerability {
+    margin-top: auto;
+    align-self: flex-end;
+}
+
 
 .header h1 {
     font-size: 22px;
@@ -49,13 +61,10 @@ body {
     align-items: center;
     background-color: #e0e7ff;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-bottom: 30px;
 }
 
-.alert-circle img {
-    width: 100px;
-}
 
 .alert-levels {
     flex-grow: 1;
@@ -66,6 +75,11 @@ body {
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 10px;
+}
+
+#progressChart {
+    width: 100% !important;
+    height: 170px !important;
 }
 
 .alert.high {

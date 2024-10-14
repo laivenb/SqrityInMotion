@@ -5,31 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/config.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/models.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/routes/other_routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/routes/scan_routes.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/home.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2kVoBi26YQawoMxhLI6Uq0qCkOU" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -40,9 +42,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JavaScript Debug.home.html.executor": "Run",
     "Python.app.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "front",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -59,8 +62,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.19072.16" />
-        <option value="bundled-python-sdk-8336bb23522e-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.19072.16" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PS-242.22855.113" />
+        <option value="bundled-php-predefined-a98d8de5180a-90914f2295cb-com.jetbrains.php.sharedIndexes-PS-242.22855.113" />
       </set>
     </attachedChunks>
   </component>
@@ -73,6 +76,7 @@
       <option name="presentableId" value="Default" />
       <updated>1723377971040</updated>
       <workItem from="1723377972185" duration="778000" />
+      <workItem from="1728887958487" duration="5430000" />
     </task>
     <servers />
   </component>
