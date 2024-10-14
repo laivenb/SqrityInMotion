@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="AJAX committed to NMap">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/routes/nmapscan.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/routes/nmapscan.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/nmap-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/nmap-report.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/nmap.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/nmap.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +47,7 @@
   "keyToString": {
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "JavaScript Debug.home.html.executor": "Debug",
+    "JavaScript Debug.nmap-report.html.executor": "Debug",
     "JavaScript Debug.nmap.html.executor": "Debug",
     "JavaScript Debug.sidebar.html.executor": "Debug",
     "Python.app.executor": "Run",
@@ -84,7 +87,7 @@
       <workItem from="1723377972185" duration="778000" />
       <workItem from="1728887958487" duration="5430000" />
       <workItem from="1728914308441" duration="74000" />
-      <workItem from="1728914690069" duration="3690000" />
+      <workItem from="1728914690069" duration="4951000" />
     </task>
     <task id="LOCAL-00001" summary="AJAX committed to NMap">
       <option name="closed" value="true" />
@@ -94,7 +97,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728918071818</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="AJAX committed to NMap">
+      <option name="closed" value="true" />
+      <created>1728918611837</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1728918611837</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

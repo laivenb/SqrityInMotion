@@ -1,11 +1,14 @@
+from flask import Flask, render_template, request
 import subprocess
 import os
 import xml.etree.ElementTree as ET
+import re
+
+app = Flask(__name__)
 
 # Function to save scan result to XML
 def save_to_xml(filename, data):
     try:
-
         os.makedirs(os.path.dirname(filename), exist_ok=True)
         root = ET.Element("nmap_report")
         lines = data.splitlines()
@@ -18,76 +21,90 @@ def save_to_xml(filename, data):
     except Exception as e:
         print(f"Failed to save the report: {e}")
 
-# NMAP Scanning device function start
-def scan_device():
-    ip = input("Enter device IP address: ")
-    print(f"Scanning device: {ip}")
+# Function to parse Nmap scan output
+def parse_nmap_output(output):
+    results = []
+    mac_address = None
+    host_status = ""
+    filtered_ports = ""
+
+    # Split the output into lines for processing
+    lines = output.splitlines()
+    for line in lines:
+        # Extract the host status
+        if "Host is up" in line:
+            host_status = line.strip()
+        # Extract filtered ports information
+        if "Not shown" in line:
+            filtered_ports = line.strip()
+        # Example regex to capture port, state, and service
+        port_info = re.match(r'^\s*(\d+/[a-z]+)\s+([a-z]+)\s+(.+)$', line)
+        if port_info:
+            results.append({
+                'port': port_info.group(1),
+                'state': port_info.group(2),
+                'service': port_info.group(3)
+            })
+        # Example to find MAC address
+        if "MAC Address:" in line:
+            mac_address = line.split("MAC Address:")[1].strip().split()[0]
+
+    return host_status, filtered_ports, results, mac_address
+
+# NMAP Scanning device function
+def scan_device(ip):
     result = subprocess.run(["nmap", ip], capture_output=True, text=True)
-    scan_output = result.stdout
-    print(scan_output)
+    return result.stdout
 
-    save_to_xml(f"backend/report/{ip}.xml", scan_output)
-# NMAP Scanning device function end
-
-# NMAP Scanning network function start
-def scan_network():
-    network = input("Enter the network [192.168.1.0/24]: ")
-    print(f"Scanning network: {network}")
+# NMAP Scanning network function
+def scan_network(network):
     result = subprocess.run(["nmap", network], capture_output=True, text=True)
-    scan_output = result.stdout
-    print(scan_output)
+    return result.stdout
 
-    sanitized_network = network.replace('/', '_')
-
-    save_to_xml(f"backend/report/{sanitized_network}.xml", scan_output)
-# NMAP Scanning network function end
-
-# APPLICATION exit function start
-def exit_program():
-    print("Exiting the Program.")
-    return False
-# APPLICATION exit function end
-
-# APPLICATION invalid choice handling function start
-def invalid_choice():
-    print("Invalid choice.")
-    return True
-# APPLICATION invalid choice handling function end
-
-# NMAP handle scan device function start
+@app.route('/scan/device', methods=['POST'])
 def handle_scan_device():
-    scan_device()
-    return True
-# NMAP handle scan device function end
+    ip = request.form.get('ip-address')
+    service = request.form.get('service')
+    output = scan_device(ip)
+    save_to_xml(f"backend/report/{ip}.xml", output)
 
-# NMAP handle scan network function start
-def handle_scan_network():
-    scan_network()
-    return True
-# NMAP handle scan network function end
+    # Parse the scan output
+    host_status, filtered_ports, results, mac_address = parse_nmap_output(output)
 
-# APPLICATION main menu start
-def main_menu():
-    menu_actions = {
-        '1': handle_scan_device,
-        '2': handle_scan_network,
-        '0': exit_program
+    # Prepare data for the report page
+    report_data = {
+        'ip': ip,
+        'service': service,
+        'hostStatus': host_status,
+        'filteredPorts': filtered_ports,
+        'results': results,
+        'macAddress': mac_address or "Not found"  # Fallback if no MAC found
     }
 
-    while True:
-        print("NMAP Module Menu:")
-        print("[1] Scan specific device")
-        print("[2] Scan whole network")
-        print("[0] Exit")
+    return render_template('nmap-report.html', data=report_data)
 
-        choice = input("Enter Choice: ")
+@app.route('/scan/network', methods=['POST'])
+def handle_scan_network():
+    network = request.form.get('ip-address')  # Use the same field for the network scan
+    service = request.form.get('service')
+    output = scan_network(network)
+    sanitized_network = network.replace('/', '_')
+    save_to_xml(f"backend/report/{sanitized_network}.xml", output)
 
-        action = menu_actions.get(choice, invalid_choice)
-        continue_loop = action()
+    # Parse the scan output
+    host_status, filtered_ports, results, mac_address = parse_nmap_output(output)
 
-        if not continue_loop:
-            break
-# APPLICATION main menu end
+    # Prepare data for the report page
+    report_data = {
+        'ip': network,
+        'service': service,
+        'hostStatus': host_status,
+        'filteredPorts': filtered_ports,
+        'results': results,
+        'macAddress': mac_address or "Not found"  # Fallback if no MAC found
+    }
+
+    return render_template('nmap-report.html', data=report_data)
 
 if __name__ == "__main__":
-    main_menu()
+    app.run(debug=True)

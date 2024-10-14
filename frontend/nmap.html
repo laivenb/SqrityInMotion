@@ -57,6 +57,9 @@
                 <div id="loading" style="display:none; text-align: center;">
                     <img src="icons/loading.gif" alt="Loading..." />
                 </div>
+
+                <!-- Result Display -->
+                <div id="result" style="margin-top: 20px;"></div>
             </div>
         </div>
 
@@ -64,42 +67,41 @@
 </div>
 
 <script>
-        document.getElementById('nmapForm').addEventListener('submit', function(event) {
+    document.getElementById('nmapForm').addEventListener('submit', function(event) {
         event.preventDefault();
         document.getElementById('loading').style.display = 'block';
-
-        console.log('Loading image should be visible now.');
+        document.getElementById('result').innerHTML = ''; // Clear previous results
 
         const formData = new FormData(this);
+        const selectedService = document.getElementById('service').value;
 
-        // Get values from the form
-        const service = formData.get('service');
-        const ipAddress = formData.get('ip-address');
-        const subnetMask = formData.get('subnet-mask');
+        // Determine the endpoint based on the selected service
+        const endpoint = selectedService === "specific-device" ? 'http://127.0.0.1:5000/scan/device' : 'http://127.0.0.1:5000/scan/network';
 
-        // Log the values to the console
-        console.log('Service:', service);
-        console.log('IP Address:', ipAddress);
-        console.log('Subnet Mask:', subnetMask);
-
-        // Proceed with fetch request
-        fetch(this.action, {
-        method: this.method,
-        body: formData,
-    })
-        .then(response => {
-        console.log('Response received');
-        return response.json();
-    })
-        .then(data => {
-        console.log('Success:', data);
-    })
-        .catch(error => {
-        console.error('Error:', error);
-    })
-        .finally(() => {
-        document.getElementById('loading').style.display = 'none';
+        fetch(endpoint, {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById('result').innerHTML = `<pre>${data.output}</pre>`;
+                } else {
+                    document.getElementById('result').innerHTML = `<p style="color: red;">Error: ${data.message}</p>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('result').innerHTML = '<p style="color: red;">An error occurred while processing your request.</p>';
+            })
+            .finally(() => {
+                document.getElementById('loading').style.display = 'none';
+            });
     });
+
+    document.getElementById('cancel-button').addEventListener('click', function() {
+        document.getElementById('nmapForm').reset();
+        document.getElementById('result').innerHTML = ''; // Clear previous results
     });
 </script>
 
