@@ -105,3 +105,8 @@ body {
 .cancel-btn:hover {
     background-color: #b0b0b0;
 }
+
+#loading img {
+    width: 100px;
+    height: auto;
+}

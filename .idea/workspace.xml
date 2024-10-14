@@ -5,10 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/backend/routes/nmapscan.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/icons/loading.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/icons/nmap-icon.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/icons/profile-pic.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/home.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/nmap.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/nmap.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/nmap.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/nmap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/sidebar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +36,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitToolBoxStore">
+    <option name="projectConfigVersion" value="5" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -42,7 +52,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "JavaScript Debug.home.html.executor": "Run",
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "JavaScript Debug.home.html.executor": "Debug",
+    "JavaScript Debug.nmap.html.executor": "Debug",
+    "JavaScript Debug.sidebar.html.executor": "Debug",
     "Python.app.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "front",
@@ -51,19 +64,21 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm 2024.1.1\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ching\Desktop\SqrityInMotion\frontend\icons" />
       <recent name="$PROJECT_DIR$/backend" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PS-242.22855.113" />
-        <option value="bundled-php-predefined-a98d8de5180a-90914f2295cb-com.jetbrains.php.sharedIndexes-PS-242.22855.113" />
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PS-241.15989.102" />
+        <option value="bundled-php-predefined-ba97393d7c68-c76157a7178b-com.jetbrains.php.sharedIndexes-PS-241.15989.102" />
       </set>
     </attachedChunks>
   </component>
@@ -77,11 +92,16 @@
       <updated>1723377971040</updated>
       <workItem from="1723377972185" duration="778000" />
       <workItem from="1728887958487" duration="5430000" />
+      <workItem from="1728914308441" duration="74000" />
+      <workItem from="1728914690069" duration="3092000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SqrityInMotion$app.coverage" NAME="app Coverage Results" MODIFIED="1723378591676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
