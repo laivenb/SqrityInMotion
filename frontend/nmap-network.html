@@ -23,17 +23,48 @@
             <div class="header">
                 <h1> NMAP  |  Network Scan</h1>
             </div>
-
         </div>
 
         <!-- Main Content -->
         <div class="main-content">
+            <div class="IPheader">
+                <h2>X.X.X.X</h2>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="portTable" class="table table-striped table-bordered port-table">
+                    <thead>
+                    <tr>
+                        <th>IP Address</th>
+                        <th>Host Status</th>
+                        <th>Port Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr>
+                        <td>x.x.x.x</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
     </div>
 </div>
 
 
-<script src="js/sidebar.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+
+    <script src="js/sidebar.js"></script>
+    <script src="js/nmap-network.js"></script>
 </body>
 </html>
