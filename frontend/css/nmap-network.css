@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Main content area */
+.header-content {
+    margin-left: 260px;
+    width: calc(100% - 250px);
+    background-color: #f5f5f5;
+    overflow-y: auto;
+}
+
+.main-content {
+    margin-left: 260px;
+    padding: 10px;
+}
+
+.header {
+    display: flex;
+    padding-left: 10px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 10px 0;
+}
+
+/* Formal table styles */
+.port-table {
+    margin: 0 auto;
+    width: 100vh;
+    border-collapse: collapse;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: #495057;
+}
+
+.port-table th {
+    background-color: #f8f9fa;
+    /* Softer background color for a more formal look */
+    color: #343a40;
+    font-weight: bold;
+    font-size: 1rem;
+    border-bottom: 2px solid #dee2e6;
+    padding: 15px;
+}
+
+.port-table td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Table row hover effect */
+.port-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.port-table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Open/Closed states for table */
+.port-table td.state.open {
+    color: #28a745;
+    /* Green for open */
+}
+
+.port-table td.state.closed {
+    color: #dc3545;
+    /* Red for closed */
+}
+
+/* DataTables customizations */
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 300px;
+    margin-left: 0.5rem;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #495057 !important;
+    margin-left: 10px;
+}

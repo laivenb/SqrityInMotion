@@ -1,13 +1,6 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('nmapForm');
-    const cancelButton = document.getElementById('cancel-button');
+document.getElementById('startScanBtn').addEventListener('click', function() {
+    var ipAddress = document.getElementById('ipAddress').value;
+    var subnetMask = document.getElementById('subnetMask').value;
 
-    form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        window.location.href = 'nmap-report.html';
-    });
-
-    cancelButton.addEventListener('click', function () {
-        window.location.href = 'home.html';
-    });
+    window.location.href = `nmap-network.html?ip=${ipAddress}&subnet=${subnetMask}`;
 });
