@@ -1,47 +1,42 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 body {
     margin: 0;
-    font-family: Poppins;
-    background-color: #f4f4f4;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-
-
 .main-content {
-    margin-left: 270px;
-    width: calc(100% - 270px);
-    height: auto;
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
-    gap: 20px;
+    align-items: flex-start;
+    width: 100%;
+    height: 100%;
+    padding-left: 200px;
 }
 
 .report-modal {
     background-color: white;
-    padding: 20px;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    width: 600px;
-    max-width: 600px;
-    margin: 0 auto;
-    border: 6px solid #255D91;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: 100%;
+    border: 1px solid #e0e0e0;
 }
 
 .report-modal h2 {
-    font-size: 28px;
+    font-size: 24px;
+    font-weight: 600;
     color: #2c3e50;
     margin-bottom: 20px;
+    text-align: left;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 .report-info {
@@ -59,8 +54,6 @@ body {
     text-align: left;
     border-radius: 10px;
     margin-bottom: 30px;
-    overflow-y: auto;
-    max-height: 250px;
     border: 1px solid #ddd;
 }
 
@@ -81,34 +74,40 @@ body {
 .scan-table th,
 .scan-table td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 10px;
     text-align: left;
+    font-size: 15px;
 }
 
 .scan-table th {
     background-color: #f0f0f0;
+    font-weight: 600;
 }
 
-.bottom-actions {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+.buttons-section {
     margin-top: 20px;
 }
 
+.top-actions {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
 .btn {
-    padding: 12px 25px;
+    padding: 12px 60px;
     border-radius: 5px;
     font-size: 16px;
     border: none;
     cursor: pointer;
-    min-width: 120px;
+    min-width: 160px;
+    transition: background-color 0.3s ease;
 }
 
 .save-btn {
     background-color: #4a90e2;
     color: white;
-    transition: background-color 0.3s ease;
 }
 
 .save-btn:hover {
@@ -116,35 +115,19 @@ body {
 }
 
 .exit-btn {
-    background-color: #ccc;
-    color: black;
-    transition: background-color 0.3s ease;
+    background-color: #6c757d;
+    color: white;
 }
 
 .exit-btn:hover {
-    background-color: #b0b0b0;
+    background-color: #5a6268;
 }
 
-.secondary-popup {
-    background-color: white;
-    padding: 20px;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    width: 600px;
-    max-width: 600px;
-    margin: 0 auto;
-    border: 6px solid #255D91;
+.icon-buttons {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-}
-
-.download-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    height: 100px;
-    width: 120px;
+    margin-top: 20px;
+    gap: 15px;
 }
 
 .icon-btn {
@@ -159,12 +142,23 @@ body {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 120px;
-    height: 100px;
+    width: 150px;
+    height: 80px;
 }
 
-.download-stack .icon-btn {
-    height: 45px;
+.icon-btn img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 8px;
+}
+
+.icon-btn .btn-label {
+    display: block;
+    text-align: center;
+}
+
+.icon-btn:hover {
+    background-color: #eee;
 }
 
 .blue-download-btn {
@@ -177,24 +171,10 @@ body {
 }
 
 .gray-download-btn {
-    background-color: #ccc;
-    color: black;
+    background-color: #6c757d;
+    color: white;
 }
 
 .gray-download-btn:hover {
-    background-color: #b0b0b0;
-}
-
-.icon-btn img {
-    width: 24px;
-    height: 24px;
-}
-
-.icon-btn:hover {
-    background-color: #eee;
-}
-
-.icon-btn .btn-label {
-    display: block;
-    text-align: center;
+    background-color: #5a6268;
 }
