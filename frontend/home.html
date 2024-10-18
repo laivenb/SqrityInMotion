@@ -1,75 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SQrity | Home</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/home.css">
 </head>
 
 <body>
-    <div class="dashboard-container">
-
-        <div class="sidebar">
-            <img src="logo.png" alt="Logo" class="sidebar-logo">
-            <nav>
-                <ul>
-                    <li><a href="home.html"><img src="icons/home.png" alt="Home Icon">Home</a></li>
-
-                    <li><a href="nmap.html"><img src="icons/scan.png" alt="Scan Icon">Scan</a></li>
-
-                    <li><a href="orchestrated-scan.html"><img src="icons/orchestrated-scan.png"
-                                alt="Orchestrated Scan Icon">Orchestrated
-                            Scan</a></li>
-
-                    <li><a href="e.html"><img src="icons/e.png" alt="Dashboard Icon">EDIT</a></li>
-
-                    <li><a href="profile.html"><img src="icons/profile.png" alt="Profile Icon">Profile</a></li>
-                </ul>
-            </nav>
-        </div>
-
-
-
-        <div class="main-content">
-            <div class="header">
-                <h1>IP ADDRESS: <span class="ip-address">192.168.5.110</span></h1>
-                <h1>VULNERABILITY: <span class="vulnerability">100%</span></h1>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div id="sidebar-container">
+                <!-- Sidebar content will be injected here dynamically -->
             </div>
 
-            <div class="alerts-section">
-                <div class="alert-circle">
-
-                    <img src="circle.png" alt="Alert Circle">
+            <!-- Main Content -->
+            <div class="main-content">
+                <div class="header">
+                    <div class="scan-info">
+                        <h1>Latest Scan</h1>
+                        <span class="ip-address">192.168.5.110</span>
+                    </div>
+                    <span class="vulnerability">VULNERABILITY: 100%</span>
                 </div>
-                <div class="alert-levels">
-                    <div class="alert high">HIGH ALERT</div>
-                    <div class="alert medium">MEDIUM ALERT</div>
-                    <div class="alert low">LOW ALERT</div>
+
+                <div class="alerts-section">
+                    <div class="doughnutContainer">
+                        <!-- Doughnut Chart -->
+                        <canvas id="doughnutChart" width="170" height="170"></canvas>
+                    </div>
+                    <div class="alert-levels">
+                        <!-- Progress Chart -->
+                        <canvas id="progressChart" height="170"></canvas>
+                    </div>
+                </div>
+
+                <div class="table-wrapper">
+                    <table id="portTable" class="table table-striped table-bordered port-table">
+                        <thead>
+                            <tr>
+                                <th>Port</th>
+                                <th>State</th>
+                                <th>Service</th>
+                                <th>Version</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>21/tcp</td>
+                                <td class="state open">open</td>
+                                <td>ftp</td>
+                                <td>vsftp</td>
+                            </tr>
+                            <tr>
+                                <td>22/tcp</td>
+                                <td class="state open">open</td>
+                                <td>ssh</td>
+                                <td>OpenSSH 7.4p1</td>
+                            </tr>
+                            <tr>
+                                <td>80/tcp</td>
+                                <td class="state open">open</td>
+                                <td>http</td>
+                                <td>Apache httpd 2.4.46</td>
+                            </tr>
+                            <tr>
+                                <td>443/tcp</td>
+                                <td class="state open">open</td>
+                                <td>https</td>
+                                <td>nginx 1.18.0</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <table class="port-table">
-                <thead>
-                    <tr>
-                        <th>Port</th>
-                        <th>State</th>
-                        <th>Service</th>
-                        <th>Version</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>21/tcp</td>
-                        <td class="state open">open</td>
-                        <td>ftp</td>
-                        <td>vsftp</td>
-                    </tr>
-                </tbody>
-            </table>
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+
+
+    <script src="js/home.js"></script>
+    <script src="js/sidebar.js"></script>
+
 </body>
 
 </html>
