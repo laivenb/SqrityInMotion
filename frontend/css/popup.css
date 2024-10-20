@@ -12,24 +12,24 @@
 }
 
 .modal-content {
-    background-color: white;
-    border-radius: 15px;
-    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
     text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 350px;
     z-index: 1001;
 }
 
 .modal-content h2 {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
 /* Success Modal */
 .success-modal .modal-content {
-    border: 3px solid green;
+    border: 2px solid green;
 }
 
 .success-modal .modal-content h2 {
@@ -38,7 +38,7 @@
 
 /* Error Modal */
 .error-modal .modal-content {
-    border: 3px solid red;
+    border: 2px solid red;
 }
 
 .error-modal .modal-content h2 {
@@ -51,16 +51,17 @@
 }
 
 .modal-content .close-btn {
-    background-color: #cccccc;
+    background-color: #007bff;
     padding: 10px 20px;
+    color: white;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .modal-content .close-btn:hover {
-    background-color: #aaaaaa;
+    background-color: #0056b3;
 }
 
 .modal-actions {
@@ -72,13 +73,14 @@
 
 .modal-actions button {
     padding: 10px 20px;
-    background-color: #cccccc;
+    background-color: #007bff;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
+    color: white;
     transition: background-color 0.3s ease;
 }
 
 .modal-actions button:hover {
-    background-color: #aaaaaa;
+    background-color: #0056b3;
 }

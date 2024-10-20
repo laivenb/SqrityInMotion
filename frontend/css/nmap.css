@@ -1,159 +1,140 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
 
 /* Main content area */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
 .header-content {
     margin-left: 260px;
-    width: calc(100% - 250px);
-    background-color: #f5f5f5;
-    overflow-y: auto;
+    width: calc(100% - 260px);
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-bottom: 2px solid #dedede;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2a2a2a;
+    text-align: left;
+    margin-bottom: 10px;
 }
 
 .main-content {
-    margin-left: 260px;
+    margin-left: 300px;
     display: flex;
-    padding: 10px;
-}
-
-.header {
-    display: flex;
-    padding-left: 10px;
-    justify-content: flex-start;
+    justify-content: space-around;
     align-items: flex-start;
-    margin: 10px 0;
+    padding: 60px 20px;
 }
 
 .icon-container {
-    margin: 10px;
-    padding: 30px;
-    border-radius: 15px;
-    border: 1px solid lightgray;
-    width: 170px;
-    height: 160px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    color: dimgray;
+    background-color: white;
+    padding: 60px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    width: 220px;
+    height: 220px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    color: #3a3a3a;
     text-decoration: none;
-}
-.icon-container div {
-    margin-top: 20px;
+    margin-right: 50px;
 }
 
 .icon-container:hover {
-    background-color: dimgray;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background-color: #5b7ea4;
     color: white;
-    text-decoration: none;
+}
+
+.icon-container div {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .icon-container svg {
-    fill: dimgray;
+    fill: #3a3a3a;
     transition: fill 0.3s ease;
+    width: 80px;
+    height: 80px;
 }
 
 .icon-container:hover svg {
     fill: white;
 }
 
-/*body {
-    margin: 0;
-    font-family: Poppins;
-    background-color: #f4f4f4;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Modal Styling */
+.modal-content {
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
 }
 
-
-.main-content {
-    margin-left: 270px;
-    width: calc(100% - 270px);
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.modal-header {
+    border-bottom: 1px solid #e0e0e0;
 }
 
-.nmap-modal {
-    background-color: white;
-    padding: 40px;
-    border-radius: 25px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    width: 600px;
-    height: 600px;
-    border: 6px solid #255D91;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.modal-header h5 {
+    font-size: 22px;
+    font-weight: 600;
 }
 
-.nmap-modal h2 {
-    font-size: 28px;
-    color: #2c3e50;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 30px;
-}
-
-.form-group {
-    margin-bottom: 20px;
-    text-align: left;
-    width: 100%;
-}
-
-.form-group label {
-    display: block;
+.modal-body p {
     font-size: 16px;
-    margin-bottom: 8px;
+    color: #333;
 }
 
-.form-group input,
-.form-group select {
+.modal-body .form-group label {
+    font-weight: 500;
+    color: #333;
+}
+
+.modal-body .form-group input,
+.modal-body .form-group select {
     width: 100%;
-    padding: 10px;
-    font-size: 16px;
+    /* Ensure the select element takes full width of its container */
+    border-radius: 5px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    font-size: 14px;
     box-sizing: border-box;
+    /* Ensure padding doesn't affect width */
 }
 
-.buttons {
-    display: flex;
-    justify-content: space-around;
-    gap: 20px;
-    margin-top: 20px;
-    width: 100%;
-}
-
-.scan-btn {
-    background-color: #4a90e2;
+.modal-footer button {
+    background-color: #0056b3;
     color: white;
-    padding: 15px 35px;
+    padding: 12px 25px;
+    border-radius: 6px;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
     transition: background-color 0.3s ease;
-    width: 45%;
 }
 
-.scan-btn:hover {
-    background-color: #357abd;
+.modal-footer button:hover {
+    background-color: #003d80;
 }
 
-.cancel-btn {
-    background-color: #ccc;
-    color: black;
-    padding: 15px 35px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    width: 45%;
+/* General Styling */
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-.cancel-btn:hover {
-    background-color: #b0b0b0;
-}*/
+a:hover {
+    color: white;
+}
+
+/* Center Flexbox */
+.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
