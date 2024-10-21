@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.1.29:5000';
+const BASE_URL = 'http://192.168.5.102:5000';
 
 function getQueryParam(param) {
     let urlParams = new URLSearchParams(window.location.search);
@@ -8,10 +8,13 @@ function getQueryParam(param) {
 let ip = getQueryParam('ip');
 let subnet = getQueryParam('subnet');
 
-if (ip) {
-    document.querySelector('.IPheader h2').textContent = `${ip} ${subnet}`;
-    startScanning(ip, subnet);
-}
+document.getElementById('startScanButton').addEventListener('click', function () {
+    if (ip && subnet) {
+        startScanning(ip, subnet);
+    } else {
+        alert('IP address and subnet mask are required to start scanning.');
+    }
+});
 
 function startScanning(ip, subnet) {
     const baseIP = ip.split('.').map(Number);
