@@ -9,16 +9,68 @@
 </head>
 
 <body>
-    <div class="login-container">
-       <!-- <img src="logo.png" alt="Logo">-->
-        <input type="text" placeholder="Username">
-        <input type="password" placeholder="Password">
-        <a href="#">Forgot Password?</a>
-        <button onclick="toHome()">Login</button>
-    </div>
+<div class="login-container">
+    <!-- <img src="logo.png" alt="Logo"> -->
+    <input type="text" id="username" placeholder="Username" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <p>Don't have an account? <a href="register.html">Register here</a></p>
+</div>
 
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+    import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDUJi49LkR9xxLSX5afKZLjZFwlPMmfzg0",
+        authDomain: "capstone-ed286.firebaseapp.com",
+        databaseURL: "https://capstone-ed286-default-rtdb.asia-southeast1.firebasedatabase.app",
+        projectId: "capstone-ed286",
+        storageBucket: "capstone-ed286.appspot.com",
+        messagingSenderId: "561686103760",
+        appId: "1:561686103760:web:da6460fcf592c8a7cd00d5"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    // Function to handle login
+    document.getElementById("loginButton").addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent default form submission
+
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        // Retrieve user data from the database
+        const dbRef = ref(database);
+        get(child(dbRef, `users/`)).then((snapshot) => {
+            if (snapshot.exists()) {
+                let userFound = false;
+
+                snapshot.forEach((childSnapshot) => {
+                    const userData = childSnapshot.val();
+                    if (userData.username === username && userData.password === password) {
+                        userFound = true;
+                        console.log("Login successful:", userData);
+                        // Redirect to home.html
+                        window.location.href = "home.html";
+                    }
+                });
+
+                if (!userFound) {
+                    console.error("Invalid username or password");
+                    // Handle invalid credentials here
+                }
+            } else {
+                console.error("No user data available");
+            }
+        }).catch((error) => {
+            console.error("Error fetching user data:", error);
+        });
+    });
+</script>
 </body>
-<script src="js/login.js"></script>
 
 </html>
