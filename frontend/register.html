@@ -50,8 +50,9 @@
 </div>
 
 <script type="module">
-    import { getDatabase, ref, set, push, child } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+    import { getDatabase, ref, set, push, child } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+
 
     // Firebase configuration
     const firebaseConfig = {
@@ -60,7 +61,8 @@
         projectId: "sqrity-f02ee",
         storageBucket: "sqrity-f02ee.appspot.com",
         messagingSenderId: "299895044214",
-        appId: "1:299895044214:web:b9da099b6067dfb8974757"
+        appId: "1:299895044214:web:b9da099b6067dfb8974757",
+        databaseURL: "https://sqrity-f02ee-default-rtdb.asia-southeast1.firebasedatabase.app"
     };
 
     // Initialize Firebase
