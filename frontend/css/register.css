@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #d7e0f4, #4583ff);
+    font-family: Poppins;
+}
+
+.register-container {
+    background: rgba(255, 255, 255, 0.7);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    width: 500px; /* Adjust the width of the container */
+    display: grid; /* Use grid layout */
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 20px; /* Space between the columns */
+}
+
+.register-container img {
+    width: 100px;
+    margin-bottom: 20px;
+    grid-column: span 2; /* Logo spans both columns */
+    display: block;
+    margin-left: auto;
+    margin-right: auto; /* Center the logo */
+}
+
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"],
+.register-container input[type="date"] {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 16px;
+    box-sizing: border-box;
+    font-family: Poppins;
+}
+
+.register-container a {
+    display: block;
+    margin: 10px 0;
+    color: #3c74d1;
+    font-size: 14px;
+    text-decoration: none;
+    grid-column: span 2; /* Make link span both columns */
+}
+
+.register-container button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3c74d1;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: Poppins;
+    grid-column: span 2; /* Make button span both columns */
+}
+
+.register-container button:hover {
+    background-color: #2e58a6;
+}

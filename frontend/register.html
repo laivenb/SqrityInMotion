@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQrity | Register</title>
+    <link rel="stylesheet" href="css/register.css">
+</head>
+
+<body>
+<div class="register-container">
+    <!-- <img src="logo.png" alt="Logo"> -->
+
+    <label for="firstName">First Name</label>
+    <input type="text" id="firstName" placeholder="First Name" required>
+
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" placeholder="Last Name" required>
+
+    <label for="username">Username</label>
+    <input type="text" id="username" placeholder="Username" required>
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Email" required>
+
+    <label for="password">Password</label>
+    <input type="password" id="password" placeholder="Password" required>
+
+    <label for="confirmPassword">Confirm Password</label>
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required>
+
+    <label for="contactNumber">Contact Number</label>
+    <input type="text" id="contactNumber" placeholder="Contact Number" required>
+
+    <label for="company">Company</label>
+    <input type="text" id="company" placeholder="Company" required>
+
+    <label for="department">Department</label>
+    <input type="text" id="department" placeholder="Department" required>
+
+    <label for="position">Position</label>
+    <input type="text" id="position" placeholder="Position" required>
+
+    <label for="birthday">Birthday</label>
+    <input type="date" id="birthday" placeholder="Birthday" required>
+
+    <button id="registerButton">Register</button>
+    <p>Already have an account? <a href="login.html">Login here</a></p>
+</div>
+
+<script type="module">
+    import { getDatabase, ref, set, push, child } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+
+    // Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyAGRcp5vGb3jkEHQRLqpteltbjKalDYb00",
+        authDomain: "sqrity-f02ee.firebaseapp.com",
+        projectId: "sqrity-f02ee",
+        storageBucket: "sqrity-f02ee.appspot.com",
+        messagingSenderId: "299895044214",
+        appId: "1:299895044214:web:b9da099b6067dfb8974757"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+
+    // Add event listener for the registration button
+    const registerButton = document.getElementById("registerButton");
+    registerButton.addEventListener("click", (e) => {
+        e.preventDefault(); // Prevent default form submission
+
+        const userId = push(child(ref(database), 'users/')).key;
+
+        set(ref(database, "users/" + userId), {
+            firstName: document.getElementById("firstName").value,
+            lastName: document.getElementById("lastName").value,
+            username: document.getElementById("username").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value,  // Storing passwords in plaintext is not recommended
+            contactNumber: document.getElementById("contactNumber").value,
+            company: document.getElementById("company").value,
+            department: document.getElementById("department").value,
+            position: document.getElementById("position").value,
+            birthday: document.getElementById("birthday").value
+        })
+            .then(() => {
+                console.log("User data saved successfully with ID: " + userId);
+            })
+            .catch((error) => {
+                console.error("Error writing user data: ", error);
+            });
+    });
+</script>
+</body>
+
+</html>
