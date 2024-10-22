@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+          <meta charset="UTF-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>SQrity | NMap Specific Scan</title>
+          <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+          <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+          <!-- DataTables CSS -->
+          <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
+
+          <link rel="stylesheet" href="css/sidebar.css">
+          <link rel="stylesheet" href="css/nmap-specific.css">
+</head>
+<body>
+          <div class="container-fluid">
+            <div class="row">
+              <!-- Sidebar -->
+              <div id="sidebar-container">
+                <!-- Sidebar content will be injected here dynamically -->
+              </div>
+
+              <!-- Header Content -->
+              <div class="header-content">
+                <div class="header">
+                  <h1>NMAP | Device Scan</h1>
+                </div>
+              </div>
+
+              <!-- Main Content -->
+              <div class="main-content">
+                <h2 id="ip-address">X.X.X.X</h2>
+                <table id="scan-results" class="display" style="width:100%">
+                  <thead>
+                  <tr>
+                    <th>Port</th>
+                    <th>State</th>
+                    <th>Service</th>
+                    <th>Version</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="js/nmap-specific.js"></script>
+<script src="js/sidebar.js"></script>
+</body>
+</html>

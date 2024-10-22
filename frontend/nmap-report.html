@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQrity | NMap Scan Report</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/nmap-report.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div id="sidebar-container">
+                <!-- Sidebar content will be injected here dynamically -->
+            </div>
+
+
+            <div class="main-content">
+                <div class="report-modal">
+                    <h2>NMap Scan Report</h2>
+                    <div class="report-info">
+                        <div>Service: <span id="service-name">{{ data.service }}</span></div>
+                        <div>IP Address: <span id="ip-address">{{ data.ip }}</span></div>
+                        <div>Scanning Device: <span id="scanning-device">{{ data.service }}</span></div>
+                    </div>
+
+                    <div class="report-content">
+                        <p>Nmap scan report for <span id="report-ip" class="highlighted">{{ data.ip }}</span> ({{
+                            data.ip }})
+                        </p>
+                        <p id="host-status">{{ data.hostStatus }}</p>
+                        <p id="filtered-ports">{{ data.filteredPorts }}</p>
+                        <table class="scan-table">
+                            <thead>
+                                <tr>
+                                    <th>PORT</th>
+                                    <th>STATE</th>
+                                    <th>SERVICE</th>
+                                </tr>
+                            </thead>
+                            <tbody id="scan-results">
+                                <!-- Dynamic rows will be inserted here -->
+                                {% for result in data.results %}
+                                <tr>
+                                    <td>{{ result.port }}</td>
+                                    <td>{{ result.state }}</td>
+                                    <td>{{ result.service }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <p id="mac-address">MAC Address: {{ data.macAddress }}</p>
+                    </div>
+
+
+
+                    <!-- Buttons Section (Save and Exit above Icon Buttons) -->
+                    <div class="buttons-section">
+                        <!-- Save and Exit Buttons -->
+                        <div class="top-actions">
+                            <button class="btn save-btn">Save</button>
+                            <button class="btn exit-btn" onclick="window.close();">EXIT</button>
+                        </div>
+
+                        <!-- Horizontal Line to Separate Save/Exit and Icon Buttons -->
+                        <hr>
+
+                        <!-- Icon Buttons Section -->
+                        <div class="icon-buttons">
+                            <button class="icon-btn">
+                                <img src="path/to/icon1.png" alt="New Scan">
+                                <span class="btn-label">New Scan</span>
+                            </button>
+
+                            <button class="icon-btn">
+                                <img src="path/to/icon2.png" alt="Command Wizard">
+                                <span class="btn-label">Command Wizard</span>
+                            </button>
+
+                            <button class="icon-btn">
+                                <img src="path/to/icon3.png" alt="Open Scan">
+                                <span class="btn-label">Open Scan</span>
+                            </button>
+
+                            <button class="icon-btn blue-download-btn">
+                                <img src="path/to/icon4.png" alt="Download">
+                                <span class="btn-label">Download Report</span>
+                            </button>
+
+                            <button class="icon-btn gray-download-btn">
+                                <img src="path/to/icon5.png" alt="Download XML">
+                                <span class="btn-label">Download XML</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+        <script src="js/sidebar.js"></script>
+        <script src="js/nmap-report.js"></script>
+</body>
+
+</html>

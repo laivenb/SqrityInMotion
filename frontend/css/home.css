@@ -1,0 +1,178 @@
+/* Font import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Poppins, sans-serif;
+    background-color: #f4f4f4;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Main content area */
+.main-content {
+    margin-left: 260px;
+    padding: 400px;
+    width: calc(100% - 250px);
+    background-color: #f5f5f5;
+    overflow-y: auto;
+}
+
+/* Header styles */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.scan-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.vulnerability {
+    margin-top: auto;
+    align-self: flex-end;
+}
+
+
+.header h1 {
+    font-size: 22px;
+    color: #4f4f4f;
+}
+
+.header .ip-address {
+    color: #8a2be2;
+}
+
+.header .vulnerability {
+    color: #ff4d4d;
+}
+
+/* Alerts section */
+.alerts-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e0e7ff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+
+.alert-levels {
+    flex-grow: 1;
+    padding-left: 30px;
+}
+
+.alert {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#progressChart {
+    width: 100% !important;
+    height: 170px !important;
+}
+
+.alert.high {
+    color: #ff3333;
+}
+
+.alert.medium {
+    color: #ff9900;
+}
+
+.alert.low {
+    color: #99cc33;
+}
+
+/* Dashboard layout */
+.dashboard-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* More main content */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    background-color: #f5f5f5;
+    overflow-y: auto;
+}
+
+/* Formal table styles */
+.port-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: #495057;
+}
+
+.port-table th {
+    background-color: #f8f9fa;
+    /* Softer background color for a more formal look */
+    color: #343a40;
+    font-weight: bold;
+    font-size: 1rem;
+    border-bottom: 2px solid #dee2e6;
+    padding: 15px;
+}
+
+.port-table td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Table row hover effect */
+.port-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.port-table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Open/Closed states for table */
+.port-table td.state.open {
+    color: #28a745;
+    /* Green for open */
+}
+
+.port-table td.state.closed {
+    color: #dc3545;
+    /* Red for closed */
+}
+
+/* DataTables customizations */
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 300px;
+    margin-left: 0.5rem;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #495057 !important;
+    margin-left: 10px;
+}
+

@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+
+/* Main content area */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+.header-content {
+    margin-left: 260px;
+    width: calc(100% - 260px);
+    background-color: #ffffff;
+    padding: 30px 40px;
+    border-bottom: 2px solid #dedede;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2a2a2a;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.main-content {
+    margin-left: 300px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 60px 20px;
+}
+
+.icon-container {
+    background-color: white;
+    padding: 60px;
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    width: 220px;
+    height: 220px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+    color: #3a3a3a;
+    text-decoration: none;
+    margin-right: 50px;
+}
+
+.icon-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    background-color: #5b7ea4;
+    color: white;
+}
+
+.icon-container div {
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.icon-container svg {
+    fill: #3a3a3a;
+    transition: fill 0.3s ease;
+    width: 80px;
+    height: 80px;
+}
+
+.icon-container:hover svg {
+    fill: white;
+}
+
+/* Modal Styling */
+.modal-content {
+    border-radius: 8px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.modal-header {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.modal-header h5 {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.modal-body p {
+    font-size: 16px;
+    color: #333;
+}
+
+.modal-body .form-group label {
+    font-weight: 500;
+    color: #333;
+}
+
+.modal-body .form-group input,
+.modal-body .form-group select {
+    width: 100%;
+    /* Ensure the select element takes full width of its container */
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect width */
+}
+
+.modal-footer button {
+    background-color: #0056b3;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 6px;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+.modal-footer button:hover {
+    background-color: #003d80;
+}
+
+/* General Styling */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    color: white;
+}
+
+/* Center Flexbox */
+.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
