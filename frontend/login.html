@@ -13,6 +13,7 @@
     <!-- <img src="logo.png" alt="Logo"> -->
     <input type="text" id="username" placeholder="Username" required>
     <input type="password" id="password" placeholder="Password" required>
+    <button id="loginButton">Login</button>
     <p>Don't have an account? <a href="register.html">Register here</a></p>
 </div>
 
@@ -54,6 +55,11 @@
                     if (userData.username === username && userData.password === password) {
                         userFound = true;
                         console.log("Login successful:", userData);
+
+                        // Store session data using sessionStorage
+                        sessionStorage.setItem("username", username);
+                        sessionStorage.setItem("isLoggedIn", true);
+
                         // Redirect to home.html
                         window.location.href = "home.html";
                     }
