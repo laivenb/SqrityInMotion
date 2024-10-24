@@ -72,7 +72,7 @@
                         console.log("Login successful:", userData);
 
                         // Store session data using sessionStorage
-                        sessionStorage.setItem("username", username);
+                        sessionStorage.setItem("username", userData.username);
                         sessionStorage.setItem("isLoggedIn", true);
 
                         // Redirect to home.html
