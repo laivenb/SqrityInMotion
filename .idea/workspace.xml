@@ -55,7 +55,7 @@
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
     "JavaScript Debug.home.html.executor": "Debug",
-    "JavaScript Debug.login.html.executor": "Run",
+    "JavaScript Debug.login.html.executor": "Debug",
     "JavaScript Debug.nmap-network.html.executor": "Run",
     "JavaScript Debug.nmap-specific.html.executor": "Run",
     "JavaScript Debug.nmap.html.executor": "Run",
