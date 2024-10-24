@@ -1,161 +1,37 @@
 const BASE_URL = 'http://192.168.5.102:5000';
-
 let doughnutChart, progressChart;
 
-$(document).ready(function () {
-<<<<<<< HEAD
-    // Check for existing session
-    const currentUser = localStorage.getItem("currentUser");
-
+window.addEventListener('load', () => {
+    const currentUser = sessionStorage.getItem("username");
     if (!currentUser) {
+        // If not logged in, redirect to login page
         window.location.href = "login.html";
     } else {
-        const userData = JSON.parse(currentUser);
+        const userData = currentUser;
         console.log("Logged in as:", userData.username);
 
-        // Populate data or adjust UI for the logged-in user if needed
-
-        // Initialize DataTable
-        $('#portTable').DataTable({
-            "pagingType": "simple_numbers",  // Pagination style
-            "searching": true,               // Enable search/filter
-            "ordering": true,                // Enable sorting
-            "order": [[0, "asc"]]            // Initial sorting (optional)
-        });
+        // Initialize DataTable after checking user
+        initializeDataTable();
     }
-
-    // Doughnut Chart Start
-    const doughnutCanvas = document.getElementById("doughnutChart");
-    const doughnutCtx = doughnutCanvas && doughnutCanvas.getContext("2d");
-
-    if (doughnutCtx) {
-        new Chart(doughnutCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Critical', 'Medium', 'Low'],
-                datasets: [{
-                    label: 'Vulnerability Levels',
-                    data: [10, 30, 40],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.7)',
-                        'rgba(255, 205, 86, 0.7)',
-                        'rgba(75, 192, 192, 0.7)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(255, 205, 86, 1)',
-                        'rgba(75, 192, 192, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        display: false,
-                    }
-                }
-            }
-        });
-    } else {
-        console.log("Doughnut chart canvas not found!");
-    }
-
-    // Line Bar Start
-    const progressChartCanvas = document.getElementById('progressChart').getContext('2d');
-
-    const progressData = {
-        labels: [''],
-        datasets: [
-            {
-                label: 'Critical',
-                data: [40],
-                backgroundColor: 'rgba(255, 99, 132, 0.7)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-            },
-            {
-                label: 'Medium',
-                data: [30],
-                backgroundColor: 'rgba(255, 205, 86, 0.7)',
-                borderColor: 'rgba(255, 205, 86, 1)',
-            },
-            {
-                label: 'Low',
-                data: [30],
-                backgroundColor: 'rgba(75, 192, 192, 0.7)',
-                borderColor: 'rgba(255, 205, 86, 1)',
-            }
-        ]
-    };
-
-    const progressOptions = {
-        indexAxis: 'y',
-        responsive: true,
-        scales: {
-            x: {
-                beginAtZero: true,
-                max: 100,
-                grid: {
-                    display: false
-                }
-            },
-            y: {
-                beginAtZero: true,
-                grid: {
-                    display: false
-                }
-            }
-        },
-        plugins: {
-            legend: {
-                display: false
-            },
-            tooltip: {
-                callbacks: {
-                    label: function(context) {
-                        return `${context.dataset.label}: ${context.raw}%`;
-                    }
-                }
-            }
-        },
-        elements: {
-            bar: {
-                borderWidth: 0
-            }
-        },
-        backgroundColor: 'rgba(0, 0, 0, 0)'
-    };
-
-    new Chart(progressChartCanvas, {
-        type: 'bar',
-        data: progressData,
-        options: progressOptions
-    });
-    // Line Bar End
 });
-=======
-        // Check for existing session
-        const currentUser = localStorage.getItem("currentUser");
 
-        if (!currentUser) {
-            window.location.href = "login.html";
-        } else {
-            const userData = JSON.parse(currentUser);
-            console.log("Logged in as:", userData.username);
+$(document).ready(function () {
+    const openPorts = JSON.parse(localStorage.getItem('openPorts')) || [];
+    console.log("Open ports from localStorage:", openPorts);
 
-            // Populate data or adjust UI for the logged-in user if needed
+    // Fetch vulnerabilities if open ports exist
+    if (openPorts.length > 0) {
+        fetchVulnerabilities(openPorts);
+    } else {
+        console.log("No open ports found.");
+    }
 
-            // Initialize DataTable
-            $('#portTable').DataTable({
-                "pagingType": "simple_numbers",  // Pagination style
-                "searching": true,               // Enable search/filter
-                "ordering": true,                // Enable sorting
-                "order": [[0, "asc"]]            // Initial sorting (optional)
-            });
-        }
+    // Initialize charts
+    initializeCharts();
+});
 
-
+// Initialize DataTable
+function initializeDataTable() {
     const portTable = $('#portTable').DataTable({
         "pagingType": "simple_numbers",
         "searching": true,
@@ -163,35 +39,24 @@ $(document).ready(function () {
         "order": [[0, "asc"]]
     });
 
-
     const openPorts = JSON.parse(localStorage.getItem('openPorts')) || [];
-    console.log("Open ports from localStorage:", openPorts);
-
-
     const portsTableBody = $('#portTable tbody');
+
     openPorts.forEach(portInfo => {
-        portsTableBody.append(`
-            <tr>
-                <td>${portInfo.port}</td>
-                <td class="state open">open</td>
-                <td>${portInfo.service || 'N/A'}</td>
-                <td>${portInfo.version}</td>
-                <td>${portInfo.cveId || 'N/A'}</td>
-            </tr>
-        `);
+        portTable.row.add([
+            portInfo.port,
+            '<td class="state open">open</td>',
+            portInfo.service || 'N/A',
+            portInfo.version,
+            portInfo.cveId || 'N/A'
+        ]);
     });
 
-
     portTable.draw();
+}
 
-
-    if (openPorts.length > 0) {
-        fetchVulnerabilities(openPorts);
-    } else {
-        console.log("No open ports found.");
-    }
-
-
+// Initialize Charts
+function initializeCharts() {
     const doughnutCanvas = document.getElementById("doughnutChart");
     const doughnutCtx = doughnutCanvas && doughnutCanvas.getContext("2d");
 
@@ -224,7 +89,6 @@ $(document).ready(function () {
             }
         }
     });
-
 
     const progressChartCanvas = document.getElementById('progressChart').getContext('2d');
 
@@ -287,12 +151,10 @@ $(document).ready(function () {
                 bar: {
                     borderWidth: 0
                 }
-            },
-            backgroundColor: 'rgba(0, 0, 0, 0)'
+            }
         }
     });
-});
-
+}
 
 function fetchVulnerabilities(openPorts) {
     const data = {
@@ -302,7 +164,6 @@ function fetchVulnerabilities(openPorts) {
         }))
     };
 
-
     console.log("Sending data to server:", data);
 
     $.ajax({
@@ -311,7 +172,6 @@ function fetchVulnerabilities(openPorts) {
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function (response) {
-
             console.log("Received data from server:", response);
             updatePortTable(response);
             updateCharts(response);
@@ -322,54 +182,42 @@ function fetchVulnerabilities(openPorts) {
     });
 }
 
-
 function updatePortTable(vulnerabilities) {
     const portTable = $('#portTable').DataTable();
     portTable.clear();
 
     vulnerabilities.forEach(vulnerability => {
-
         portTable.row.add([
             vulnerability.port || 'N/A',
-            `<td class="state open">open</td>`,
+            '<td class="state open">open</td>',
             vulnerability.version || 'N/A',
             vulnerability.cve_id || 'N/A',
             vulnerability.cve_score || 'N/A'
         ]);
     });
 
-
     portTable.draw();
 }
-
 
 function updateCharts(vulnerabilities) {
     const criticalCount = vulnerabilities.filter(v => v.cve_score >= 7).length;
     const mediumCount = vulnerabilities.filter(v => v.cve_score >= 4 && v.cve_score < 7).length;
     const lowCount = vulnerabilities.filter(v => v.cve_score < 4).length;
 
-
     const totalCount = criticalCount + mediumCount + lowCount;
-
 
     const criticalPercentage = totalCount > 0 ? (criticalCount / totalCount) * 100 : 0;
     const mediumPercentage = totalCount > 0 ? (mediumCount / totalCount) * 100 : 0;
     const lowPercentage = totalCount > 0 ? (lowCount / totalCount) * 100 : 0;
 
-
     doughnutChart.data.datasets[0].data = [criticalPercentage, mediumPercentage, lowPercentage];
     doughnutChart.update();
-
 
     progressChart.data.datasets[0].data = [criticalPercentage];
     progressChart.data.datasets[1].data = [mediumPercentage];
     progressChart.data.datasets[2].data = [lowPercentage];
     progressChart.update();
 
-
     const totalVulnerabilityPercentage = criticalPercentage + mediumPercentage + lowPercentage;
     $('.vulnerability').text(`VULNERABILITY: ${totalVulnerabilityPercentage.toFixed(2)}%`);
 }
-
-
->>>>>>> bañezBranch

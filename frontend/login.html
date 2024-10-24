@@ -22,20 +22,33 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
     import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
-    // Your web app's Firebase configuration
+    // Firebase configuration
     const firebaseConfig = {
-        apiKey: "AIzaSyDUJi49LkR9xxLSX5afKZLjZFwlPMmfzg0",
-        authDomain: "capstone-ed286.firebaseapp.com",
-        databaseURL: "https://capstone-ed286-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "capstone-ed286",
-        storageBucket: "capstone-ed286.appspot.com",
-        messagingSenderId: "561686103760",
-        appId: "1:561686103760:web:da6460fcf592c8a7cd00d5"
+        apiKey: "AIzaSyAGRcp5vGb3jkEHQRLqpteltbjKalDYb00",
+        authDomain: "sqrity-f02ee.firebaseapp.com",
+        projectId: "sqrity-f02ee",
+        storageBucket: "sqrity-f02ee.appspot.com",
+        messagingSenderId: "299895044214",
+        appId: "1:299895044214:web:b9da099b6067dfb8974757",
+        databaseURL: "https://sqrity-f02ee-default-rtdb.asia-southeast1.firebasedatabase.app"
     };
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
+
+    // Log the entire database to the console for debugging
+    const dbRef = ref(database);
+    get(child(dbRef, '/')).then((snapshot) => {
+        if (snapshot.exists()) {
+            // Log entire database data
+            console.log("Database data:", snapshot.val());
+        } else {
+            console.error("No data available");
+        }
+    }).catch((error) => {
+        console.error("Error fetching database data:", error.message);
+    });
 
     // Function to handle login
     document.getElementById("loginButton").addEventListener("click", (e) => {
@@ -45,19 +58,21 @@
         const password = document.getElementById("password").value;
 
         // Retrieve user data from the database
-        const dbRef = ref(database);
         get(child(dbRef, `users/`)).then((snapshot) => {
             if (snapshot.exists()) {
                 let userFound = false;
 
+                // Loop through each user node (user's unique ID)
                 snapshot.forEach((childSnapshot) => {
                     const userData = childSnapshot.val();
+                    console.log("User data:", userData); // Log each user's data
+
                     if (userData.username === username && userData.password === password) {
                         userFound = true;
                         console.log("Login successful:", userData);
 
                         // Store session data using sessionStorage
-                        sessionStorage.setItem("username", username);
+                        sessionStorage.setItem("username", userData.username);
                         sessionStorage.setItem("isLoggedIn", true);
 
                         // Redirect to home.html
@@ -67,13 +82,13 @@
 
                 if (!userFound) {
                     console.error("Invalid username or password");
-                    // Handle invalid credentials here
+                    // Handle invalid credentials here (e.g., display an error message)
                 }
             } else {
                 console.error("No user data available");
             }
         }).catch((error) => {
-            console.error("Error fetching user data:", error);
+            console.error("Error fetching user data:", error.message);
         });
     });
 </script>
