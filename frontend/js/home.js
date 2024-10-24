@@ -3,6 +3,26 @@ const BASE_URL = 'http://192.168.5.102:5000';
 let doughnutChart, progressChart;
 
 $(document).ready(function () {
+        // Check for existing session
+        const currentUser = localStorage.getItem("currentUser");
+
+        if (!currentUser) {
+            window.location.href = "login.html";
+        } else {
+            const userData = JSON.parse(currentUser);
+            console.log("Logged in as:", userData.username);
+
+            // Populate data or adjust UI for the logged-in user if needed
+
+            // Initialize DataTable
+            $('#portTable').DataTable({
+                "pagingType": "simple_numbers",  // Pagination style
+                "searching": true,               // Enable search/filter
+                "ordering": true,                // Enable sorting
+                "order": [[0, "asc"]]            // Initial sorting (optional)
+            });
+        }
+
 
     const portTable = $('#portTable').DataTable({
         "pagingType": "simple_numbers",
