@@ -1,29 +1,37 @@
 const BASE_URL = 'http://192.168.5.102:5000';
-
 let doughnutChart, progressChart;
 
+window.addEventListener('load', () => {
+    const currentUser = sessionStorage.getItem("username");
+    if (!currentUser) {
+        // If not logged in, redirect to login page
+        window.location.href = "login.html";
+    } else {
+        const userData = JSON.parse(currentUser);
+        console.log("Logged in as:", userData.username);
+
+        // Initialize DataTable after checking user
+        initializeDataTable();
+    }
+});
+
 $(document).ready(function () {
-        // Check for existing session
-        const currentUser = localStorage.getItem("currentUser");
+    const openPorts = JSON.parse(localStorage.getItem('openPorts')) || [];
+    console.log("Open ports from localStorage:", openPorts);
 
-        if (!currentUser) {
-            window.location.href = "login.html";
-        } else {
-            const userData = JSON.parse(currentUser);
-            console.log("Logged in as:", userData.username);
+    // Fetch vulnerabilities if open ports exist
+    if (openPorts.length > 0) {
+        fetchVulnerabilities(openPorts);
+    } else {
+        console.log("No open ports found.");
+    }
 
-            // Populate data or adjust UI for the logged-in user if needed
+    // Initialize charts
+    initializeCharts();
+});
 
-            // Initialize DataTable
-            $('#portTable').DataTable({
-                "pagingType": "simple_numbers",  // Pagination style
-                "searching": true,               // Enable search/filter
-                "ordering": true,                // Enable sorting
-                "order": [[0, "asc"]]            // Initial sorting (optional)
-            });
-        }
-
-
+// Initialize DataTable
+function initializeDataTable() {
     const portTable = $('#portTable').DataTable({
         "pagingType": "simple_numbers",
         "searching": true,
@@ -31,35 +39,24 @@ $(document).ready(function () {
         "order": [[0, "asc"]]
     });
 
-
     const openPorts = JSON.parse(localStorage.getItem('openPorts')) || [];
-    console.log("Open ports from localStorage:", openPorts);
-
-
     const portsTableBody = $('#portTable tbody');
+
     openPorts.forEach(portInfo => {
-        portsTableBody.append(`
-            <tr>
-                <td>${portInfo.port}</td>
-                <td class="state open">open</td>
-                <td>${portInfo.service || 'N/A'}</td>
-                <td>${portInfo.version}</td>
-                <td>${portInfo.cveId || 'N/A'}</td>
-            </tr>
-        `);
+        portTable.row.add([
+            portInfo.port,
+            '<td class="state open">open</td>',
+            portInfo.service || 'N/A',
+            portInfo.version,
+            portInfo.cveId || 'N/A'
+        ]);
     });
 
-
     portTable.draw();
+}
 
-
-    if (openPorts.length > 0) {
-        fetchVulnerabilities(openPorts);
-    } else {
-        console.log("No open ports found.");
-    }
-
-
+// Initialize Charts
+function initializeCharts() {
     const doughnutCanvas = document.getElementById("doughnutChart");
     const doughnutCtx = doughnutCanvas && doughnutCanvas.getContext("2d");
 
@@ -92,7 +89,6 @@ $(document).ready(function () {
             }
         }
     });
-
 
     const progressChartCanvas = document.getElementById('progressChart').getContext('2d');
 
@@ -155,12 +151,10 @@ $(document).ready(function () {
                 bar: {
                     borderWidth: 0
                 }
-            },
-            backgroundColor: 'rgba(0, 0, 0, 0)'
+            }
         }
     });
-});
-
+}
 
 function fetchVulnerabilities(openPorts) {
     const data = {
@@ -170,7 +164,6 @@ function fetchVulnerabilities(openPorts) {
         }))
     };
 
-
     console.log("Sending data to server:", data);
 
     $.ajax({
@@ -179,7 +172,6 @@ function fetchVulnerabilities(openPorts) {
         contentType: 'application/json',
         data: JSON.stringify(data),
         success: function (response) {
-
             console.log("Received data from server:", response);
             updatePortTable(response);
             updateCharts(response);
@@ -190,53 +182,42 @@ function fetchVulnerabilities(openPorts) {
     });
 }
 
-
 function updatePortTable(vulnerabilities) {
     const portTable = $('#portTable').DataTable();
     portTable.clear();
 
     vulnerabilities.forEach(vulnerability => {
-
         portTable.row.add([
             vulnerability.port || 'N/A',
-            `<td class="state open">open</td>`,
+            '<td class="state open">open</td>',
             vulnerability.version || 'N/A',
             vulnerability.cve_id || 'N/A',
             vulnerability.cve_score || 'N/A'
         ]);
     });
 
-
     portTable.draw();
 }
-
 
 function updateCharts(vulnerabilities) {
     const criticalCount = vulnerabilities.filter(v => v.cve_score >= 7).length;
     const mediumCount = vulnerabilities.filter(v => v.cve_score >= 4 && v.cve_score < 7).length;
     const lowCount = vulnerabilities.filter(v => v.cve_score < 4).length;
 
-
     const totalCount = criticalCount + mediumCount + lowCount;
-
 
     const criticalPercentage = totalCount > 0 ? (criticalCount / totalCount) * 100 : 0;
     const mediumPercentage = totalCount > 0 ? (mediumCount / totalCount) * 100 : 0;
     const lowPercentage = totalCount > 0 ? (lowCount / totalCount) * 100 : 0;
 
-
     doughnutChart.data.datasets[0].data = [criticalPercentage, mediumPercentage, lowPercentage];
     doughnutChart.update();
-
 
     progressChart.data.datasets[0].data = [criticalPercentage];
     progressChart.data.datasets[1].data = [mediumPercentage];
     progressChart.data.datasets[2].data = [lowPercentage];
     progressChart.update();
 
-
     const totalVulnerabilityPercentage = criticalPercentage + mediumPercentage + lowPercentage;
     $('.vulnerability').text(`VULNERABILITY: ${totalVulnerabilityPercentage.toFixed(2)}%`);
 }
-
-
