@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-network.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-network.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-specific.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
