@@ -1,4 +1,15 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Session check
+    const currentUser = sessionStorage.getItem("username");
+
+    if (!currentUser) {
+        // Redirect to login if no user is logged in
+        window.location.href = "login.html";
+        return;
+    } else {
+        console.log("Logged in as:", currentUser);
+    }
+
     const exitButton = document.querySelector('.exit-btn');
     if (exitButton) {
         exitButton.addEventListener('click', function () {
@@ -62,11 +73,9 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('.report-content').innerHTML = '<p>No scan result found.</p>';
     }
 
-
-        function redirectToScan() {
+    function redirectToScan() {
         window.location.href = "vulnerability_scanning.html";
     }
-
 
     console.log(scanResult);
 

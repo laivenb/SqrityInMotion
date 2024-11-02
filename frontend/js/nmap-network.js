@@ -1,5 +1,17 @@
 const BASE_URL = 'http://192.168.254.127:5000';
 
+// Function to check session on page load
+window.addEventListener('load', () => {
+    const currentUser = sessionStorage.getItem("username");
+
+    if (!currentUser) {
+        // Redirect to login if no user is logged in
+        window.location.href = "login.html";
+    } else {
+        console.log("Logged in as:", currentUser);
+    }
+});
+
 function getQueryParam(param) {
     let urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param);
@@ -9,6 +21,7 @@ let ip = getQueryParam('ip');
 let subnet = getQueryParam('subnet');
 
 document.getElementById('startScanButton').addEventListener('click', function () {
+    // Check if IP and subnet are provided
     if (ip && subnet) {
         startScanning(ip, subnet);
     } else {
@@ -32,7 +45,77 @@ function startScanning(ip, subnet) {
         case '/16':
             startHost = 0;
             endHost = 255;
-            for (let i = 0; i <= 255; i++) {
+            for (let i = startHost; i <= endHost; i++) {
+                for (let j = 0; j <= 255; j++) {
+                    let hostIP = `${baseIP[0]}.${baseIP[1]}.${i}.${j}`;
+                    ipList.push(hostIP);
+                }
+            }
+            break;
+        case '/17':
+            startHost = 0;
+            endHost = 127;
+            for (let i = startHost; i <= endHost; i++) {
+                for (let j = 0; j <= 255; j++) {
+                    let hostIP = `${baseIP[0]}.${baseIP[1]}.${i}.${j}`;
+                    ipList.push(hostIP);
+                }
+            }
+            break;
+        case '/18':
+            startHost = 0;
+            endHost = 63;
+            for (let i = startHost; i <= endHost; i++) {
+                for (let j = 0; j <= 255; j++) {
+                    let hostIP = `${baseIP[0]}.${baseIP[1]}.${i}.${j}`;
+                    ipList.push(hostIP);
+                }
+            }
+            break;
+        case '/19':
+            startHost = 0;
+            endHost = 31;
+            for (let i = startHost; i <= endHost; i++) {
+                for (let j = 0; j <= 255; j++) {
+                    let hostIP = `${baseIP[0]}.${baseIP[1]}.${i}.${j}`;
+                    ipList.push(hostIP);
+                }
+            }
+            break;
+        case '/20':
+            startHost = 0;
+            endHost = 15;
+            for (let i = startHost; i <= endHost; i++) {
+                for (let j = 0; j <= 255; j++) {
+                    let hostIP = `${baseIP[0]}.${baseIP[1]}.${i}.${j}`;
+                    ipList.push(hostIP);
+                }
+            }
+            break;
+        case '/21':
+            startHost = 0;
+            endHost = 7;
+            for (let i = startHost; i <= endHost; i++) {
+                for (let j = 0; j <= 255; j++) {
+                    let hostIP = `${baseIP[0]}.${baseIP[1]}.${i}.${j}`;
+                    ipList.push(hostIP);
+                }
+            }
+            break;
+        case '/22':
+            startHost = 0;
+            endHost = 3;
+            for (let i = startHost; i <= endHost; i++) {
+                for (let j = 0; j <= 255; j++) {
+                    let hostIP = `${baseIP[0]}.${baseIP[1]}.${i}.${j}`;
+                    ipList.push(hostIP);
+                }
+            }
+            break;
+        case '/23':
+            startHost = 0;
+            endHost = 1;
+            for (let i = startHost; i <= endHost; i++) {
                 for (let j = 0; j <= 255; j++) {
                     let hostIP = `${baseIP[0]}.${baseIP[1]}.${i}.${j}`;
                     ipList.push(hostIP);
@@ -47,11 +130,58 @@ function startScanning(ip, subnet) {
                 ipList.push(hostIP);
             }
             break;
+        case '/25':
+            startHost = 1;
+            endHost = 126;
+            for (let i = startHost; i <= endHost; i++) {
+                let hostIP = `${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`;
+                ipList.push(hostIP);
+            }
+            break;
+        case '/26':
+            startHost = 1;
+            endHost = 62;
+            for (let i = startHost; i <= endHost; i++) {
+                let hostIP = `${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`;
+                ipList.push(hostIP);
+            }
+            break;
+        case '/27':
+            startHost = 1;
+            endHost = 30;
+            for (let i = startHost; i <= endHost; i++) {
+                let hostIP = `${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`;
+                ipList.push(hostIP);
+            }
+            break;
+        case '/28':
+            startHost = 1;
+            endHost = 14;
+            for (let i = startHost; i <= endHost; i++) {
+                let hostIP = `${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`;
+                ipList.push(hostIP);
+            }
+            break;
+        case '/29':
+            startHost = 1;
+            endHost = 6;
+            for (let i = startHost; i <= endHost; i++) {
+                let hostIP = `${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`;
+                ipList.push(hostIP);
+            }
+            break;
+        case '/30':
+            startHost = baseIP[3];
+            endHost = baseIP[3] + 3;
+            for (let i = startHost; i <= endHost; i++) {
+                let hostIP = `${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`;
+                ipList.push(hostIP);
+            }
+            break;
         default:
             console.error('Unsupported subnet prefix.');
             return;
     }
-
     scanHost(ipList);
 }
 
@@ -63,7 +193,7 @@ async function scanHost(ipList) {
     }
 
     // Batch size to limit concurrent scans
-    const batchSize = 5; // Adjust as needed
+    const batchSize = 5;
     for (let i = 0; i < ipList.length; i += batchSize) {
         const batch = ipList.slice(i, i + batchSize);
 
