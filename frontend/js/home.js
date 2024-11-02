@@ -1,16 +1,31 @@
 const BASE_URL = 'http://192.168.5.102:5000';
-let doughnutChart, progressChart;
+let openPorts = [];
 
+function getIPFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const ip = urlParams.get('ip');
+    console.log(ip);
+    return ip;
+}
 window.addEventListener('load', () => {
     const currentUser = sessionStorage.getItem("username");
     if (!currentUser) {
-        // If not logged in, redirect to login page
         window.location.href = "login.html";
     } else {
-        const userData = JSON.parse(currentUser);
-        console.log("Logged in as:", userData.username);
+        console.log("Logged in as:", currentUser);
 
-        // Initialize DataTable after checking user
+
+        ipAddress = getIPFromURL();
+        console.log(ipAddress);
+        const ipAddressElement = document.querySelector('.ip-address');
+
+        if (ipAddress) {
+            ipAddressElement.textContent = ipAddress;
+            console.log("IP Address:", ipAddress);
+        } else {
+            ipAddressElement.textContent = "Unknown IP";
+        }
+
         initializeDataTable();
     }
 });
@@ -19,16 +34,42 @@ $(document).ready(function () {
     const openPorts = JSON.parse(localStorage.getItem('openPorts')) || [];
     console.log("Open ports from localStorage:", openPorts);
 
-    // Fetch vulnerabilities if open ports exist
     if (openPorts.length > 0) {
+        $('#pentestButton').show();
         fetchVulnerabilities(openPorts);
     } else {
         console.log("No open ports found.");
+        $('#pentestButton').hide();
     }
 
     // Initialize charts
     initializeCharts();
 });
+
+// Add an event listener to the Pentest button
+$('#pentestButton').on('click', function() {
+    const portTable = $('#portTable').DataTable();
+    const portDetailsArray = [];
+
+    portTable.rows().every(function() {
+        const data = this.data();
+        const portDetails = {
+            port: data[0],
+            service: data[2],
+            version: data[3],
+            cveId: data[4]
+        };
+        portDetailsArray.push(portDetails);
+    });
+    ipAddress = getIPFromURL();
+
+    sessionStorage.setItem('portDetailsArray', JSON.stringify(portDetailsArray));
+
+    console.log("Port Details Array:", portDetailsArray);
+
+    window.location.href = `pentest-result.html?ip=${ipAddress}`;
+});
+
 
 // Initialize DataTable
 function initializeDataTable() {
@@ -36,24 +77,44 @@ function initializeDataTable() {
         "pagingType": "simple_numbers",
         "searching": true,
         "ordering": true,
-        "order": [[0, "asc"]]
+        "order": [[0, "asc"]],
+        "createdRow": function(row, data) {
+
+            $(row).on('click', function() {
+                const selectedPortInfo = data[0];
+                const portInfoToStore = {
+                    port: selectedPortInfo,
+                    service: data[2],
+                    version: data[3],
+                    cveId: data[4]
+                };
+
+                sessionStorage.setItem('selectedPortInfo', JSON.stringify(portInfoToStore));
+
+                window.location.href = `port-specific.html`;
+            });
+        }
     });
 
     const openPorts = JSON.parse(localStorage.getItem('openPorts')) || [];
-    const portsTableBody = $('#portTable tbody');
 
     openPorts.forEach(portInfo => {
+
         portTable.row.add([
             portInfo.port,
             '<td class="state open">open</td>',
             portInfo.service || 'N/A',
-            portInfo.version,
+            portInfo.version || 'N/A',
             portInfo.cveId || 'N/A'
-        ]);
+        ]).draw();
     });
-
-    portTable.draw();
 }
+
+
+
+
+
+
 
 // Initialize Charts
 function initializeCharts() {

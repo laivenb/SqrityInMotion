@@ -1,5 +1,6 @@
 const BASE_URL = 'http://192.168.5.102:5000';
 let openPorts = [];
+let ipAddress;
 
 function getIPFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -7,14 +8,14 @@ function getIPFromURL() {
 }
 
 function navigateToHome() {
+    ipAddress = getIPFromURL();
     localStorage.setItem('openPorts', JSON.stringify(openPorts));
-    window.location.href = 'home.html';
+    window.location.href = `home.html?ip=${ipAddress}`;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
 
     document.getElementById('viewResultsButton').addEventListener('click', navigateToHome);
-
 
     const resultsContainer = $('#scan-results').DataTable();
 
@@ -23,7 +24,9 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function updateIPAddress(resultsContainer) {
-    const ipAddress = getIPFromURL();
+    ipAddress = getIPFromURL();
+
+    console.log(ipAddress);
 
     if (ipAddress) {
         document.querySelector('h2').textContent = ipAddress;
