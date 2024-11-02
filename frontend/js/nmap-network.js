@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.5.102:5000';
+const BASE_URL = 'http://192.168.254.127:5000';
 
 function getQueryParam(param) {
     let urlParams = new URLSearchParams(window.location.search);
