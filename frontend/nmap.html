@@ -101,6 +101,55 @@
     </div>
   </div>
 
+  <!-- Modal for Device Scan -->
+  <div class="modal fade" id="scanDeviceModal" tabindex="-1" role="dialog" aria-labelledby="scanDeviceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="scanDeviceModal">Device Scan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Please select the scan options you want to perform.</p>
+
+          <!-- IP Address Input -->
+          <div class="form-group">
+            <label for="ipAddress">Enter IP Address (e.g., 192.168.1.0):</label>
+            <input type="text" class="form-control" id="ipAddress" placeholder="192.168.1.0">
+          </div>
+
+          <!-- Subnet Mask Dropdown -->
+          <div class="form-group">
+            <label for="subnetMask">Select Subnet Mask:</label>
+            <select class="form-control" id="subnetMask">
+              <option value="/16">/16</option>
+              <option value="/17">/17</option>
+              <option value="/18">/18</option>
+              <option value="/19">/19</option>
+              <option value="/20">/20</option>
+              <option value="/21">/21</option>
+              <option value="/22">/22</option>
+              <option value="/23">/23</option>
+              <option value="/24">/24</option>
+              <option value="/25">/25</option>
+              <option value="/26">/26</option>
+              <option value="/27">/27</option>
+              <option value="/28">/28</option>
+              <option value="/29">/29</option>
+              <option value="/30">/30</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="startScanBtnB">Scan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

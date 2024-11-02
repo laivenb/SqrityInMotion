@@ -5,17 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/css/port-specific.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/js/pentest-result.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/js/port-specific.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/pentest-result.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/port-specific.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/server-Test.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/home.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-specific.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/sidebar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/nmap.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/nmap.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/nmap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/port-specific.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/port-specific.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/sidebar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php/8.2.8/bin/php" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
 }</component>
@@ -60,6 +56,7 @@
     "JavaScript Debug.pentest-result.html.executor": "Run",
     "JavaScript Debug.port-specific.html.executor": "Run",
     "JavaScript Debug.server-Test.html.executor": "Run",
+    "JavaScript Debug.sidebar.html.executor": "Run",
     "Node.js.home.js.executor": "Run",
     "Python.app.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -70,6 +67,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.tools",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -82,8 +80,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PS-242.22855.113" />
-        <option value="bundled-php-predefined-a98d8de5180a-90914f2295cb-com.jetbrains.php.sharedIndexes-PS-242.22855.113" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PS-242.23726.107" />
+        <option value="bundled-php-predefined-a98d8de5180a-90914f2295cb-com.jetbrains.php.sharedIndexes-PS-242.23726.107" />
       </set>
     </attachedChunks>
   </component>
@@ -101,6 +99,7 @@
       <workItem from="1728922584172" duration="27651000" />
       <workItem from="1729486763965" duration="834000" />
       <workItem from="1729924232747" duration="30374000" />
+      <workItem from="1730534198139" duration="5688000" />
     </task>
     <servers />
   </component>
