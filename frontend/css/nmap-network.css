@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.main-content {
+    margin-left: 270px;
+    padding: 30px;
+    width: calc(100% - 270px);
+    background-color: #ffffff;
+    /* Make the background flat with no shadows */
+}
+
+.header-content h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+    text-align: left;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #dedede;
+    /* Subtle bottom border for formality */
+}
+
+.IPheader {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.IPheader h2 {
+    font-size: 26px;
+    color: #555;
+    font-weight: 500;
+}
+
+.table-wrapper {
+    margin-top: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.port-table {
+    background-color: white;
+    border-radius: 8px;
+    border-collapse: collapse;
+    width: 100%;
+    text-align: left;
+    border: 1px solid #ddd;
+    /* Flat border instead of a shadow */
+}
+
+.port-table th,
+.port-table td {
+    padding: 15px;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.port-table th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+}
+
+.port-table td {
+    background-color: #ffffff;
+}
+
+.port-table td button {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+
+
+.dataTables_wrapper .dataTables_length select {
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    background-color: #fff;
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 5px;
+}

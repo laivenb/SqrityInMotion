@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #333;
+    overflow: hidden;
+    /* Prevents any scrollbars */
+}
+
+.main-content {
+    padding: 50px;
+    background-color: #ffffff;
+    width: 600px;
+    border-radius: 15px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: box-shadow 0.3s ease;
+    position: relative;
+    margin-left: 500px;
+}
+
+.main-content:hover {
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.15);
+}
+
+h2 {
+    font-size: 30px;
+    color: #222;
+    font-weight: 600;
+    margin-bottom: 40px;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.tool-header h3 {
+    font-size: 22px;
+    color: #555;
+    font-weight: 500;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.tool-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    align-items: center;
+}
+
+.tool-btn {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 80%;
+    max-width: 350px;
+    text-align: center;
+    font-weight: 500;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tool-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+.tool-btn:active {
+    background-color: #00408f;
+}
+
+/* Responsive styling */
+@media only screen and (max-width: 768px) {
+    .main-content {
+        padding: 20px;
+        width: 100%;
+        height: auto;
+        margin-left: 0;
+    }
+
+    .tool-btn {
+        max-width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .tool-header h3 {
+        font-size: 20px;
+    }
+}

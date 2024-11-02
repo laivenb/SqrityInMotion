@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sign Up Form</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="vendor/nouislider/nouislider.min.css">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="css/regform.css">
+</head>
+<body>
+
+<div class="main">
+
+    <div class="container">
+        <div class="signup-content">
+            <div class="signup-img">
+                <img src="images/form-img.jpeg" alt="">
+                <div class="signup-img-content">
+                    <h2>Register now </h2>
+                </div>
+            </div>
+            <div class="signup-form">
+                <form method="POST" class="register-form" id="register-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <div class="form-input">
+                                <label for="full_name" class="required">Full name</label>
+                                <input type="text" name="full_name" id="full_name" />
+                            </div>
+                            <div class="form-input">
+                                <label for="email" class="required">Email</label>
+                                <input type="email" name="email" id="email" />
+                            </div>
+                            <div class="form-input">
+                                <label for="phone_number" class="required">Phone number</label>
+                                <input type="text" name="phone_number" id="phone_number" />
+                            </div>
+                            <div class="form-input">
+                                <label for="company" class="required">Company</label>
+                                <input type="text" name="company" id="company" />
+                            </div>
+                            <div class="form-input">
+                                <label for="role" class="required">Role</label>
+                                <input type="text" name="role" id="role" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-radio">
+                                <div class="label-flex">
+                                    <label for="terms">Do you agree to the Terms and Agreement?</label>
+                                </div>
+                                <div class="form-radio-group">
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="consent" id="agree" value="agree" required>
+                                        <label for="agree">I Agree</label>
+                                    </div>
+                                    <div class="form-radio-item">
+                                        <input type="radio" name="consent" id="disagree" value="disagree">
+                                        <label for="disagree">I Disagree</label>
+                                    </div>
+                                </div>
+                                <div class="form-link-container">
+                                    <a href="#" class="form-link">Read Terms and Agreement</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-submit">
+                        <input type="submit" value="Submit" class="submit" id="submit" name="submit" />
+                        <input type="reset" value="Reset" class="submit" id="reset" name="reset" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- JS -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/nouislider/nouislider.min.js"></script>
+<script src="vendor/wnumb/wNumb.js"></script>
+<script src="vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="vendor/jquery-validation/dist/additional-methods.min.js"></script>
+<script src="js/regform.js"></script>
+</body>
+</html>
