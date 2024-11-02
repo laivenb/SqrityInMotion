@@ -176,8 +176,3 @@ body {
     margin-left: 10px;
 }
 
-.port-table tbody tr {
-    cursor: pointer; /* Changes cursor to indicate row is clickable */
-}
-
-

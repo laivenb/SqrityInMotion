@@ -5,11 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/css/port-specific.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/js/pentest-result.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/js/port-specific.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/pentest-result.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/port-specific.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/server-Test.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/home.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/home.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/home.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/js/nmap-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-specific.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/nmap-specific.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/nmap-specific.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,9 +29,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -51,9 +57,13 @@
     "JavaScript Debug.nmap-specific.html.executor": "Run",
     "JavaScript Debug.nmap.html.executor": "Run",
     "JavaScript Debug.nmapNetwork.html.executor": "Run",
+    "JavaScript Debug.pentest-result.html.executor": "Run",
+    "JavaScript Debug.port-specific.html.executor": "Run",
+    "JavaScript Debug.server-Test.html.executor": "Run",
+    "Node.js.home.js.executor": "Run",
     "Python.app.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "bañezBranch",
+    "git-widget-placeholder": "chingBranch",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -90,6 +100,7 @@
       <workItem from="1728902111065" duration="2544000" />
       <workItem from="1728922584172" duration="27651000" />
       <workItem from="1729486763965" duration="834000" />
+      <workItem from="1729924232747" duration="30374000" />
     </task>
     <servers />
   </component>
