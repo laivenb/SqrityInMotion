@@ -1,4 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // Check for session
+    const currentUser = sessionStorage.getItem("username");
+    if (!currentUser) {
+        // Redirect to login if session is not found
+        window.location.href = "login.html";
+        return;
+    } else {
+        console.log("Logged in as:", currentUser);
+    }
+
     const form = document.getElementById('nmapForm');
     const spinner = document.querySelector('.loading-spinner');
     const submitButton = document.querySelector('.scan-btn');
@@ -18,17 +28,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (service === 'specific-device') {
             apiEndpoint = 'http://192.168.1.29:5000/scan-device';
-            requestBody = {
-                ip: ipAddress,
-            };
+            requestBody = { ip: ipAddress };
         } else if (service === 'network-scan') {
             const subnetMask = document.getElementById('subnet-mask').value;
             const networkAddress = ipAddress + subnetMask;
 
             apiEndpoint = 'http://192.168.1.29:5000/scan-network';
-            requestBody = {
-                network: networkAddress,
-            };
+            requestBody = { network: networkAddress };
         }
 
         try {
@@ -58,7 +64,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     const scanResult = JSON.parse(localStorage.getItem('scanResult'));
-
     console.log(scanResult);
 
     cancelButton.addEventListener('click', function () {
@@ -66,13 +71,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
 document.getElementById('startScanBtn').addEventListener('click', function() {
+    // Session check
+    const currentUser = sessionStorage.getItem("username");
+    if (!currentUser) {
+        window.location.href = "login.html";
+        return;
+    }
+
     var ipAddress = document.getElementById('ipAddress').value;
     var subnetMask = document.getElementById('subnetMask').value;
 
-
     window.location.href = `nmap-network.html?ip=${ipAddress}&subnet=${subnetMask}`;
 });
-
-

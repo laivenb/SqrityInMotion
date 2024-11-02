@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.5.102:5000';
+const BASE_URL = 'http://192.168.254.127:5000';
 let openPorts = [];
 let ipAddress;
 
@@ -14,11 +14,20 @@ function navigateToHome() {
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    // Session check
+    const currentUser = sessionStorage.getItem("username");
+
+    if (!currentUser) {
+        // Redirect to login if no user is logged in
+        window.location.href = "login.html";
+        return;
+    } else {
+        console.log("Logged in as:", currentUser);
+    }
 
     document.getElementById('viewResultsButton').addEventListener('click', navigateToHome);
 
     const resultsContainer = $('#scan-results').DataTable();
-
 
     updateIPAddress(resultsContainer);
 });
@@ -57,18 +66,12 @@ function updateIPAddress(resultsContainer) {
 
                             const port = parts[0].replace('/tcp', '').trim();
                             const state = parts[1];
-
-
                             const service = parts[2].trim();
-
-
                             const version = parts.slice(3).join(' ').replace(/\s*\(.*?\)\s*/, '').trim();
-
 
                             if (state.toLowerCase() === 'open') {
                                 openPorts.push({ port: port, version: version });
                             }
-
 
                             resultsContainer.row.add([port, state, service, version]);
                         }
@@ -77,7 +80,6 @@ function updateIPAddress(resultsContainer) {
                 } else {
                     resultsContainer.row.add(['', 'No results found or host is down.', '', '']).draw();
                 }
-
 
                 console.log("Open Ports:", openPorts);
             })
