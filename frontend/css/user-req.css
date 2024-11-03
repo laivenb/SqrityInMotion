@@ -1,0 +1,98 @@
+/* General styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.main-content {
+    margin-left: 180px; /* Space for sidebar */
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* More compact layout for the table container */
+.user-requests {
+    width: 80%; /* Reduced to 80% to make the table less wide */
+    max-width: 1000px; /* Lower maximum width for large screens */
+    margin: 0 auto; /* Center the container */
+}
+
+.user-requests h2 {
+    font-size: 42px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+/* Table layout adjustments */
+#userRequestsTable {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+/* Header styling */
+#userRequestsTable th {
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: 600;
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Cell styling */
+#userRequestsTable th, #userRequestsTable td {
+    padding: 10px 12px; /* Slightly reduced padding */
+    font-size: 14px;
+    text-align: left;
+    border: 1px solid #ddd;
+    white-space: nowrap;
+    overflow: visible;
+}
+
+/* Action button styling */
+.allow-btn, .deny-btn {
+    padding: 5px 12px; /* Smaller padding for more compact buttons */
+    font-size: 13px;
+    border-radius: 5px;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.allow-btn {
+    background-color: #28a745;
+    border: none;
+}
+
+.allow-btn:hover {
+    background-color: #218838;
+}
+
+.deny-btn {
+    background-color: #dc3545;
+    border: none;
+}
+
+.deny-btn:hover {
+    background-color: #c82333;
+}
+
+/* Centering buttons in Action column */
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Modal styles */
+.modal-header .modal-title {
+    font-weight: 600;
+    color: #007bff;
+}
+
+.modal-footer .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}

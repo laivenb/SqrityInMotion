@@ -1,0 +1,66 @@
+/* General styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.main-content {
+    margin-left: 270px; /* Adjusted for a wider layout */
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.user-records {
+    width: 95%; /* Increase width for a wider layout */
+    max-width: 1200px; /* Limit maximum width for better readability */
+}
+
+.user-records h2 {
+    font-size: 42px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+#userRecordsTable {
+    width: 110%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+#userRecordsTable th,
+#userRecordsTable td {
+    padding: 12px; /* Increased padding for a more spacious layout */
+    text-align: left;
+    font-size: 14px;
+    border: 1px solid #ddd;
+}
+
+#userRecordsTable th {
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: 600;
+}
+
+.delete-btn {
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+/* Modal styles */
+.modal-header .modal-title {
+    font-weight: 600;
+    color: #dc3545;
+}
+
+.modal-footer .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.modal-footer .btn-danger {
+    background-color: #dc3545;
+    color: white;
+}

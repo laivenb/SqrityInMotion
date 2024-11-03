@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQrity | User Requests</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/user-req.css">
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div id="sidebar-container">
+            <!-- Sidebar content will be injected here dynamically -->
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="user-requests">
+                <h2>User Requests</h2>
+                <table id="userRequestsTable" class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Last Name</th>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Email</th>
+                        <th>Department</th>
+                        <th>Position</th>
+                        <th>Request Date</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Doe</td>
+                        <td>John</td>
+                        <td>A.</td>
+                        <td>johndoe@example.com</td>
+                        <td>Engineering</td>
+                        <td>Software Developer</td>
+                        <td>2023-03-15</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn allow-btn btn-sm">Allow</button>
+                                <button class="btn deny-btn btn-sm">Deny</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Smith</td>
+                        <td>Jane</td>
+                        <td>B.</td>
+                        <td>janesmith@example.com</td>
+                        <td>Human Resources</td>
+                        <td>HR Manager</td>
+                        <td>2023-02-28</td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn allow-btn btn-sm">Allow</button>
+                                <button class="btn deny-btn btn-sm">Deny</button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Action Confirmation Modal -->
+<div class="modal fade" id="actionConfirmationModal" tabindex="-1" aria-labelledby="actionConfirmationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="actionConfirmationModalLabel">Action Confirmation</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="confirmationMessage">
+                <!-- Success message will be populated here dynamically -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+<script src="js/user-req.js"></script>
+<script src="js/sidebar.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Initialize DataTable
+        $('#userRequestsTable').DataTable({
+            "pageLength": 10,
+            "lengthMenu": [5, 10, 25, 50],
+            "ordering": true,
+            "searching": true,
+            "responsive": true,
+        });
+
+        // Variable to store the action message
+        let actionMessage = '';
+
+        // Handle Allow button click
+        $('#userRequestsTable tbody').on('click', '.allow-btn', function () {
+            const row = $(this).closest('tr');
+            row.remove(); // Delete row immediately
+            $('#confirmationMessage').text('User request has been successfully accepted.');
+            $('#actionConfirmationModal').modal('show');
+        });
+
+        // Handle Deny button click
+        $('#userRequestsTable tbody').on('click', '.deny-btn', function () {
+            const row = $(this).closest('tr');
+            row.remove(); // Delete row immediately
+            $('#confirmationMessage').text('User request has been successfully denied.');
+            $('#actionConfirmationModal').modal('show');
+        });
+    });
+
+</script>
+</body>
+
+</html>
