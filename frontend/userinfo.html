@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Information</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="userinfo.css">
+  <link rel="stylesheet" href="sidebar.css">
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <div id="sidebar-container">
+                <!-- Sidebar content will be injected here dynamically -->
+            </div>
+
+
+  <div class="header">User Information</div>
+  <div class="user-info">
+    <div class="profile-picture">
+      150 × 150
+      <label for="profile-upload">📷</label>
+      <input type="file" id="profile-upload" />
+    </div>
+    <div class="form-group">
+      <label for="last-name">Last Name</label>
+      <input type="text" id="last-name" value="Doe" readonly>
+    </div>
+    <div class="form-group">
+      <label for="first-name">First Name</label>
+      <input type="text" id="first-name" value="John" readonly>
+    </div>
+    <div class="form-group">
+      <label for="middle-name">Middle Name</label>
+      <input type="text" id="middle-name" value="A." readonly>
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" value="johndoe@sqrity.com" readonly>
+    </div>
+    <div class="form-group">
+      <label for="contact-number">Contact Number</label>
+      <input type="text" id="contact-number" value="09123456789" readonly>
+    </div>
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input type="text" id="username" value="john_doe" readonly>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="department-info">
+    <div class="form-group">
+      <label for="department">Department</label>
+      <input type="text" id="department" value="Engineering" readonly>
+    </div>
+    <div class="form-group">
+      <label for="department-head">Department Head</label>
+      <input type="text" id="department-head" value="Jane Smith" readonly>
+    </div>
+    <div class="form-group">
+      <label for="role">Role</label>
+      <input type="text" id="role" value="Software Developer" readonly>
+    </div>
+    <div class="form-group">
+      <label for="email-duplicate">Email Address</label>
+      <input type="email" id="email-duplicate" value="johndoe@sqrity.com" readonly>
+    </div>
+  </div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+
+
+<script src="js/userinfo.js"></script>
+<script src="js/sidebar.js"></script>
+
+
+
+</body>
+</html>
