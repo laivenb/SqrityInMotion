@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="">
+    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Sidebar and nmap improvements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/sidebar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/nmap.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/nmap.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/nmap.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/nmap-specific.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/nmap-specific.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/port-specific.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/port-specific.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/nmap-specific.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/nmap-specific.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/port-specific.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/port-specific.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/sidebar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +32,20 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;history&quot;: [
+    {
+      &quot;state&quot;: &quot;OPEN&quot;
+    }
+  ],
+  &quot;lastFilter&quot;: {}
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/laivenb/SqrityInMotion.git&quot;,
+    &quot;accountId&quot;: &quot;4913f226-7113-4432-9a5f-7322d8e4c8e8&quot;
+  }
+}</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php/8.2.8/bin/php" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -50,7 +63,7 @@
     "DefaultHtmlFileTemplate": "HTML File",
     "JavaScript Debug.home.html.executor": "Run",
     "JavaScript Debug.nmap-network.html.executor": "Run",
-    "JavaScript Debug.nmap-specific.html.executor": "Run",
+    "JavaScript Debug.nmap-specific.html.executor": "Coverage",
     "JavaScript Debug.nmap.html.executor": "Run",
     "JavaScript Debug.nmapNetwork.html.executor": "Run",
     "JavaScript Debug.pentest-result.html.executor": "Run",
@@ -99,12 +112,37 @@
       <workItem from="1728922584172" duration="27651000" />
       <workItem from="1729486763965" duration="834000" />
       <workItem from="1729924232747" duration="30374000" />
-      <workItem from="1730534198139" duration="5688000" />
+      <workItem from="1730534198139" duration="6850000" />
+      <workItem from="1730560244282" duration="4623000" />
     </task>
+    <task id="LOCAL-00001" summary="Sidebar and nmap improvements">
+      <option name="closed" value="true" />
+      <created>1730540703574</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730540703574</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Sidebar and nmap improvements" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sidebar and nmap improvements" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SqrityInMotion$app.coverage" NAME="app Coverage Results" MODIFIED="1723378591676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
