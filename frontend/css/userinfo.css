@@ -9,7 +9,7 @@ body {
 .main-content {
   padding: 30px;
   max-width: 900px; /* Maximum width of the content */
-  margin-left: 0; /* Align content to the left */
+  margin-left: 40px; /* Align content to the left */
 }
 
 .header {
