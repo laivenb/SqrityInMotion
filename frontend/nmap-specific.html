@@ -14,43 +14,46 @@
           <link rel="stylesheet" href="css/nmap-specific.css">
 </head>
 <body>
-          <div class="container-fluid">
-            <div class="row">
-              <!-- Sidebar -->
-              <div id="sidebar-container">
-                <!-- Sidebar content will be injected here dynamically -->
-              </div>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div id="sidebar-container" class="col-md-2">
+            <!-- Sidebar content will be injected here dynamically -->
+        </div>
 
-              <!-- Header Content -->
-              <div class="header-content">
-                <div class="header">
-                  <h1>NMAP | Device Scan</h1>
-                </div>
-              </div>
-
-              <!-- Main Content -->
-              <div class="main-content">
-                <h2 id="ip-address">X.X.X.X</h2>
-                <table id="scan-results" class="display" style="width:100%">
-                  <thead>
-                  <tr>
-                    <th>Port</th>
-                    <th>State</th>
-                    <th>Service</th>
-                    <th>Version</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-
-                  </tbody>
-                </table>
-                  <button id="viewResultsButton">View Results</button>
-              </div>
+        <!-- Main Content Area -->
+        <div class="col-md-10">
+            <!-- Header Content -->
+            <div class="header-content">
+                <h1>NMAP | Device Scan</h1>
             </div>
-          </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <h2 id="ip-address">X.X.X.X</h2>
+                <table id="scan-results" class="table table-striped table-bordered display">
+                    <thead>
+                    <tr>
+                        <th>Port</th>
+                        <th>State</th>
+                        <th>Service</th>
+                        <th>Version</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Dynamic content will be loaded here -->
+                    </tbody>
+                </table>
+                <button id="viewResultsButton" class="btn btn-primary">View Results</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="js/nmap-specific.js"></script>
 <script src="js/sidebar.js"></script>
 </body>

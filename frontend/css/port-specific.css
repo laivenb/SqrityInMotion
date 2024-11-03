@@ -1,178 +1,157 @@
-/* Font import */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
-
-* {
-    margin: 0;
-    box-sizing: border-box;
-}
+/* Import font for consistency */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 body {
-    font-family: Poppins, sans-serif;
-    background-color: #f4f4f4;
-    height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f6f8;
     margin: 0;
 }
 
 /* Main content area */
 .main-content {
-    margin-left: 260px;
-    padding: 400px;
-    width: calc(100% - 250px);
-    background-color: #f5f5f5;
-    overflow-y: auto;
+    margin-left: 270px; /* Adjust for sidebar */
+    padding: 20px; /* Reduced padding for a more open look */
+    background-color: #ffffff;
+    width: calc(100% - 270px); /* Full width minus sidebar */
 }
 
-/* Header styles */
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 10px;
-}
-
-.scan-info {
-    display: flex;
-    flex-direction: column;
-}
-
-.vulnerability {
-    margin-top: auto;
-    align-self: flex-end;
-}
-
-
+/* Header styling */
 .header h1 {
-    font-size: 22px;
-    color: #4f4f4f;
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #dedede;
+    width: 100%; /* Full width */
 }
 
 .header .ip-address {
-    color: #8a2be2;
+    display: block;
+    font-size: 20px;
+    color: #555;
+    margin-top: 5px;
 }
 
-.header .vulnerability {
-    color: #ff4d4d;
+/* Section title styling */
+.section-title {
+    font-size: 24px;
+    color: #333;
+    font-weight: 500;
+    margin-top: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #dedede;
+    width: 100%; /* Full width */
 }
 
-/* Alerts section */
-.alerts-section {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #e0e7ff;
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 30px;
+/* Table container styling */
+.table-wrapper {
+    margin-top: 20px;
+    padding: 0; /* Remove padding for full-width fit */
+    border-radius: 8px;
+    background-color: #ffffff;
+    width: 100%; /* Full width */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-
-.alert-levels {
-    flex-grow: 1;
-    padding-left: 30px;
-}
-
-.alert {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-#progressChart {
-    width: 100% !important;
-    height: 170px !important;
-}
-
-.alert.high {
-    color: #ff3333;
-}
-
-.alert.medium {
-    color: #ff9900;
-}
-
-.alert.low {
-    color: #99cc33;
-}
-
-/* Dashboard layout */
-.dashboard-container {
-    display: flex;
-    width: 100%;
-    height: 100vh;
-}
-
-/* More main content */
-.main-content {
-    flex: 1;
-    padding: 40px;
-    background-color: #f5f5f5;
-    overflow-y: auto;
-}
-
-/* Formal table styles */
-.port-table {
-    width: 100%;
+#portDetailsTable {
+    width: 100%; /* Full width */
     border-collapse: collapse;
-    background-color: white;
+}
+
+#portDetailsTable th, #portDetailsTable td {
+    padding: 15px;
+    font-size: 16px;
     border: 1px solid #ddd;
-    border-radius: 10px;
-    font-size: 0.95rem;
-    color: #495057;
-}
-
-.port-table th {
-    background-color: #f8f9fa;
-    /* Softer background color for a more formal look */
-    color: #343a40;
-    font-weight: bold;
-    font-size: 1rem;
-    border-bottom: 2px solid #dee2e6;
-    padding: 15px;
-}
-
-.port-table td {
-    padding: 15px;
     text-align: left;
-    border: 1px solid #ddd;
+    color: #333;
 }
 
-/* Table row hover effect */
-.port-table tbody tr:nth-child(even) {
-    background-color: #f2f2f2;
+#portDetailsTable th {
+    background-color: #f8f9fa;
+    font-weight: 600;
 }
 
-.port-table tbody tr:hover {
-    background-color: #e9ecef;
+/* Tool container styling */
+.tool-sections {
+    margin-top: 20px;
 }
 
-/* Open/Closed states for table */
-.port-table td.state.open {
-    color: #28a745;
-    /* Green for open */
+.tool-container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 20px;
+    width: 100%; /* Full width */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Align items to start for full-width look */
 }
 
-.port-table td.state.closed {
-    color: #dc3545;
-    /* Red for closed */
+.tool-container h2 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    width: 100%; /* Full width */
 }
 
-/* DataTables customizations */
-.dataTables_wrapper .dataTables_filter input {
-    border: 1px solid #ced4da;
+/* Button Styling */
+.tool-container .btn {
+    font-size: 16px;
+    padding: 10px 20px; /* Adjusted padding for balanced look */
+    font-weight: 500;
     border-radius: 5px;
-    padding: 5px 10px;
-    width: 300px;
-    margin-left: 0.5rem;
+    margin-top: 10px;
+    max-width: 250px; /* Limit button width */
+    width: 100%; /* Ensure buttons fit within container */
+    box-sizing: border-box;
+    text-align: center;
 }
 
-.dataTables_wrapper .dataTables_length select {
-    border: 1px solid #ced4da;
+/* Primary Button Styling */
+#searchSploitButton, #msfSearchButton, #hydraButton, #medusaButton, #nsfButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+#searchSploitButton:hover, #msfSearchButton:hover, #hydraButton:hover, #medusaButton:hover, #nsfButton:hover {
+    background-color: #0056b3;
+}
+
+/* Danger Button Styling */
+#attackPortButton {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+    max-width: 250px; /* Limit button width */
+    width: 100%;
+}
+
+#attackPortButton:hover {
+    background-color: #c82333;
+}
+
+/* Specific layout adjustments */
+#portDetails {
+    font-size: 18px;
+    color: #333;
+    margin-top: 15px;
+    line-height: 1.6;
+    width: 100%; /* Full width */
+}
+
+#searchSploitResults, #msfSearchResults, #hydraResults, #medusaResults, #nsfResults {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f8f9fa;
     border-radius: 5px;
-    padding: 5px 10px;
+    font-size: 16px;
+    color: #333;
+    width: 100%; /* Full width */
 }
-
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-    color: #495057 !important;
-    margin-left: 10px;
-}
-

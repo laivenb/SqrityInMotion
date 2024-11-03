@@ -7,8 +7,9 @@
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
+  <!-- Custom CSS Files -->
   <link rel="stylesheet" href="css/sidebar.css">
-  <link rel="stylesheet" href="css/home.css">
+  <link rel="stylesheet" href="css/port-specific.css">
 </head>
 <body>
 <div class="container-fluid">
@@ -25,56 +26,62 @@
           <h1>Latest Scan</h1>
           <span class="ip-address">192.168.5.110</span>
 
-          <h1>Port Details</h1>
-
+          <h2 class="section-title">Port Details</h2>
           <!-- Table for displaying port information -->
-          <table id="portDetailsTable" class="display" style="width:100%">
-            <tbody>
-            <!-- Data will be populated by JavaScript -->
-            </tbody>
-          </table>
-
+          <div class="table-wrapper">
+            <table id="portDetailsTable" class="table table-striped">
+              <thead>
+              <tr>
+                <th>Port</th>
+                <th>State</th>
+                <th>Service</th>
+                <th>Version</th>
+              </tr>
+              </thead>
+              <tbody>
+              <!-- Data will be populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
       <div id="portDetails"></div>
 
-        <h2>SearchSploit</h2>
-        <div class="searchContainer">
-          <button id="searchSploitButton">Search in SearchSploit</button>
-          <div id="searchSploitResults"></div>
+      <!-- Tool Sections -->
+      <div class="tool-sections">
+
+        <div class="tool-container">
+          <h2>SearchSploit</h2>
+          <button id="searchSploitButton" class="btn btn-primary mb-3">Search in SearchSploit</button>
         </div>
 
-        <h2>Metasploit</h2>
-        <div class="msfContainer">
-          <button id="msfSearchButton">Search in Metasploit</button>
-          <div id="msfSearchResults"></div>
-          <button id="attackPortButton" style="display: none;">Attack Port</button>
+        <div class="tool-container">
+          <h2>Metasploit</h2>
+          <button id="msfSearchButton" class="btn btn-primary mb-3">Search in Metasploit</button>
+          <button id="attackPortButton" class="btn btn-danger mt-2" style="display: none;">Attack Port</button>
+        </div>
 
+        <div class="tool-container">
           <h2>Hydra</h2>
-          <div class="hydraContainer">
-            <button id="hydraButton">Try Default Credentials</button>
-            <div id="hydraResults"></div>
-          </div>
+          <button id="hydraButton" class="btn btn-primary mb-3">Try Default Credentials</button>
+        </div>
 
+        <div class="tool-container">
           <h2>Medusa</h2>
-          <div class="medusaContainer">
-            <button id="medusaButton">Try Default Credentials</button>
-            <div id="medusaResults"></div>
-          </div>
+          <button id="medusaButton" class="btn btn-primary mb-3">Try Default Credentials</button>
+        </div>
 
+        <div class="tool-container">
           <h2>NFS Mounting</h2>
-          <div class="nsfContainer">
-            <button id="nsfButton">Try Default Credentials</button>
-            <div id="nsfResults"></div>
-          </div>
+          <button id="nsfButton" class="btn btn-primary mb-3">Try Default Credentials</button>
+        </div>
+
       </div>
 
     </div>
-
   </div>
 </div>
-
 
 <!-- DataTables and jQuery libraries -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

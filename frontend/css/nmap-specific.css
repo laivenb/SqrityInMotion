@@ -1,23 +1,142 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* Import Poppins font for consistency */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-/* Main content area */
-.header-content {
-    margin-left: 260px;
-    width: calc(100% - 250px);
-    background-color: #f5f5f5;
-    overflow-y: auto;
+body {
+    font-family: 'Poppins', sans-serif;
 }
 
+/* Main Content Area Styling */
 .main-content {
-    margin-left: 260px;
-    display: flex;
-    padding: 10px;
+    margin-left: 50px;
+
+    width: calc(100% - 270px);
 }
 
-.header {
-    display: flex;
-    padding-left: 10px;
-    justify-content: flex-start;
-    align-items: flex-start;
-    margin: 10px 0;
+/* Header styling similar to other page */
+.header-content h1 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #333;
+    text-align: left;
+    margin-left: 50px;
+    margin-top: 20px;
+
+}
+
+/* IP Address Header Styling */
+#ip-address {
+    margin: 20px 0;
+    font-size: 26px;
+    color: #555;
+    font-weight: 500;
+}
+
+/* Table container styling */
+.table-wrapper {
+    margin-top: 30px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Table styling to match the other page */
+#scan-results {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: white;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #495057;
+    border: 1px solid #ddd;
+}
+
+#scan-results th {
+    background-color: #f8f9fa;
+    color: #333;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+#scan-results td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+}
+
+#scan-results tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Row background color for hover effect */
+#scan-results tbody tr:hover {
+    background-color: #f1f3f5;
+}
+
+/* Action button styling */
+#scan-results td .btn {
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+#scan-results td .btn:hover {
+    background-color: #0056b3;
+}
+
+/* DataTables input, select, and pagination styling */
+.dataTables_wrapper .dataTables_length select {
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ced4da;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ced4da;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    background-color: #fff;
+    padding: 5px 10px;
+    margin: 2px;
+    border-radius: 5px;
+    color: #333;
+    border: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #f1f1f1;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+    background-color: #007bff;
+    color: white !important;
+    border: 1px solid #0056b3;
+}
+
+/* "View Results" Button styling */
+#viewResultsButton {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+#viewResultsButton:hover {
+    background-color: #218838;
 }
