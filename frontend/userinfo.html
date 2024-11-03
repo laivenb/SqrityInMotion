@@ -24,41 +24,49 @@
     <div class="col-md-10 main-content">
       <h1 class="header">User Information</h1>
 
-      <!-- Profile Picture Section -->
-      <div class="user-info">
-        <div class="profile-section">
-          <div class="profile-picture">
-            <img src="placeholder.png" alt="Profile Picture" width="150" height="150">
-            <label for="profile-upload" class="upload-icon">📷</label>
-            <input type="file" id="profile-upload" hidden />
-          </div>
+      <!-- Profile Section -->
+      <div class="profile-section">
+        <div class="profile-placeholder">
+          <span class="upload-icon"></span>
+          <a href="#" class="edit-link" id="edit-link">Edit</a> <!-- Clickable Edit link -->
+          <input type="file" id="file-input" style="display: none;"> <!-- Hidden file input -->
         </div>
-
-        <!-- User Details Section -->
-        <div class="personal-info">
-          <div class="form-group">
-            <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" value="Doe" readonly>
-          </div>
-          <div class="form-group">
-            <label for="first-name">First Name</label>
-            <input type="text" id="first-name" value="John" readonly>
-          </div>
-          <div class="form-group">
-            <label for="middle-name">Middle Name</label>
-            <input type="text" id="middle-name" value="A." readonly>
-          </div>
-          <div class="form-group">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" value="johndoe@sqrity.com" readonly>
-          </div>
-          <div class="form-group">
-            <label for="contact-number">Contact Number</label>
-            <input type="text" id="contact-number" value="09123456789" readonly>
-          </div>
-          <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" value="john_doe" readonly>
+        <div class="ml-4"> <!-- Profile details -->
+          <div class="personal-info">
+            <div class="user-info-row">
+              <div class="form-group">
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" value="Doe" readonly>
+              </div>
+              <div class="form-group">
+                <label for="contact-number">
+                  Contact Number
+                  <i class="fas fa-edit" title="Edit Contact Number" style="cursor: pointer; color: #007bff;"></i>
+                </label>
+                <input type="text" id="contact-number" value="09123456789"> <!-- Made editable -->
+              </div>
+            </div>
+            <div class="user-info-row">
+              <div class="form-group">
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" value="John" readonly>
+              </div>
+              <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" value="johndoe@sqrity.com" readonly>
+              </div>
+            </div>
+            <div class="user-info-row">
+              <div class="form-group">
+                <label for="middle-name">Middle Name</label>
+                <input type="text" id="middle-name" value="Aquino" readonly>
+              </div>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" value="john_doe" readonly>
+                <button class="btn btn-primary btn-sm mt-3">Save</button> <!-- Adjusted margin -->
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -95,6 +103,14 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="js/userinfo.js"></script>
 <script src="js/sidebar.js"></script>
+
+<script>
+  // JavaScript to handle the file input when "Edit" link is clicked
+  document.getElementById('edit-link').addEventListener('click', function (event) {
+    event.preventDefault(); // Prevent default link behavior
+    document.getElementById('file-input').click(); // Trigger the hidden file input
+  });
+</script>
 
 </body>
 </html>

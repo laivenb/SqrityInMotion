@@ -1,104 +1,119 @@
-/* General styling */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;800&display=swap');
+
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: #f4f6f8;
-  color: #333;
+  background-color: #f4f6f8; /* Light background for better contrast */
+  color: #333; /* Text color */
 }
 
 .main-content {
   padding: 30px;
+  max-width: 900px; /* Maximum width of the content */
+  margin-left: 0; /* Align content to the left */
 }
 
 .header {
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 600;
-  color: #333;
+  color: #333; /* Header text color */
   margin-bottom: 20px;
-  border-bottom: 2px solid #dedede;
-  padding-bottom: 10px;
+  border-bottom: 2px solid #dedede; /* Bottom border for header */
+  padding-bottom: 10px; /* Space below the header text */
 }
 
 /* Profile Section */
 .profile-section {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
+  align-items: flex-start; /* Align items at the start */
+  gap: 40px; /* Space between profile image and details */
+  padding: 20px;
 }
 
-.profile-picture {
-  position: relative;
-  text-align: center;
+/* Profile Placeholder */
+.profile-placeholder {
+  width: 180px; /* Placeholder width */
+  height: 180px; /* Placeholder height */
+  border-radius: 50%; /* Make the placeholder circular */
+  background-color: #e0e0e0; /* Light gray background */
+  display: flex; /* Center the edit link */
+  flex-direction: column; /* Stack contents vertically */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  position: relative; /* Position relative for the edit link */
+  border: 3px solid #ddd; /* Optional: border around the placeholder */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Optional: shadow effect */
 }
 
-.profile-picture img {
-  border-radius: 50%;
-  border: 3px solid #ddd;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+/* Hide edit link by default */
+.edit-link {
+  display: none; /* Hide by default */
+  text-align: center; /* Center the edit link */
+  margin-top: 10px; /* Space between the placeholder and the link */
+  font-size: 14px; /* Adjust font size as needed */
+  color: #007bff; /* Color matching upload icon */
+  cursor: pointer; /* Change cursor to pointer */
+  text-decoration: none; /* Remove underline */
 }
 
+/* Show edit link on hover */
+.profile-placeholder:hover .edit-link {
+  display: block; /* Show when hovering */
+}
+
+/* Edit icon */
 .upload-icon {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  font-size: 20px;
-  color: #007bff;
-  cursor: pointer;
+  font-size: 40px; /* Adjust size for better visibility */
+  color: #007bff; /* Blue color for the icon */
 }
 
-.profile-picture input[type="file"] {
-  display: none;
-}
-
-/* Personal and Department Information */
-.user-info, .department-info {
+/* User Information Form */
+.personal-info {
   display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-direction: column; /* Stack the two sections vertically */
+  gap: 20px; /* Space between the two sections */
 }
 
-.personal-info, .department-info {
-  width: 100%;
+.user-info-row {
+  display: flex; /* Change to flex to align items horizontally */
+  gap: 20px; /* Space between columns */
 }
 
 .form-group {
-  flex: 1 1 200px;
-  margin-bottom: 20px;
+  flex: 1; /* Allow form groups to grow evenly */
+  display: flex;
+  flex-direction: column;
 }
 
 .form-group label {
-  font-weight: 500;
-  color: #555;
+  font-weight: 500; /* Bold labels */
+  color: #555; /* Darker gray for labels */
+  margin-bottom: 5px; /* Space between label and input */
 }
 
 .form-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  color: #333;
+  width: 100%; /* Full width input fields */
+  padding: 10px; /* Padding inside the input */
+  border: 1px solid #ddd; /* Light border */
+  border-radius: 5px; /* Rounded corners */
+  background-color: #f9f9f9; /* Light background for input */
+  color: #333; /* Text color inside input */
+  font-weight: 500; /* Font weight */
+  pointer-events: none; /* Disable interaction */
 }
 
 .form-group input[readonly] {
-  background-color: #f0f0f0;
-  color: #555;
+  background-color: #f0f0f0; /* Slightly darker for readonly fields */
+  color: #555; /* Text color for readonly fields */
 }
 
 /* Divider line */
 .divider {
-  width: 100%;
-  border: 1px solid #e0e0e0;
-  margin: 30px 0;
+  width: 100%; /* Full width for the divider */
+  border: 1px solid #e0e0e0; /* Light gray divider */
+  margin: 30px 0; /* Space around the divider */
 }
 
 /* Department Info Section */
-.department-info h2 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 20px;
-  width: 100%;
-  border-bottom: 2px solid #dedede;
-  padding-bottom: 10px;
+.department-info {
+  margin-top: 20px; /* Space above the section */
 }
