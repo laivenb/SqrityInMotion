@@ -36,34 +36,34 @@
             <div class="user-info-row">
               <div class="form-group">
                 <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" value="Doe" readonly>
+                <input type="text" id="last-name" value="" readonly>
               </div>
               <div class="form-group">
                 <label for="contact-number">
                   Contact Number
                   <i class="fas fa-edit" title="Edit Contact Number" style="cursor: pointer; color: #007bff;"></i>
                 </label>
-                <input type="text" id="contact-number" value="09123456789"> <!-- Made editable -->
+                <input type="text" id="contact-number" value=""> <!-- Made editable -->
               </div>
             </div>
             <div class="user-info-row">
               <div class="form-group">
                 <label for="first-name">First Name</label>
-                <input type="text" id="first-name" value="John" readonly>
+                <input type="text" id="first-name" value="" readonly>
               </div>
               <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" value="johndoe@sqrity.com" readonly>
+                <input type="email" id="email" value="" readonly>
               </div>
             </div>
             <div class="user-info-row">
               <div class="form-group">
                 <label for="middle-name">Middle Name</label>
-                <input type="text" id="middle-name" value="Aquino" readonly>
+                <input type="text" id="middle-name" value="" readonly>
               </div>
               <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" value="john_doe" readonly>
+                <input type="text" id="username" value="" readonly>
                 <button class="btn btn-primary btn-sm mt-3">Save</button> <!-- Adjusted margin -->
               </div>
             </div>
@@ -89,7 +89,7 @@
           <input type="text" id="role" value="Software Developer" readonly>
         </div>
         <div class="form-group">
-          <label for="email-duplicate">Email Address</label>
+          <label for="email-duplicate">Supervisor Email Address</label>
           <input type="email" id="email-duplicate" value="johndoe@sqrity.com" readonly>
         </div>
       </div>
@@ -111,6 +111,7 @@
     document.getElementById('file-input').click(); // Trigger the hidden file input
   });
 </script>
+<script type="module" src="js/userinfo.js"></script>
 
 </body>
 </html>

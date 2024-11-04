@@ -13,7 +13,7 @@ window.addEventListener('load', () => {
 });
 
 function getQueryParam(param) {
-    let urlParams = new URLSearchParams(window.location.search);
+    let urlParams = new URLSearchParams(window.location.search);7
     return urlParams.get(param);
 }
 

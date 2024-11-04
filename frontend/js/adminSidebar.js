@@ -24,3 +24,18 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error("Error loading sidebar:", error);
         });
 });
+function setUsername() {
+    // Get the username directly from sessionStorage (no need for JSON.parse)
+    const currentUser = sessionStorage.getItem("username");
+
+    if (currentUser) {
+        const usernameElement = document.getElementById("username");
+        if (usernameElement) {
+            usernameElement.textContent = currentUser; // Set the username directly
+        } else {
+            console.warn("Username element not found.");
+        }
+    } else {
+        console.warn("No user data found.");
+    }
+}
