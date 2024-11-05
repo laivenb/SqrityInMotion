@@ -10,6 +10,9 @@
     padding: 0;
     font-size: 16px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Space out content vertically */
     transition: all 0.3s ease;
 }
 
@@ -20,42 +23,12 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.logo-section img {
-    width: 140px;
-}
-
-/* Profile section: flexbox layout with profile image on the left */
 .profile-section {
     display: flex;
     align-items: center;
     padding: 15px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     margin-bottom: 40px;
-}
-
-.profile-section img {
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    margin-right: 15px;
-    border: 3px solid rgba(255, 255, 255, 0.2);
-}
-
-.profile-text {
-    color: white;
-}
-
-.profile-text p {
-    margin: 0;
-    font-size: 14px;
-    color: #bfc1c3;
-}
-
-.profile-text h5 {
-    margin: 5px 0 0;
-    font-size: 18px;
-    color: white;
-    font-weight: bold;
 }
 
 /* Navigation styles */
@@ -88,35 +61,32 @@
 
 /* Dropdown menu styles */
 .sidebar .dropdown-menu {
-    display: none; /* Hide dropdown by default */
+    display: none;
     background-color: #2A3F54;
     border: none;
     padding: 0;
     margin: 0;
     border-radius: 0;
-    width: 100%; /* Ensure dropdown takes full width */
+    width: 100%;
 }
 
 .sidebar .dropdown:hover .dropdown-menu {
-    display: block; /* Show dropdown on hover */
-    position: relative; /* Position it within the sidebar */
+    display: block;
 }
 
 .sidebar .dropdown-menu .dropdown-item {
     color: #bfc1c3;
-    padding: 15px 20px; /* Match padding with main items */
+    padding: 15px 20px;
     font-size: 15px;
     text-decoration: none;
     display: block;
-    transition: background-color 0.3s ease;
-    width: 100%; /* Ensure full width */
+    width: 100%;
     box-sizing: border-box;
 }
 
 .sidebar .dropdown-menu .dropdown-item:hover {
     background-color: #1E2A38;
     color: #fff;
-    padding-left: 20px; /* Remove extra padding shift */
 }
 
 /* Section titles */
@@ -132,11 +102,9 @@
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Icons */
-.sidebar nav ul li a i {
-    width: 24px;
-    height: 24px;
-    margin-right: 15px;
-    font-size: 18px;
+/* Logout button styling */
+.logout-section {
+    padding: 20px;
+    margin-top: auto; /* Pushes logout to the bottom */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
-
