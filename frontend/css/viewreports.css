@@ -1,0 +1,62 @@
+/* General styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+
+.main-content {
+    margin-left: 260px; /* Sidebar width adjustment */
+    padding: 20px;
+    min-height: 100vh;
+    width: calc(100% - 260px); /* Use remaining screen width after sidebar */
+    display: flex;
+    flex-direction: column;
+}
+
+.user-records {
+    width: 100%; /* Full width of main content */
+}
+
+.user-records h2 {
+    font-size: 32px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+#reportsTable {
+    width: 100%; /* Full width of user-records container */
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+#reportsTable th,
+#reportsTable td {
+    padding: 15px; /* Extra padding for spacious layout */
+    text-align: left;
+    font-size: 16px;
+    border: 1px solid #ddd;
+}
+
+#reportsTable th {
+    background-color: #f0f0f0;
+    color: #333;
+    font-weight: 600;
+}
+
+.export-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.export-btn:hover {
+    background-color: #0056b3;
+}
