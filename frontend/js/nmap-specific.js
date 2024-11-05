@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.254.127:5000';
+const BASE_URL = 'http://192.168.1.20:5000';
 let openPorts = [];
 let ipAddress;
 

@@ -5,8 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/frontend/blankSession.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-network.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-network.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/js/nmap-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-specific.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pentest-result.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/pentest-result.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/port-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/port-specific.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/server-Test.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/server-Test.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +49,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.blankSession.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.home.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.nmap-network.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.nmap-specific.html.executor&quot;: &quot;Run&quot;,
@@ -50,11 +57,12 @@
     &quot;JavaScript Debug.nmapNetwork.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.pentest-result.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.port-specific.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.register.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.server-Test.html.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.home.js.executor&quot;: &quot;Run&quot;,
     &quot;Python.app.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;chingBranch&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;sessionTest__dev&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -92,6 +100,7 @@
       <workItem from="1728922584172" duration="27651000" />
       <workItem from="1729486763965" duration="834000" />
       <workItem from="1729924232747" duration="30374000" />
+      <workItem from="1730611209995" duration="9484000" />
     </task>
     <servers />
   </component>

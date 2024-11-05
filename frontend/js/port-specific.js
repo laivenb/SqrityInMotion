@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.5.102:5000';
+const BASE_URL = 'http://192.168.1.20:5000';
 
 window.addEventListener('load', () => {
     const currentUser = sessionStorage.getItem("username");

@@ -5,12 +5,11 @@
   <title>Web-based Metasploit Terminal</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xterm/css/xterm.css">
   <style>
-    /* Adjust the height of the terminal */
     #terminal {
       width: 100%;
-      height: 700px;  /* Increase height to 700px */
+      height: 700px;
       background-color: #1e1e1e;
-      overflow-y: auto; /* Allow vertical scrolling */
+      overflow-y: auto;
     }
   </style>
 </head>
@@ -19,68 +18,61 @@
 <h2>Metasploit Terminal</h2>
 <div id="terminal"></div>
 
-<button id="attackButton">Search IRC</button>
+<button id="attackButton">Run Metasploit</button>
 
-<!-- Scripts for xterm.js and socket.io -->
 <script src="https://cdn.jsdelivr.net/npm/xterm/lib/xterm.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.min.js"></script>
 <script>
-  // Initialize the terminal and socket connection
   const terminal = new Terminal();
   terminal.open(document.getElementById('terminal'));
 
-  const socket = io.connect('http://192.168.5.102:5001/terminal');
+  const socket = io.connect('http://192.168.254.127:5001/terminal');
 
-  let currentInput = "";  // Store current command input
-  let isSearching = false; // Flag to track if search command is in progress
+  let currentInput = "";
+  let isSearching = false;
 
-  // Handle incoming output from the server
   socket.on('output', (data) => {
-    console.log("Received output:", data.output);  // Debug log
-    const outputLines = data.output.split('\n'); // Split output into lines
-    outputLines.forEach((line) => {
-      terminal.write(line + '\r\n');  // Write each line to the terminal
-    });
-    // Reset the flag when output is received (indicating command execution is complete)
-    isSearching = false;
+    if (data.output) {
+      console.log("Received output:", data.output);
+      const outputLines = data.output.split('\n');
+      outputLines.forEach((line) => {
+        terminal.write(line + '\r\n');
+      });
+
+      if (data.type === 'search') {
+        terminal.write("Search completed.\r\n");
+        isSearching = false;
+      }
+
+      if (data.type === 'initial') {
+        terminal.write("Initial output received.\r\n");
+      }
+    }
   });
 
-  // Send input to the server when the user types
   terminal.onData((input) => {
-    // Check if the input is a backspace
-    if (input === '\u001b[3~') {  // Common representation for backspace in terminal
-      terminal.write('\b \b'); // Erase the last character visually
-      return; // Stop processing further for backspace
+    if (input === '\u001b[3~') {
+      terminal.write('\b \b');
+      return;
     }
 
-    console.log("User input:", input);  // Debug log
-    socket.emit('input', { 'command': input });
-    terminal.write(input);  // Echo input back to terminal for immediate feedback
+    if (input.charCodeAt(0) === 13) {
+      console.log("User input:", currentInput);
+      socket.emit('input', { 'command': currentInput });
+      terminal.write('\r\n');
+      currentInput = "";
+    } else {
+      currentInput += input;
+      terminal.write(input);
+    }
   });
 
-  // Button click event to search IRC
   document.getElementById('attackButton').addEventListener('click', (event) => {
-    event.preventDefault(); // Prevent default button action
-    if (!isSearching) { // Check if a search command is already in progress
-      const command = "search irc\r"; // Command to send to the server
-      socket.emit('input', { 'command': command }); // Emit command to server
-      terminal.write(command); // Echo the command in the terminal for feedback
-      isSearching = true; // Set the flag to true to prevent duplicate calls
-    }
+    event.preventDefault();
+    socket.emit('start_console');
   });
 
-  // Prevent Enter from triggering button click when in terminal
-  document.getElementById('terminal').addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-      // Optionally handle enter key behavior for terminal input
-      event.stopPropagation(); // Stop the event from bubbling up
-    }
-  });
-
-  // Initial welcome message
   terminal.write("Welcome to the Metasploit Terminal!\r\n");
-
-
 </script>
 
 </body>

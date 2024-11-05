@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flask Terminal</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<h1>Flask Terminal</h1>
+<form id="command-form">
+  <input type="text" id="command" placeholder="Enter command" required>
+  <button type="submit">Execute</button>
+</form>
+<pre id="output"></pre>
+
+<script>
+  $('#command-form').on('submit', function(e) {
+    e.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: 'http://192.168.254.127:5001/execute',
+      data: {
+        command: $('#command').val()
+      },
+      success: function(data) {
+        $('#output').text(data.output);
+      }
+    });
+  });
+</script>
+</body>
+</html>
