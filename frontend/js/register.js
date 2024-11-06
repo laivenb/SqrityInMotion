@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-import { getDatabase, ref, set, push, child, get, query, orderByChild, equalTo } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+import { getDatabase, ref, set, push, child, get, query, orderByChild, orderByKey, equalTo, limitToLast } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -44,22 +44,24 @@ registerButton.addEventListener("click", async (e) => {
         return;
     }
 
+    // Generate custom user ID with date and continuous incremental counter
+    const userId = await generateCustomUserId();
+
     // Register user with default status as "pending" and role as 1
-    const userId = push(child(ref(database), 'users/')).key;
     set(ref(database, "users/" + userId), {
         firstName: document.getElementById("firstName").value,
-        middleName: document.getElementById("middleName").value, // Include middle name
+        middleName: document.getElementById("middleName").value,
         lastName: document.getElementById("lastName").value,
         username: username,
         email: email,
-        password: password, // Storing passwords in plaintext is not recommended in production
+        password: password,
         contactNumber: document.getElementById("contactNumber").value,
         company: document.getElementById("company").value,
         department: document.getElementById("department").value,
         position: document.getElementById("position").value,
         birthday: document.getElementById("birthday").value,
         status: "pending", // Registration pending approval
-        role: 1 // Default role set to Vulnerability Analyst & Penetration Tester
+        role: 1
     })
         .then(() => {
             alert("Registration successful. Awaiting admin approval.");
@@ -70,22 +72,77 @@ registerButton.addEventListener("click", async (e) => {
         });
 });
 
+// Function to generate custom user ID with continuous increment
+async function generateCustomUserId() {
+    const now = new Date();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const year = String(now.getFullYear()).slice(-2);
+    const datePart = `01${month}${day}${year}`;
+
+    // Query to find the last user ID in the database
+    const userQuery = query(ref(database, "users"), orderByKey(), limitToLast(1));
+    const snapshot = await get(userQuery);
+
+    let increment = 1;
+
+    if (snapshot.exists()) {
+        const lastUserId = Object.keys(snapshot.val())[0];
+        const lastIncrement = lastUserId.split('_')[0].slice(-4);
+        increment = parseInt(lastIncrement, 10) + 1;
+    }
+
+
+    const incrementedPart = String(increment).padStart(4, '0');
+    const key = generateRandomKey();
+
+
+    return `${datePart}${incrementedPart}_${key}`;
+}
+
+// Function to generate a random key (for security)
+function generateRandomKey() {
+    return Math.random().toString(36).substring(2, 15);
+}
+
+
+
 // Function to check if user already exists
 async function checkUserExists(username, email) {
     const usernameQuery = query(ref(database, "users"), orderByChild("username"), equalTo(username));
     const emailQuery = query(ref(database, "users"), orderByChild("email"), equalTo(email));
 
-    const usernameSnapshot = await get(usernameQuery);
-    const emailSnapshot = await get(emailQuery);
+    try {
+        const usernameSnapshot = await get(usernameQuery);
+        const emailSnapshot = await get(emailQuery);
 
-    return usernameSnapshot.exists() || emailSnapshot.exists();
+        return usernameSnapshot.exists() || emailSnapshot.exists();
+    } catch (error) {
+        console.error("Error checking if user exists:", error);
+        return false;
+    }
 }
+
 
 // Function to validate password strength
 function isPasswordStrong(password) {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    return regex.test(password);
+    const hasLowercase = /[a-z]/.test(password);
+    const hasUppercase = /[A-Z]/.test(password);
+    const hasDigit = /\d/.test(password);
+    const hasSpecialChar = /[@$!%*?&]/.test(password);
+    const isValidLength = password.length >= 8;
+
+    // Log the individual checks
+    console.log("Has lowercase letter:", hasLowercase);
+    console.log("Has uppercase letter:", hasUppercase);
+    console.log("Has digit:", hasDigit);
+    console.log("Has special character:", hasSpecialChar);
+    console.log("Valid length (>= 8):", isValidLength);
+
+    return hasLowercase && hasUppercase && hasDigit && hasSpecialChar && isValidLength;
 }
+
+
 
 /*
 Role Guide:
