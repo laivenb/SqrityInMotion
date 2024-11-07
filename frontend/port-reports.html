@@ -66,33 +66,7 @@
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
 <script src="js/sidebar.js"></script>
-
-<script>
-    $(document).ready(function () {
-        // Initialize DataTable
-        $('#reportsTable').DataTable({
-            "pageLength": 10,
-            "lengthMenu": [5, 10, 25, 50],
-            "ordering": true,
-            "searching": true,
-            "responsive": true,
-        });
-
-        // Redirect to the report details page on "View Report" button click
-        $('.view-btn').on('click', function () {
-            const reportID = $(this).closest('tr').find('td:first').text(); // Get the ReportID from the first cell
-            // Redirect to the report details page, passing the ReportID as a query parameter
-            window.location.href = `portreport-details.html?reportID=${reportID}`;
-        });
-
-        // Export as JSON function (placeholder)
-        $('.export-btn').on('click', function () {
-            const reportID = $(this).closest('tr').find('td:first').text();
-            alert(`Exporting report ID: ${reportID} as JSON`);
-            // Implement your JSON export logic here
-        });
-    });
-</script>
+<script src="js/portreport.js"></script>
 </body>
 
 </html>

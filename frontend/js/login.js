@@ -52,6 +52,7 @@ document.getElementById("loginButton").addEventListener("click", (e) => {
                     console.log("Login successful:", userData);
 
                     // Store session data using sessionStorage
+                    sessionStorage.setItem("userID", userID);
                     sessionStorage.setItem("username", userData.username);
                     sessionStorage.setItem("role", userData.role); // Store user role
                     sessionStorage.setItem("isLoggedIn", true);

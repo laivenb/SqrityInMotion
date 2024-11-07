@@ -81,43 +81,5 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="js/sidebar.js"></script>
-
-<script>
-    // Sample report data
-    const reportsData = {
-        "101": {
-            "title": "Network Vulnerability Report",
-            "dateCreated": "2023-05-10"
-        },
-        "102": {
-            "title": "Device Security Analysis",
-            "dateCreated": "2023-05-12"
-        }
-        // Add more report data here as needed
-    };
-
-    // Function to retrieve query parameters from the URL
-    function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
-
-    // Set the report title and date based on the reportID
-    document.addEventListener('DOMContentLoaded', () => {
-        const reportID = getQueryParam('reportID');
-        if (reportID && reportsData[reportID]) {
-            document.getElementById('reportTitle').textContent = reportsData[reportID].title;
-            document.getElementById('reportDate').textContent = `Date Created: ${reportsData[reportID].dateCreated}`;
-        } else {
-            document.getElementById('reportTitle').textContent = "Report Not Found";
-            document.getElementById('reportDate').textContent = "";
-        }
-    });
-
-    // Function for back button
-    function goBack() {
-        window.location.href = 'cve-reports.html';
-    }
-</script>
 </body>
 </html>

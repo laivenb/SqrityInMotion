@@ -7,11 +7,6 @@ function getIPFromURL() {
     console.log(ip);
     return ip;
 }
-document.getElementById('saveCveReportBtn').addEventListener('click', function (event) {
-    event.preventDefault(); // Optional: prevent any other interference
-    window.location.href = 'cvereport-details.html';
-});
-
 window.addEventListener('load', () => {
     const currentUser = sessionStorage.getItem("username");
     if (!currentUser) {
