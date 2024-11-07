@@ -6,8 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-network.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-network.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/nmap-network.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/nmap-network.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/add.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/adminHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/adminHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/nmap-report.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/nmap-report.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/portreport-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/portreport-details.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,17 +26,12 @@
       <list>
         <option value="Python Script" />
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_BRANCH_BY_REPOSITORY">
-      <map>
-        <entry key="$PROJECT_DIR$" value="uidUser_dev" />
-      </map>
-    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
@@ -50,9 +49,7 @@
   "keyToString": {
     "DefaultHtmlFileTemplate": "HTML File",
     "JavaScript Debug.blankSession.html.executor": "Run",
-    "JavaScript Debug.cvereport-details.html.executor": "Run",
     "JavaScript Debug.home.html.executor": "Run",
-    "JavaScript Debug.login.html.executor": "Run",
     "JavaScript Debug.nmap-network.html.executor": "Run",
     "JavaScript Debug.nmap-specific.html.executor": "Run",
     "JavaScript Debug.nmap.html.executor": "Run",
@@ -62,8 +59,7 @@
     "JavaScript Debug.register.html.executor": "Run",
     "JavaScript Debug.server-Test.html.executor": "Run",
     "Node.js.home.js.executor": "Run",
-    "Node.js.login.js.executor": "Run",
-    "Node.js.nmap-specific.js.executor": "Run",
+    "Node.js.nmap-network.js.executor": "Run",
     "Python.app.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "chingBranch",
