@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.1.29:5000';
+const BASE_URL = 'http://192.168.1.105:5000';
 
 // Function to check session on page load
 document.getElementById('startScanButton').addEventListener('click', function () {
@@ -41,7 +41,6 @@ function startScanning(ip, subnet) {
     let startHost = 0;
     let endHost = 0;
     const ipList = [];
-
     // Clear table only once at the start
     const tableBody = document.querySelector('#portTable tbody');
     if (tableBody) {
@@ -135,6 +134,7 @@ function startScanning(ip, subnet) {
             for (let i = startHost; i <= endHost; i++) {
                 let hostIP = `${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`;
                 ipList.push(hostIP);
+                console.log('subnet24');
             }
             break;
         case '/25':
@@ -189,7 +189,10 @@ function startScanning(ip, subnet) {
             console.error('Unsupported subnet prefix.');
             return;
     }
+
+    console.log('scanning');
     scanHost(ipList);
+    console.log('scanning');
 }
 
 async function scanHost(ipList) {
@@ -203,7 +206,7 @@ async function scanHost(ipList) {
     const batchSize = 5;
     for (let i = 0; i < ipList.length; i += batchSize) {
         const batch = ipList.slice(i, i + batchSize);
-
+        console.log('scan-device');
         // Trigger scans for all IPs in the batch
         const scanPromises = batch.map(async (ip) => {
             try {
