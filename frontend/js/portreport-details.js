@@ -47,19 +47,19 @@ async function loadReportDetails(userID) {
         if (snapshot.exists()) {
             const reportData = snapshot.val();
             if (reportData && reportData.userID === userID) {  // Ensure report belongs to the user
-                document.getElementById('reportTitle').textContent = reportData.title || "Untitled Report";
-                document.getElementById('reportDate').textContent = `Date Created: ${reportData.dateCreated || "N/A"}`;
+                document.getElementById('reportName').textContent = reportData.reportName || "Untitled Report";
+                document.getElementById('dateCreated').textContent = `Date Created: ${reportData.dateCreated || "N/A"}`;
 
                 // Populate other report details here, such as port data
                 populatePortDetails(reportData.ports || []);
             } else {
-                document.getElementById('reportTitle').textContent = "Report Not Found";
-                document.getElementById('reportDate').textContent = "";
+                document.getElementById('reportName').textContent = "Report Not Found";
+                document.getElementById('dateCreated').textContent = "";
             }
         } else {
             console.error("No such report found in Firebase.");
-            document.getElementById('reportTitle').textContent = "Report Not Found";
-            document.getElementById('reportDate').textContent = "";
+            document.getElementById('reportName').textContent = "Report Not Found";
+            document.getElementById('dateCreated').textContent = "";
         }
     } catch (error) {
         console.error("Error loading report details:", error);

@@ -4,18 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/js/portreport-details.js" afterDir="false" />
+    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Port Reports Update">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/adminside.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/adminside.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cve-reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/cve-reports.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cvereport-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/cvereport-details.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/js/cve-reports.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/cve-reports.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/nmapOld.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/port-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/port-specific.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/cvereport-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/cvereport-details.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/js/portreport.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/portreport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/port-reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/port-reports.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/portreport-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/portreport-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/sidebar.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,10 +109,23 @@
       <workItem from="1729924232747" duration="30374000" />
       <workItem from="1730534198139" duration="5688000" />
     </task>
+    <task id="LOCAL-00001" summary="Port Reports Update">
+      <option name="closed" value="true" />
+      <created>1730994349788</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1730994349788</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Port Reports Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Port Reports Update" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SqrityInMotion$app.coverage" NAME="app Coverage Results" MODIFIED="1723378591676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

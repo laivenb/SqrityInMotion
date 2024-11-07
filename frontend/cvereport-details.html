@@ -21,14 +21,14 @@
         <!-- Main Content -->
         <div class="main-content">
             <!-- Back Button -->
-            <button onclick="goBack()" class="btn btn-secondary mb-3">
+            <button id="backButton" class="btn btn-secondary mb-3">
                 <i class="fas fa-arrow-left"></i> Back to CVE Reports
             </button>
 
             <!-- Dynamic Header for Report Title and Date Created -->
             <div class="d-flex justify-content-between align-items-center report-header">
-                <h2 id="reportTitle" class="font-weight-bold mb-0">Report Details</h2>
-                <p id="reportDate" class="text-muted mb-0"></p>
+                <h2 id="reportName" class="font-weight-bold mb-0">Report Details</h2>
+                <p id="dateCreated:" class="text-muted mb-0"></p>
             </div>
 
             <hr>
@@ -81,5 +81,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="js/sidebar.js"></script>
+<script type="module" src="js/cvereport-details.js"></script>
 </body>
 </html>

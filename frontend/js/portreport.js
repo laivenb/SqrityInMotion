@@ -1,6 +1,6 @@
 // Import Firebase and the required Firebase Database functions
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -16,8 +16,6 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-
-
 
 $(document).ready(function () {
     // Check if the user is logged in
@@ -57,8 +55,11 @@ async function loadReports(userID) {
         // Query reports based on userID
         const snapshot = await get(reportsRef);
 
+        let reportsFound = false;
+
         if (!snapshot.exists()) {
-            tableBody.append('<tr><td colspan="4">No reports found.</td></tr>');
+            // If no reports exist in the database, show "No Report Found"
+            tableBody.append('<tr><td colspan="4">No Report Found</td></tr>');
         } else {
             snapshot.forEach((childSnapshot) => {
                 const data = childSnapshot.val();
@@ -68,8 +69,8 @@ async function loadReports(userID) {
                     const newRow = `
                         <tr>
                             <td>${childSnapshot.key}</td>
-                            <td>${data.title || "Unnamed Report"}</td>
-                            <td>${data.date ? new Date(data.date).toLocaleString() : "N/A"}</td>
+                            <td>${data.reportName || "Unnamed Report"}</td>
+                            <td>${data.dateCreated ? new Date(data.date).toLocaleString() : "N/A"}</td>
                             <td>
                                 <button class="btn btn-primary view-btn">View Report</button>
                                 <button class="btn btn-secondary export-btn">Export as JSON</button>
@@ -77,28 +78,42 @@ async function loadReports(userID) {
                         </tr>
                     `;
                     tableBody.append(newRow);
+                    reportsFound = true;
                 }
             });
 
-            // If no reports for the user were found
-            if (tableBody.children().length === 0) {
-                tableBody.append('<tr><td colspan="4">No reports found.</td></tr>');
+            // If no reports for the user were found, show "No Report Found"
+            if (!reportsFound) {
+                tableBody.append('<tr><td colspan="4">No Report Found</td></tr>');
             }
         }
 
-        // Initialize DataTable after data is loaded
-        $('#reportsTable').DataTable({
-            "pageLength": 10,
-            "lengthMenu": [5, 10, 25, 50],
-            "ordering": true,
-            "searching": true,
-            "responsive": true,
-            "destroy": true,  // Destroy any existing table before re-initializing
-        });
+        // Only initialize DataTable if there's data to display (reportsFound is true)
+        if (reportsFound) {
+            initializeDataTable();
+        }
 
     } catch (error) {
         console.error("Error loading reports from Firebase:", error);
+        tableBody.append('<tr><td colspan="4">Error loading reports. Please try again.</td></tr>');
     }
+}
+
+// Function to initialize DataTable
+function initializeDataTable() {
+    // Ensure DataTable is only initialized once
+    if ($.fn.DataTable.isDataTable('#reportsTable')) {
+        $('#reportsTable').DataTable().clear().destroy(); // Clear any previous DataTable instance
+    }
+
+    // Initialize DataTable
+    $('#reportsTable').DataTable({
+        "pageLength": 10,
+        "lengthMenu": [5, 10, 25, 50],
+        "ordering": true,
+        "searching": true,
+        "responsive": true
+    });
 }
 
 // Function to export the report as JSON
