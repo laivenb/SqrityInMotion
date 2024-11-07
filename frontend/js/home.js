@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.1.29:5000';
+const BASE_URL = 'http://192.168.1.105:5000';
 let openPorts = [];
 
 function getIPFromURL() {
@@ -282,3 +282,5 @@ function updateCharts(vulnerabilities) {
     const totalVulnerabilityPercentage = criticalPercentage + mediumPercentage + lowPercentage;
     $('.vulnerability').text(`VULNERABILITY: ${totalVulnerabilityPercentage.toFixed(2)}%`);
 }
+
+

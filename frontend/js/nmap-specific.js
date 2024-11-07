@@ -1,3 +1,21 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+import { getDatabase, ref, set, push, child, get, query, orderByChild, orderByKey, equalTo, limitToLast } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+
+// Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyAGRcp5vGb3jkEHQRLqpteltbjKalDYb00",
+    authDomain: "sqrity-f02ee.firebaseapp.com",
+    projectId: "sqrity-f02ee",
+    storageBucket: "sqrity-f02ee.appspot.com",
+    messagingSenderId: "299895044214",
+    appId: "1:299895044214:web:b9da099b6067dfb8974757",
+    databaseURL: "https://sqrity-f02ee-default-rtdb.asia-southeast1.firebasedatabase.app"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app);
+
 const BASE_URL = 'http://192.168.1.105:5000';
 let openPorts = [];  // This will store all the ports info
 let ipAddress;
@@ -19,7 +37,7 @@ function navigateToHome() {
 // DOMContentLoaded event listener for session validation and setting up button click
 document.addEventListener('DOMContentLoaded', function () {
     // Session check for current user
-    currentUserID = sessionStorage.getItem("username");
+    currentUserID = sessionStorage.getItem("uid");
 
     if (!currentUserID) {
         // Redirect to login if no user is logged in
@@ -101,20 +119,19 @@ function updateIPAddress(resultsContainer) {
 }
 
 // Function to upload the open ports data to Firebase when the "Save" button is clicked
-function uploadPortsToFirebase() {
-    const database = getDatabase(); // Firebase database reference
+async function uploadPortsToFirebase() {
     const userID = currentUserID;  // Get the current user's ID (Foreign Key)
     const dateCreated = new Date().toISOString();  // Current date and time
-    const reportName = `Port Scan Report for ${ipAddress}`; // Report name
+    const reportName = `Test Port Scan Report for ${ipAddress}`; // Report name
 
-    // Reference to the portReports node in Firebase
-    const portReportsRef = ref(database, "portReports");
+    // Generate a custom port ID for the new port report
+    const reportID = await generateCustomPortId();
 
-    // Generate a new unique key for the port report
-    const newPortReportRef = push(portReportsRef);
+    // Reference to the specific port report using the custom reportID
+    const portReportRef = ref(database, `portReports/${reportID}`);
 
     // Set the data for the new port report in Firebase
-    set(newPortReportRef, {
+    set(portReportRef, {
         userID: userID,  // Foreign Key: User ID
         reportName: reportName,
         ports: openPorts,  // Array of open ports
@@ -128,3 +145,32 @@ function uploadPortsToFirebase() {
             console.error("Error uploading port report:", error);
         });
 }
+
+async function generateCustomPortId() {
+    // Prefix is now set to '02'
+    const prefix = '02';
+
+    // Query to find the last port report ID in the portReports node
+    const portReportQuery = query(ref(database, "portReports"), orderByKey(), limitToLast(1));
+    const snapshot = await get(portReportQuery);
+
+    let increment = 1;  // Start from 1 if there are no previous records
+
+    if (snapshot.exists()) {
+        const lastPortReportId = Object.keys(snapshot.val())[0];
+        const lastIncrement = lastPortReportId.split('_')[0].slice(-4);
+        increment = parseInt(lastIncrement, 10) + 1;
+    }
+
+    const incrementedPart = String(increment).padStart(4, '0');
+    const key = generateRandomKey();
+
+    return `${prefix}${incrementedPart}_${key}`;
+}
+
+// Function to generate a random key (for security)
+function generateRandomKey() {
+    return Math.random().toString(36).substring(2, 15);
+}
+
+

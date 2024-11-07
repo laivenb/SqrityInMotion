@@ -21,7 +21,6 @@ const database = getDatabase(app);
 const dbRef = ref(database);
 get(child(dbRef, '/')).then((snapshot) => {
     if (snapshot.exists()) {
-        // Log entire database data
         console.log("Database data:", snapshot.val());
     } else {
         console.error("No data available");
@@ -38,41 +37,39 @@ document.getElementById("loginButton").addEventListener("click", (e) => {
     const password = document.getElementById("password").value;
 
     // Retrieve user data from the database
-    get(child(dbRef, `users/`)).then((snapshot) => {
+    get(child(dbRef, 'users')).then((snapshot) => {
         if (snapshot.exists()) {
             let userFound = false;
 
-            // Loop through each user node (user's unique ID)
+            // Loop through each user node (user's unique ID as key)
             snapshot.forEach((childSnapshot) => {
+                const userID = childSnapshot.key; // UserID is the unique key
                 const userData = childSnapshot.val();
-                console.log("User data:", userData); // Log each user's data
 
                 if (userData.username === username && userData.password === password) {
                     userFound = true;
                     console.log("Login successful:", userData);
 
                     // Store session data using sessionStorage
+                    sessionStorage.setItem("uid", userID);
                     sessionStorage.setItem("username", userData.username);
                     sessionStorage.setItem("role", userData.role); // Store user role
                     sessionStorage.setItem("isLoggedIn", true);
 
                     // Redirect based on role
                     if (userData.role === 0) {
-                        // Redirect to admin home page
                         window.location.href = "adminHome.html";
                     } else if (userData.role === 1) {
-                        // Redirect to regular home page
                         window.location.href = "home.html";
                     } else if (userData.role === 2) {
-                        // Optionally handle role 2 if needed
-                        window.location.href = "home.html"; // Change this if you want a different page for role 2
+                        window.location.href = "home.html"; // Change if a different page is needed for role 2
                     }
                 }
             });
 
             if (!userFound) {
                 console.error("Invalid username or password");
-                // Handle invalid credentials here (e.g., display an error message)
+                // Optionally display an error message here
             }
         } else {
             console.error("No user data available");
