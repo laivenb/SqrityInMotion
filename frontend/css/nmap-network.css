@@ -12,16 +12,22 @@ body {
     /* Make the background flat with no shadows */
 }
 
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #dedede;
+}
+
 .header-content h1 {
     font-size: 32px;
     font-weight: 600;
     color: #333;
-    margin-bottom: 20px;
-    text-align: left;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #dedede;
-    /* Subtle bottom border for formality */
+    margin: 0; /* Remove bottom margin to align with button */
 }
+
 
 .IPheader {
     margin: 20px 0;

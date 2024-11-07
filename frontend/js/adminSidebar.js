@@ -24,6 +24,24 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error("Error loading sidebar:", error);
         });
 });
+
+const db = firebase.database();
+
+// Fetch total users and total requests from Firebase
+function fetchData() {
+    db.ref('/path_to_total_users').once('value').then(snapshot => {
+        const totalUsers = snapshot.val();
+        document.getElementById("total-users").textContent = totalUsers;
+    });
+
+    db.ref('/path_to_total_requests').once('value').then(snapshot => {
+        const totalRequests = snapshot.val();
+        document.getElementById("total-requests").textContent = totalRequests;
+    });
+}
+
+// Call fetchData on page load
+fetchData();
 function setUsername() {
     // Get the username directly from sessionStorage (no need for JSON.parse)
     const currentUser = sessionStorage.getItem("username");

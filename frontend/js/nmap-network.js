@@ -1,6 +1,13 @@
 const BASE_URL = 'http://192.168.1.29:5000';
 
 // Function to check session on page load
+document.getElementById('startScanButton').addEventListener('click', function () {
+    this.disabled = true;
+    this.textContent = "Scanning..."; // Optional: Update button text to show action in progress
+
+    // You can also add the code to trigger the scan here
+});
+
 window.addEventListener('load', () => {
     const currentUser = sessionStorage.getItem("username");
 
