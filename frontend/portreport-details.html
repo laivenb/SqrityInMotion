@@ -22,7 +22,7 @@
         <!-- Main Content -->
         <div class="main-content">
             <!-- Back Button -->
-            <button onclick="goBack()" class="btn btn-secondary mb-3">
+            <button id="backButton" class="btn btn-secondary mb-3">
                 <i class="fas fa-arrow-left"></i> Back to Port Reports
             </button>
 
@@ -79,42 +79,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="js/sidebar.js"></script>
 
-<script>
-    // Sample report data
-    const reportsData = {
-        "101": {
-            "title": "Network Vulnerability Report",
-            "dateCreated": "2023-05-10"
-        },
-        "102": {
-            "title": "Device Security Analysis",
-            "dateCreated": "2023-05-12"
-        }
-        // Add more report data here as needed
-    };
+<!-- Port report details script -->
+<script type="module" src="js/portreport-details.js"></script>
 
-    // Function to retrieve query parameters from the URL
-    function getQueryParam(param) {
-        const urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
-
-    // Set the report title and date based on the reportID
-    document.addEventListener('DOMContentLoaded', () => {
-        const reportID = getQueryParam('reportID');
-        if (reportID && reportsData[reportID]) {
-            document.getElementById('reportTitle').textContent = reportsData[reportID].title;
-            document.getElementById('reportDate').textContent = `Date Created: ${reportsData[reportID].dateCreated}`;
-        } else {
-            document.getElementById('reportTitle').textContent = "Report Not Found";
-            document.getElementById('reportDate').textContent = "";
-        }
-    });
-
-    // Back button function
-    function goBack() {
-        window.location.href = 'port-reports.html';
-    }
-</script>
 </body>
 </html>

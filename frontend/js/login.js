@@ -45,6 +45,7 @@ document.getElementById("loginButton").addEventListener("click", (e) => {
             // Loop through each user node (user's unique ID)
             snapshot.forEach((childSnapshot) => {
                 const userData = childSnapshot.val();
+                const userID = childSnapshot.key;
                 console.log("User data:", userData); // Log each user's data
 
                 if (userData.username === username && userData.password === password) {
