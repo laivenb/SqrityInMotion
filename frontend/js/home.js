@@ -14,6 +14,7 @@ window.addEventListener('load', () => {
     } else {
         console.log("Logged in as:", currentUser);
 
+        console.log("UID set in sessionStorage:", sessionStorage.getItem("uid"));
 
         ipAddress = getIPFromURL();
         console.log(ipAddress);

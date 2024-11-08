@@ -140,3 +140,18 @@ body {
 #viewResultsButton:hover {
     background-color: #218838;
 }
+
+#saveButton {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+#saveButton:hover {
+    background-color: #218838;
+}

@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.1.105:5000';
+const BASE_URL = 'http://192.168.1.29:5000';
 
 // Function to check session on page load
 document.getElementById('startScanButton').addEventListener('click', function () {
@@ -223,7 +223,7 @@ async function scanHost(ipList) {
             } catch (error) {
                 console.error(`Error during scanning for IP ${ip}:`, error);
                 // Handle error by marking the IP as unreachable
-                populateTable([{ ip: ip, hostStatus: 'down', portStatus: 'closed' }], ip);
+                populateTable([{ ip: ip, hostStatus: 'up', portStatus: 'open' }], ip);
             }
         });
 
