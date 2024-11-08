@@ -19,7 +19,8 @@ const database = getDatabase(app);
 const BASE_URL = 'http://192.168.1.29:5000';
 let openPorts = [];  // This will store all the ports info
 let ipAddress;
-let currentUserID;  // Variable to store current user's ID
+let currentUserID;
+let currentUid;
 
 // Function to get the current IP from URL
 function getIPFromURL() {
@@ -38,6 +39,7 @@ function navigateToHome() {
 document.addEventListener('DOMContentLoaded', function () {
     // Session check for current user
     currentUserID = sessionStorage.getItem("username");
+    currentUid = sessionStorage.getItem("uid");
 
     if (!currentUserID) {
         // Redirect to login if no user is logged in
@@ -45,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     } else {
         console.log("Logged in as:", currentUserID);
-        console.log("UID set in sessionStorage:", sessionStorage.getItem("uid"));
+        console.log("UID set in sessionStorage:", currentUid);
     }
 
     // Event listener for the 'viewResultsButton' button to navigate to the home page
@@ -121,7 +123,7 @@ function updateIPAddress(resultsContainer) {
 
 // Function to upload the open ports data to Firebase when the "Save" button is clicked
 async function uploadPortsToFirebase() {
-    const userID = sessionStorage.getItem("uid");  // Get the current user's ID (Foreign Key)
+    const userID = currentUid;  // Get the current user's ID (Foreign Key)
     const dateCreated = new Date().toISOString();  // Current date and time
     const reportName = `Test Port Scan Report for ${ipAddress}`; // Report name
 
