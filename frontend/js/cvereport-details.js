@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+import { getDatabase, ref, set, push, child, get, query, orderByChild, orderByKey, equalTo, limitToLast } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -18,7 +18,7 @@ const database = getDatabase(app);
 
 // Check if the user is logged in
 const currentUser = sessionStorage.getItem("username");
-const userID = sessionStorage.getItem("userID");
+const userID = sessionStorage.getItem("uid");
 
 if (!currentUser || !userID) {
     // Redirect to login page if no user is logged in
@@ -26,6 +26,9 @@ if (!currentUser || !userID) {
 } else {
     // Load the CVE report details for the current user
     loadReportDetails(userID);
+    const vulnerabilitiesData = JSON.parse(sessionStorage.getItem("vulnerabilitiesData"));
+
+    console.log("Vulnerabilities data saved to sessionStorage:", vulnerabilitiesData);
 }
 
 // Function to load the CVE report details for a specific user
@@ -104,3 +107,119 @@ export function goBack() {
 }
 
 document.getElementById('backButton')?.addEventListener('click', goBack);  // Make sure the backButton exists
+
+// Function to upload the open ports data to Firebase when the "Save" button is clicked
+async function uploadPortsToFirebase() {
+    console.log("uploading to firebase");
+    const vulnerabilitiesData = JSON.parse(sessionStorage.getItem("vulnerabilitiesData")); // Fetch the vulnerabilities data from sessionStorage
+    const userID = sessionStorage.getItem("uid");  // Get the current user's ID (Foreign Key)
+    const dateCreated = new Date().toISOString();  // Current date and time
+    const reportName = `Test Port CVE Report for `; // Report name
+
+    // Generate a custom port ID for the new port report
+    const reportID = await generateCustomPortId();
+
+    // Reference to the specific port report using the custom reportID
+    const portReportRef = ref(database, `cveReports/${reportID}`);
+
+    // Use vulnerabilitiesData as the ports array
+    const ports = vulnerabilitiesData.map(vulnerability => ({
+        port: vulnerability.port,
+        state: vulnerability.state,
+        version: vulnerability.version,
+        cve_id: vulnerability.cve_id,
+        cve_score: vulnerability.cve_score
+    }));
+
+    // Set the data for the new port report in Firebase
+    set(portReportRef, {
+        userID: userID,  // Foreign Key: User ID
+        reportName: reportName,
+        ports: ports,  // Array of open ports from vulnerabilitiesData
+        dateCreated: dateCreated
+    })
+        .then(() => {
+            console.log("Port Report uploaded successfully!");
+            alert("Report saved successfully!");
+        })
+        .catch((error) => {
+            console.error("Error uploading port report:", error);
+        });
+}
+
+
+async function generateCustomPortId() {
+    // Prefix is now set to '02'
+    const prefix = '03';
+
+    // Query to find the last port report ID in the portReports node
+    const portReportQuery = query(ref(database, "cveReports"), orderByKey(), limitToLast(1));
+    const snapshot = await get(portReportQuery);
+
+    let increment = 1;  // Start from 1 if there are no previous records
+
+    if (snapshot.exists()) {
+        const lastPortReportId = Object.keys(snapshot.val())[0];
+        const lastIncrement = lastPortReportId.split('_')[0].slice(-4);
+        increment = parseInt(lastIncrement, 10) + 1;
+    }
+
+    const incrementedPart = String(increment).padStart(4, '0');
+    const key = generateRandomKey();
+
+    return `${prefix}${incrementedPart}_${key}`;
+}
+
+// Function to generate a random key (for security)
+function generateRandomKey() {
+    return Math.random().toString(36).substring(2, 15);
+}
+
+
+// Event listener for the 'Save' button to save the report
+document.getElementById('saveButton').addEventListener('click', uploadPortsToFirebase);
+
+const isHome = JSON.parse(sessionStorage.getItem("isHome"));  // Converts "true" back to true
+
+console.log("Is Home:", isHome);
+
+
+if (isHome) {
+
+    console.log("isHome parameter is true.");
+
+    const vulnerabilitiesData = JSON.parse(sessionStorage.getItem("vulnerabilitiesData"));
+    const tableBody = $('#cveDetailsTable tbody');
+    tableBody.empty();  // Clear the existing data
+
+    if (Array.isArray(vulnerabilitiesData) && vulnerabilitiesData.length > 0) {
+        vulnerabilitiesData.forEach(vulnerability => {
+            const row = `
+                    <tr>
+                        <td>${vulnerability.port || 'N/A'}</td>
+                        <td>${vulnerability.state || 'N/A'}</td>
+                        <td>${vulnerability.version || 'N/A'}</td>
+                        <td>${vulnerability.cve_id || 'N/A'}</td>
+                        <td>${vulnerability.cve_score || 'N/A'}</td>
+                    </tr>
+                `;
+            tableBody.append(row);
+        });
+    } else {
+        const row = `
+                <tr>
+                    <td colspan="5" class="text-center">No CVE data available</td>
+                </tr>
+            `;
+        tableBody.append(row);
+    }
+
+    // Initialize or reinitialize DataTable
+    $('#cveDetailsTable').DataTable();
+
+    sessionStorage.setItem("isHome", false);
+} else {
+    console.log("isHome parameter is not true.");
+}
+
+

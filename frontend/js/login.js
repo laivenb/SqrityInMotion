@@ -64,9 +64,14 @@ document.getElementById("loginButton").addEventListener("click", (e) => {
                         window.location.href = "adminHome.html";
                     } else if (userData.role === 1) {
                         // Redirect to regular home page
+                        sessionStorage.removeItem("vulnerabilitiesData");
+
+
                         window.location.href = "home.html";
                     } else if (userData.role === 2) {
                         // Optionally handle role 2 if needed
+                        sessionStorage.removeItem("vulnerabilitiesData");
+
                         window.location.href = "home.html"; // Change this if you want a different page for role 2
                     }
                 }

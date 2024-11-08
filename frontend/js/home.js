@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.1.105:5000';
+const BASE_URL = 'http://192.168.1.29:5000';
 let openPorts = [];
 
 function getIPFromURL() {
@@ -248,7 +248,11 @@ function updatePortTable(vulnerabilities) {
     const portTable = $('#portTable').DataTable();
     portTable.clear();
 
+    // Array to store the table data
+    const tableData = [];
+
     vulnerabilities.forEach(vulnerability => {
+        // Add the row to the DataTable
         portTable.row.add([
             vulnerability.port || 'N/A',
             '<td class="state open">open</td>',
@@ -256,10 +260,30 @@ function updatePortTable(vulnerabilities) {
             vulnerability.cve_id || 'N/A',
             vulnerability.cve_score || 'N/A'
         ]);
+
+        // Push the row data to the tableData array
+        tableData.push({
+            port: vulnerability.port || 'N/A',
+            state: 'open',
+            version: vulnerability.version || 'N/A',
+            cve_id: vulnerability.cve_id || 'N/A',
+            cve_score: vulnerability.cve_score || 'N/A'
+        });
     });
 
+    // Draw the table after adding the rows
     portTable.draw();
+
+    // Console log the table data
+    console.log("Table Data:", tableData);
+
+
+    // Store the response in sessionStorage
+    sessionStorage.setItem("vulnerabilitiesData", JSON.stringify(tableData));
+
+    console.log("Vulnerabilities data saved to sessionStorage:", tableData);
 }
+
 
 function updateCharts(vulnerabilities) {
     const criticalCount = vulnerabilities.filter(v => v.cve_score >= 7).length;
@@ -283,3 +307,11 @@ function updateCharts(vulnerabilities) {
     const totalVulnerabilityPercentage = criticalPercentage + mediumPercentage + lowPercentage;
     $('.vulnerability').text(`VULNERABILITY: ${totalVulnerabilityPercentage.toFixed(2)}%`);
 }
+
+document.getElementById('saveCveReportBtn').addEventListener('click', function(e) {
+    e.preventDefault();  // Prevent the default link behavior
+
+    sessionStorage.setItem("isHome", true);
+
+    window.location.href = 'cvereport-details.html';
+});
