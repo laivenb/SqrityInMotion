@@ -41,15 +41,32 @@ document.getElementById("loginButton").addEventListener("click", (e) => {
     get(child(dbRef, `users/`)).then((snapshot) => {
         if (snapshot.exists()) {
             let userFound = false;
+            let statusAccepted = false;
+            let userID = null;
+            let userData = null;
 
             // Loop through each user node (user's unique ID)
             snapshot.forEach((childSnapshot) => {
-                const userData = childSnapshot.val();
-                const userID = childSnapshot.key;
-                console.log("User data:", userData); // Log each user's data
+                const currentUserData = childSnapshot.val();
+                const currentUserID = childSnapshot.key;
+                console.log("User data:", currentUserData); // Log each user's data
 
-                if (userData.username === username && userData.password === password) {
+                // Check if username and password match
+                if (currentUserData.username === username && currentUserData.password === password) {
                     userFound = true;
+                    userData = currentUserData;
+                    userID = currentUserID;
+
+                    // Check if status is accepted
+                    if (currentUserData.status === "accepted") {
+                        statusAccepted = true;
+                    }
+                }
+            });
+
+            // Now handle the login flow based on userFound and statusAccepted
+            if (userFound) {
+                if (statusAccepted) {
                     console.log("Login successful:", userData);
 
                     // Store session data using sessionStorage
@@ -62,24 +79,18 @@ document.getElementById("loginButton").addEventListener("click", (e) => {
                     if (userData.role === 0) {
                         // Redirect to admin home page
                         window.location.href = "adminHome.html";
-                    } else if (userData.role === 1) {
+                    } else if (userData.role === 1 || userData.role === 2) {
                         // Redirect to regular home page
                         sessionStorage.removeItem("vulnerabilitiesData");
-
-
                         window.location.href = "home.html";
-                    } else if (userData.role === 2) {
-                        // Optionally handle role 2 if needed
-                        sessionStorage.removeItem("vulnerabilitiesData");
-
-                        window.location.href = "home.html"; // Change this if you want a different page for role 2
                     }
+                } else {
+                    console.log("User status is not accepted. Please contact support.");
+                    alert("Your account has not been accepted. Please wait for admin approval.");
                 }
-            });
-
-            if (!userFound) {
-                console.error("Invalid username or password");
-                // Handle invalid credentials here (e.g., display an error message)
+            } else {
+                console.log("Invalid username or password.");
+                alert("Invalid username or password.");
             }
         } else {
             console.error("No user data available");
@@ -88,3 +99,4 @@ document.getElementById("loginButton").addEventListener("click", (e) => {
         console.error("Error fetching user data:", error.message);
     });
 });
+

@@ -16,6 +16,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+function getCurrentDate() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
 const registerButton = document.getElementById("registerButton");
 registerButton.addEventListener("click", async (e) => {
     e.preventDefault();
@@ -61,7 +69,8 @@ registerButton.addEventListener("click", async (e) => {
         position: document.getElementById("position").value,
         birthday: document.getElementById("birthday").value,
         status: "pending", // Registration pending approval
-        role: 1
+        role: 1,
+        requestDate: getCurrentDate()
     })
         .then(() => {
             alert("Registration successful. Awaiting admin approval.");
