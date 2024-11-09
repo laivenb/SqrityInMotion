@@ -70,7 +70,7 @@ async function loadReports(userID) {
                         <tr>
                             <td>${childSnapshot.key}</td>
                             <td>${data.reportName || "Unnamed Report"}</td>
-                            <td>${data.dateCreated ? new Date(data.date).toLocaleString() : "N/A"}</td>
+                            <td>${data.dateCreated || "N/A"}</td>
                             <td>
                                 <button class="btn btn-primary view-btn">View Report</button>
                                 <button class="btn btn-secondary export-btn">Export as JSON</button>

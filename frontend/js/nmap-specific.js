@@ -121,10 +121,19 @@ function updateIPAddress(resultsContainer) {
     }
 }
 
+function getCurrentDate() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+}
+
+
 // Function to upload the open ports data to Firebase when the "Save" button is clicked
 async function uploadPortsToFirebase() {
     const userID = currentUid;  // Get the current user's ID (Foreign Key)
-    const dateCreated = new Date().toISOString();  // Current date and time
+    const dateCreated = getCurrentDate();  // Current date and time
     const reportName = `Test Port Scan Report for ${ipAddress}`; // Report name
 
     // Generate a custom port ID for the new port report
