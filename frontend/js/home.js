@@ -9,6 +9,7 @@ function getIPFromURL() {
 }
 window.addEventListener('load', () => {
     const currentUser = sessionStorage.getItem("username");
+
     if (!currentUser) {
         window.location.href = "login.html";
     } else {
@@ -28,6 +29,7 @@ window.addEventListener('load', () => {
         }
 
         initializeDataTable();
+
     }
 });
 
@@ -244,7 +246,35 @@ function fetchVulnerabilities(openPorts) {
     });
 }
 
+function emptyDash() {
+    // Clear the DataTable
+    const portTable = $('#portTable').DataTable();
+    portTable.clear().draw();  // Clears the table and redraws it
+
+    // Clear sessionStorage data
+    sessionStorage.removeItem('vulnerabilitiesData');
+
+    // Reset the doughnut chart
+    doughnutChart.data.datasets[0].data = [0, 0, 0]; // Reset values to 0
+    doughnutChart.update();  // Update the chart to reflect changes
+
+    // Reset the progress chart
+    progressChart.data.datasets[0].data = [0]; // Critical
+    progressChart.data.datasets[1].data = [0]; // Medium
+    progressChart.data.datasets[2].data = [0]; // Low
+    progressChart.update();  // Update the chart to reflect changes
+
+    // Update the vulnerability percentage display
+    $('.vulnerability').text("VULNERABILITY: 0%");
+}
+
+
 function updatePortTable(vulnerabilities) {
+    const firstLogin = sessionStorage.getItem('firstLogin') === 'true';
+
+    console.log(firstLogin);
+
+
     const portTable = $('#portTable').DataTable();
     portTable.clear();
 
@@ -282,6 +312,16 @@ function updatePortTable(vulnerabilities) {
     sessionStorage.setItem("vulnerabilitiesData", JSON.stringify(tableData));
 
     console.log("Vulnerabilities data saved to sessionStorage:", tableData);
+
+    console.log("LOLOLOL" + firstLogin);
+
+    if(firstLogin) {
+        console.log("first Login if = " + firstLogin);
+        emptyDash();
+    }
+    else{
+        console.log("first Login else = " + firstLogin);
+    }
 }
 
 

@@ -34,6 +34,8 @@ get(child(dbRef, '/')).then((snapshot) => {
 document.getElementById("loginButton").addEventListener("click", (e) => {
     e.preventDefault(); // Prevent default form submission
 
+    let firstLogin = true;
+
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
@@ -82,6 +84,8 @@ document.getElementById("loginButton").addEventListener("click", (e) => {
                     } else if (userData.role === 1 || userData.role === 2) {
                         // Redirect to regular home page
                         sessionStorage.removeItem("vulnerabilitiesData");
+                        sessionStorage.setItem('firstLogin', firstLogin.toString());
+                        console.log(sessionStorage.getItem('firstLogin'));
                         window.location.href = "home.html";
                     }
                 } else {

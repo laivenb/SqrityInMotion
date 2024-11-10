@@ -51,8 +51,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Event listener for the 'viewResultsButton' button to navigate to the home page
-    document.getElementById('viewResultsButton').addEventListener('click', navigateToHome);
+    document.getElementById('viewResultsButton').addEventListener('click', function() {
 
+        // Set 'notFirstLogin' in sessionStorage when the button is clicked
+        sessionStorage.setItem('firstLogin', 'false');
+
+        navigateToHome();
+    });
     // Event listener for the 'Save' button to save the report
     document.getElementById('saveButton').addEventListener('click', uploadPortsToFirebase);
 
