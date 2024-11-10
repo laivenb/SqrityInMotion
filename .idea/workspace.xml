@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Port Reports Update" />
+    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Port Reports Update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/cve-reports.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/cve-reports.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/portreport.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/portreport.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +53,7 @@
     &quot;JavaScript Debug.nmap.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.nmapNetwork.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.pentest-result.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.port-reports.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.port-specific.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.register.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.server-Test.html.executor&quot;: &quot;Run&quot;,
@@ -101,6 +106,8 @@
       <workItem from="1729924232747" duration="30374000" />
       <workItem from="1730534198139" duration="5688000" />
       <workItem from="1731028917973" duration="6734000" />
+      <workItem from="1731210188909" duration="3156000" />
+      <workItem from="1731247521691" duration="223000" />
     </task>
     <task id="LOCAL-00001" summary="Port Reports Update">
       <option name="closed" value="true" />
