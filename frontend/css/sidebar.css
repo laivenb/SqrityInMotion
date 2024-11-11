@@ -17,14 +17,14 @@
 }
 
 .logo-section {
-    margin-bottom: 30px;
     text-align: center;
-    padding: 20px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px;
 }
 
 .logo-section img {
-    width: 140px;
+    width: 150px;
+    height: auto;
 }
 
 /* Profile section */
