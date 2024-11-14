@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.1.29:5000';
+const BASE_URL = 'http://192.168.172.230:5000';
 let openPorts = [];
 
 function getIPFromURL() {
@@ -76,6 +76,10 @@ $('#pentestButton').on('click', function() {
 
 // Initialize DataTable
 function initializeDataTable() {
+    const firstLogin = sessionStorage.getItem('firstLogin') === 'true';
+
+    console.log(firstLogin);
+
     const portTable = $('#portTable').DataTable({
         "pagingType": "simple_numbers",
         "searching": true,
@@ -111,6 +115,17 @@ function initializeDataTable() {
             portInfo.cveId || 'N/A'
         ]).draw();
     });
+
+    console.log("LOLOLOL" + firstLogin);
+
+    if(firstLogin) {
+        console.log("first Login if = " + firstLogin);
+        emptyDash();
+    }
+    else{
+        console.log("first Login else = " + firstLogin);
+    }
+
 }
 
 
@@ -251,6 +266,9 @@ function emptyDash() {
     const portTable = $('#portTable').DataTable();
     portTable.clear().draw();  // Clears the table and redraws it
 
+    // Hide the "Save CVE Report" button
+    $('#saveCveReportBtn').hide();  // Hides the button with ID saveCveReportBtn
+
     // Clear sessionStorage data
     sessionStorage.removeItem('vulnerabilitiesData');
 
@@ -266,7 +284,9 @@ function emptyDash() {
 
     // Update the vulnerability percentage display
     $('.vulnerability').text("VULNERABILITY: 0%");
+
 }
+
 
 
 function updatePortTable(vulnerabilities) {

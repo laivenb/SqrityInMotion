@@ -36,11 +36,14 @@ async function loadReportDetails(userID) {
     try {
         // Retrieve the reportID from the URL
         const reportID = getQueryParam('reportID');
+        console.log(reportID);
 
         if (!reportID) {
             console.error("No report ID provided in the URL.");
             return;
         }
+
+        $('#saveButton').hide();
 
         // Access the specific report for the user by reportID in cveReports
         const reportRef = ref(database, `cveReports/${reportID}`);
@@ -80,9 +83,9 @@ function populateCveDetails(ports) {
             row.innerHTML = `
                 <td>${port.port || "N/A"}</td>
                 <td>${port.state || "N/A"}</td>
-                <td>${port.service || "N/A"}</td>
-                <td>${port["CVE ID"] || "N/A"}</td>
-                <td>${port["CVE Score"] || "N/A"}</td>
+                <td>${port.version || "N/A"}</td>
+                <td>${port.cve_id || "N/A"}</td>
+                <td>${port.cve_score || "N/A"}</td>
             `;
             tableBody.appendChild(row);
         });
@@ -189,6 +192,7 @@ function generateRandomKey() {
 document.getElementById('saveButton').addEventListener('click', uploadPortsToFirebase);
 
 const isHome = JSON.parse(sessionStorage.getItem("isHome"));  // Converts "true" back to true
+const uid = sessionStorage.getItem("uid");
 
 console.log("Is Home:", isHome);
 
@@ -229,6 +233,7 @@ if (isHome) {
     sessionStorage.setItem("isHome", false);
 } else {
     console.log("isHome parameter is not true.");
+    loadReportDetails(uid);
 }
 
 

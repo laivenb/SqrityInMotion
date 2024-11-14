@@ -19,7 +19,7 @@ const database = getDatabase(app);
 
 // Check if the user is logged in
 const currentUser = sessionStorage.getItem("username");
-const userID = sessionStorage.getItem("userID");
+const userID = sessionStorage.getItem("uid");
 
 if (!currentUser || !userID) {
     // Redirect to login page if no user is logged in
