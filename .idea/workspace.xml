@@ -5,12 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Port Reports Update">
+      <change afterPath="$PROJECT_DIR$/backend/cve_open_ports.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/cvereport-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/cvereport-details.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-network.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-network.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-specific.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/portreport-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/portreport-details.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,6 +16,9 @@
   </component>
   <component name="ComposerSettings">
     <execution />
+  </component>
+  <component name="ExportToHTMLSettings">
+    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/exportToHTML" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -112,7 +112,8 @@
       <workItem from="1731028917973" duration="6734000" />
       <workItem from="1731210188909" duration="3156000" />
       <workItem from="1731247521691" duration="4638000" />
-      <workItem from="1731596903016" duration="3168000" />
+      <workItem from="1731596903016" duration="3661000" />
+      <workItem from="1731662209371" duration="1454000" />
     </task>
     <task id="LOCAL-00001" summary="Port Reports Update">
       <option name="closed" value="true" />
