@@ -126,21 +126,23 @@ function populateUserInfo(user) {
 
 // Function to update user data in Firebase Realtime Database (only contact number)
 // Function to update user data in Firebase Realtime Database (only contact number)
-function updateUserData(user) {
+function updateUserData(username) {
     const contactNumber = document.getElementById("contact-number").value;
 
-    // Reference to the user's data in the database
-    const userRef = ref(database, `users/${username}`);
+    const userUid = sessionStorage.getItem("uid");
 
-    // Update only the contact number in the existing user data
-    update(userRef, {
-        contactNumber: contactNumber
-    }).then(() => {
-        console.log("Contact number updated successfully.");
-        alert("Your contact number has been updated.");
-    }).catch((error) => {
-        console.error("Error updating contact number:", error.message);
-        alert("Failed to update contact number. Please try again.");
-    });
+
+    if (userUid) {
+        const userRef = ref(database, `users/${userUid}`);
+        try {
+            update(userRef, { contactNumber: contactNumber });
+            console.log(`Status updated to ${contactNumber} for user with UID: ${userUid}`);
+        } catch (error) {
+            console.error("Error updating user status:", error);
+        }
+    } else {
+        console.log("Cannot update status - UID not found.");
+    }
+
 }
 
