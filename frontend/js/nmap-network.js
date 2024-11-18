@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.172.230:5000';
+const BASE_URL = 'http://192.168.1.20:5000';
 
 // Function to check session on page load
 document.getElementById('startScanButton').addEventListener('click', function () {

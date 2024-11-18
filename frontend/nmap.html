@@ -40,7 +40,7 @@
         </a>
 
         <!-- Scan Device Icon -->
-        <a href="#" class="icon-container text-center" data-toggle="modal" data-target="#scanNetworkModal">
+        <a href="#" class="icon-container text-center" data-toggle="modal" data-target="#scanDeviceModal">
           <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="dimgray" class="bi bi-pc-display"
             viewBox="0 0 16 16">
             <path
@@ -116,34 +116,13 @@
 
           <!-- IP Address Input -->
           <div class="form-group">
-            <label for="ipAddress">Enter IP Address (e.g., 192.168.1.0):</label>
-            <input type="text" class="form-control" id="ipAddress" placeholder="192.168.1.0">
+            <label for="ipAddress">Enter IP Address (e.g., 192.168.1.117):</label>
+            <input type="text" class="form-control" id="ip" placeholder="192.168.1.117">
           </div>
 
-          <!-- Subnet Mask Dropdown -->
-          <div class="form-group">
-            <label for="subnetMask">Select Subnet Mask:</label>
-            <select class="form-control" id="subnetMask">
-              <option value="/16">/16</option>
-              <option value="/17">/17</option>
-              <option value="/18">/18</option>
-              <option value="/19">/19</option>
-              <option value="/20">/20</option>
-              <option value="/21">/21</option>
-              <option value="/22">/22</option>
-              <option value="/23">/23</option>
-              <option value="/24">/24</option>
-              <option value="/25">/25</option>
-              <option value="/26">/26</option>
-              <option value="/27">/27</option>
-              <option value="/28">/28</option>
-              <option value="/29">/29</option>
-              <option value="/30">/30</option>
-            </select>
-          </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="startScanBtnB">Scan</button>
+          <button type="button" class="btn btn-primary" id="startDeviceScanBtn">Scan</button>
         </div>
       </div>
     </div>

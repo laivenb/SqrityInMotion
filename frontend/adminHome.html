@@ -22,7 +22,6 @@
             <!-- Header with Title and Date -->
             <div class="header d-flex justify-content-between align-items-center">
                 <h2 class="dashboard-title">Admin Dashboard</h2>
-                <p id="current-date" class="dashboard-date">Date: <!-- JavaScript will insert current date here --></p>
             </div>
 
             <!-- Dashboard Cards Section -->
@@ -48,26 +47,9 @@
             <div class="dashboard-charts">
                 <canvas id="downloadsChart" width="400" height="200"></canvas>
                 <canvas id="storageChart" width="400" height="200"></canvas>
-                <canvas id="doughnutChart" width="400" height="200"></canvas>
-                <canvas id="progressChart" width="400" height="200"></canvas>
+                <!--<canvas id="doughnutChart" width="400" height="200"></canvas>
+                <canvas id="progressChart" width="400" height="200"></canvas>-->
             </div>
-
-            <!-- Table for Port Information -->
-            <table id="portTable" class="table table-striped">
-                <thead>
-                <tr>
-                    <th>Port</th>
-                    <th>Status</th>
-                    <th>Service</th>
-                    <th>Version</th>
-                    <th>CVE ID</th>
-                </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
-
-            <!-- Pentest Button -->
-            <button id="pentestButton" class="btn btn-primary">Run Pentest</button>
         </div>
     </div>
 </div>
