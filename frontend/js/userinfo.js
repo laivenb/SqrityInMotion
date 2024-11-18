@@ -63,14 +63,14 @@ function fetchUserInfo(username) {
 
 // Function to populate user information fields
 function populateUserInfo(user) {
-    document.getElementById("first-name").value = user.firstName || ''; // Adjust field names as necessary
+    console.log("User data being populated:", user); // Debug log
+    document.getElementById("first-name").value = user.firstName || '';
     document.getElementById("middle-name").value = user.middleName || '';
     document.getElementById("last-name").value = user.lastName || '';
-    document.getElementById("username").value = user.username || '';
+    document.getElementById("user-name").value = user.username || '';
     document.getElementById("email").value = user.email || '';
     document.getElementById("contact-number").value = user.contactNumber || '';
     document.getElementById("department").value = user.department || '';
-
-
     document.getElementById("role").value = user.role || '';
+
 }
