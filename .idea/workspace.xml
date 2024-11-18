@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Password Strength Updated">
-      <change afterPath="$PROJECT_DIR$/frontend/icons/default-profpic.webp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/js/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/sidebar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/userinfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/userinfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/sidebar.html" afterDir="false" />
-    </list>
+    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Password Strength Updated" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,8 +18,8 @@
       <list>
         <option value="Python Script" />
         <option value="CSS File" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -121,6 +114,7 @@
       <workItem from="1729486763965" duration="834000" />
       <workItem from="1729924232747" duration="30374000" />
       <workItem from="1730534198139" duration="5688000" />
+      <workItem from="1731950022649" duration="382000" />
     </task>
     <task id="LOCAL-00001" summary="Port Reports Update">
       <option name="closed" value="true" />
