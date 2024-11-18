@@ -133,23 +133,25 @@ async function checkUserExists(username, email) {
 }
 
 
-// Function to validate password strength
+// Function to validate password strength based on NIST guidelines
+
 function isPasswordStrong(password) {
     const hasLowercase = /[a-z]/.test(password);
     const hasUppercase = /[A-Z]/.test(password);
     const hasDigit = /\d/.test(password);
     const hasSpecialChar = /[@$!%*?&]/.test(password);
-    const isValidLength = password.length >= 8;
+    const isValidLength = password.length >= 15; // Minimum 15 characters
 
-    // Log the individual checks
+    // Log the individual checks for debugging
     console.log("Has lowercase letter:", hasLowercase);
     console.log("Has uppercase letter:", hasUppercase);
     console.log("Has digit:", hasDigit);
     console.log("Has special character:", hasSpecialChar);
-    console.log("Valid length (>= 8):", isValidLength);
+    console.log("Valid length (>= 15):", isValidLength);
 
     return hasLowercase && hasUppercase && hasDigit && hasSpecialChar && isValidLength;
 }
+
 
 
 

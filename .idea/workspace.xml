@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Port Reports Update">
-      <change afterPath="$PROJECT_DIR$/backend/cve_open_ports.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +14,6 @@
   </component>
   <component name="ComposerSettings">
     <execution />
-  </component>
-  <component name="ExportToHTMLSettings">
-    <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/exportToHTML" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -33,6 +28,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "fgchng"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/laivenb/SqrityInMotion.git",
+    "accountId": "f972e505-dbcc-4703-aafc-1b4e9a05a4a7"
+  }
+}]]></component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php/8.2.8/bin/php" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -49,7 +56,6 @@
   &quot;keyToString&quot;: {
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;JavaScript Debug.adminside.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.cve-reports.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.home.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.login.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.nmap-network.html.executor&quot;: &quot;Run&quot;,
@@ -57,7 +63,6 @@
     &quot;JavaScript Debug.nmap.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.nmapNetwork.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.pentest-result.html.executor&quot;: &quot;Run&quot;,
-    &quot;JavaScript Debug.port-reports.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.port-specific.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.register.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.server-Test.html.executor&quot;: &quot;Run&quot;,
@@ -89,8 +94,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PS-242.22855.113" />
-        <option value="bundled-php-predefined-a98d8de5180a-90914f2295cb-com.jetbrains.php.sharedIndexes-PS-242.22855.113" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PS-242.23339.16" />
+        <option value="bundled-php-predefined-a98d8de5180a-90914f2295cb-com.jetbrains.php.sharedIndexes-PS-242.23339.16" />
       </set>
     </attachedChunks>
   </component>
@@ -109,11 +114,6 @@
       <workItem from="1729486763965" duration="834000" />
       <workItem from="1729924232747" duration="30374000" />
       <workItem from="1730534198139" duration="5688000" />
-      <workItem from="1731028917973" duration="6734000" />
-      <workItem from="1731210188909" duration="3156000" />
-      <workItem from="1731247521691" duration="4638000" />
-      <workItem from="1731596903016" duration="3661000" />
-      <workItem from="1731662209371" duration="1454000" />
     </task>
     <task id="LOCAL-00001" summary="Port Reports Update">
       <option name="closed" value="true" />
