@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sidebarElement.innerHTML = data; // Insert sidebar HTML into the page
             console.log("Sidebar loaded successfully");
             setUsername(); // Call to set the username in the sidebar after loading
+            setupLogoutButton(); // Setup the logout functionality
         })
         .catch(error => {
             console.error("Error loading sidebar:", error);
@@ -27,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Function to set the username in the sidebar
 function setUsername() {
-    // Get the username directly from sessionStorage (no need for JSON.parse)
+    // Get the username directly from sessionStorage
     const currentUser = sessionStorage.getItem("username");
 
     if (currentUser) {
@@ -39,5 +40,21 @@ function setUsername() {
         }
     } else {
         console.warn("No user data found.");
+    }
+}
+
+// Function to handle logout functionality
+function setupLogoutButton() {
+    const logoutButton = document.querySelector('.logout-btn');
+
+    if (logoutButton) {
+        logoutButton.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            sessionStorage.clear(); // Clear session storage to end session
+            console.log("Session cleared. Logging out...");
+            window.location.href = "login.html"; // Redirect to login page
+        });
+    } else {
+        console.warn("Logout button not found.");
     }
 }

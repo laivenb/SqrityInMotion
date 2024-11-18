@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Load the sidebar content after the DOM is fully loaded
-    const sidebarElement = document.getElementById('sidebar-container'); // Get the correct element
+    const sidebarElement = document.getElementById('sidebar-container');
 
     if (!sidebarElement) {
         console.error("Sidebar container not found. Ensure it exists in the HTML.");
@@ -19,31 +19,55 @@ document.addEventListener('DOMContentLoaded', function () {
             sidebarElement.innerHTML = data; // Insert sidebar HTML into the page
             console.log("Sidebar loaded successfully");
             setUsername(); // Call to set the username in the sidebar after loading
+            setupLogoutButton(); // Setup the logout functionality
         })
         .catch(error => {
             console.error("Error loading sidebar:", error);
         });
 });
 
+// Firebase database reference
 const db = firebase.database();
 
 // Fetch total users and total requests from Firebase
 function fetchData() {
-    db.ref('/path_to_total_users').once('value').then(snapshot => {
-        const totalUsers = snapshot.val();
-        document.getElementById("total-users").textContent = totalUsers;
-    });
+    // Fetch total users
+    db.ref('/path_to_total_users').once('value')
+        .then(snapshot => {
+            const totalUsers = snapshot.val();
+            const totalUsersElement = document.getElementById("total-users");
+            if (totalUsersElement) {
+                totalUsersElement.textContent = totalUsers;
+            } else {
+                console.warn("Total Users element not found.");
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching total users:", error);
+        });
 
-    db.ref('/path_to_total_requests').once('value').then(snapshot => {
-        const totalRequests = snapshot.val();
-        document.getElementById("total-requests").textContent = totalRequests;
-    });
+    // Fetch total requests
+    db.ref('/path_to_total_requests').once('value')
+        .then(snapshot => {
+            const totalRequests = snapshot.val();
+            const totalRequestsElement = document.getElementById("total-requests");
+            if (totalRequestsElement) {
+                totalRequestsElement.textContent = totalRequests;
+            } else {
+                console.warn("Total Requests element not found.");
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching total requests:", error);
+        });
 }
 
 // Call fetchData on page load
 fetchData();
+
+// Function to set the username in the sidebar
 function setUsername() {
-    // Get the username directly from sessionStorage (no need for JSON.parse)
+    // Get the username directly from sessionStorage
     const currentUser = sessionStorage.getItem("username");
 
     if (currentUser) {
@@ -55,5 +79,21 @@ function setUsername() {
         }
     } else {
         console.warn("No user data found.");
+    }
+}
+
+// Function to handle logout functionality
+function setupLogoutButton() {
+    const logoutButton = document.querySelector('.logout-btn');
+
+    if (logoutButton) {
+        logoutButton.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevent default link behavior
+            sessionStorage.clear(); // Clear session storage to end session
+            console.log("Session cleared. Logging out...");
+            window.location.href = "login.html"; // Redirect to login page
+        });
+    } else {
+        console.warn("Logout button not found.");
     }
 }
