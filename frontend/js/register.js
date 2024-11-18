@@ -41,7 +41,7 @@ registerButton.addEventListener("click", async (e) => {
 
     // Check if password is strong
     if (!isPasswordStrong(password)) {
-        alert("Password must be at least 8 characters long, include uppercase, lowercase, a number, and a special character.");
+        alert("Password must be at least 15 characters long, include uppercase, lowercase, a number, and a special character.");
         return;
     }
 
