@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sidebarElement.innerHTML = data; // Insert sidebar HTML into the page
             console.log("Sidebar loaded successfully");
             setUsername(); // Call to set the username in the sidebar after loading
-            setupLogoutButton(); // Setup the logout functionality
+            setProfilePicture(); // Call to set the profile picture
         })
         .catch(error => {
             console.error("Error loading sidebar:", error);
@@ -28,7 +28,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 // Function to set the username in the sidebar
 function setUsername() {
-    // Get the username directly from sessionStorage
     const currentUser = sessionStorage.getItem("username");
 
     if (currentUser) {
@@ -43,18 +42,20 @@ function setUsername() {
     }
 }
 
-// Function to handle logout functionality
-function setupLogoutButton() {
-    const logoutButton = document.querySelector('.logout-btn');
+// Function to set the profile picture in the sidebar
+function setProfilePicture() {
+    const profilePictureElement = document.getElementById("profile-picture");
+    if (!profilePictureElement) {
+        console.warn("Profile picture element not found.");
+        return;
+    }
 
-    if (logoutButton) {
-        logoutButton.addEventListener('click', function (event) {
-            event.preventDefault(); // Prevent default link behavior
-            sessionStorage.clear(); // Clear session storage to end session
-            console.log("Session cleared. Logging out...");
-            window.location.href = "login.html"; // Redirect to login page
-        });
+    // Simulate fetching profilePicture from the database or sessionStorage
+    const profilePicture = sessionStorage.getItem("profilePicture"); // Replace with database call if needed
+
+    if (profilePicture) {
+        profilePictureElement.src = profilePicture; // Use the profile picture from storage
     } else {
-        console.warn("Logout button not found.");
+        profilePictureElement.src = "./icons/default-profpic.webp"; // Use the default profile picture
     }
 }

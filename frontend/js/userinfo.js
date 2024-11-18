@@ -98,51 +98,39 @@ function populateUserInfo(user) {
     document.getElementById("contact-number").value = user.contactNumber || '';
     document.getElementById("department").value = user.department || '';
     document.getElementById("role").value = user.role || '';
-   // document.getElementById("profile-picture").src = user.profilePicture || './icons/default-profile.jpg'; // Set the profile picture if available
+
+    const profilePictureElement = document.getElementById("profile-picture");
+    if (profilePictureElement) {
+        profilePictureElement.src = user.profilePicture || './icons/default-profpic.webp'; // Use default if profilePicture is null
+    } else {
+        console.warn("Profile picture element not found in DOM.");
+    }
 }
 
-// Function to upload the profile picture to Firebase Storage
-//function uploadProfilePicture(file, username) {
-  //  const profilePicRef = storageRef(storage, `profile_pictures/${username}`);
- //   uploadBytes(profilePicRef, file).then((snapshot) => {
-  //      console.log("Profile picture uploaded successfully:", snapshot);
-//
-        // Get the download URL
- //       getDownloadURL(profilePicRef).then((url) => {
-   //         console.log("Profile picture URL:", url);
+// Function to handle profile picture upload and update the database
 
-            // Update the profile picture URL in the database under the profilePicture field
-   //         const userRef = ref(database, `users/${username}`);
-    //        update(userRef, { profilePicture: url }).then(() => {
-      //          console.log("Profile picture URL updated in database.");
-     //           document.getElementById("profile-picture").src = url; // Update UI with new profile picture
-  //          });
-  //      });
- //   }).catch((error) => {
-//        console.error("Error uploading profile picture:", error.message);
- //       alert("Failed to upload profile picture. Please try again.");
- //   });
-//}
 
-// Function to update user data in Firebase Realtime Database (only contact number)
+
 // Function to update user data in Firebase Realtime Database (only contact number)
 function updateUserData(username) {
     const contactNumber = document.getElementById("contact-number").value;
+    const userUID = sessionStorage.getItem("uid");
 
-    const userUid = sessionStorage.getItem("uid");
-
-
-    if (userUid) {
-        const userRef = ref(database, `users/${userUid}`);
+    // Check if userUID is available
+    if (userUID) {
+        // Reference to the user's data in the database
+        const userRef = ref(database, `users/${userUID}`);
         try {
-            update(userRef, { contactNumber: contactNumber });
-            console.log(`Status updated to ${contactNumber} for user with UID: ${userUid}`);
+            // Update only the contact number in the existing user data
+            update(userRef, {
+                contactNumber: contactNumber
+            });
+            console.log(`Contact Number updated to ${contactNumber} for user with UID: ${userUID}`);
         } catch (error) {
-            console.error("Error updating user status:", error);
+            console.error("Error updating user contact number:", error);
         }
     } else {
-        console.log("Cannot update status - UID not found.");
+        // Log when UID is not found
+        console.log("Cannot update contact number - UID not found");
     }
-
 }
-
