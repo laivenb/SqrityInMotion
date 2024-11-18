@@ -1,6 +1,7 @@
 // Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+import { getDatabase, ref, get, child, set, update } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-storage.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -16,6 +17,7 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
+const storage = getStorage(app);
 
 // Wait for the DOM to load
 document.addEventListener('DOMContentLoaded', () => {
@@ -29,6 +31,30 @@ document.addEventListener('DOMContentLoaded', () => {
         alert("You are not logged in. Please log in first.");
         window.location.href = "login.html"; // Redirect to login page
     }
+
+    // Handle profile picture upload
+    const fileInput = document.getElementById("file-input");
+    const editLink = document.getElementById("edit-link");
+
+    // Trigger file input when edit link is clicked
+    editLink.addEventListener("click", (event) => {
+        event.preventDefault(); // Prevent default link behavior
+        fileInput.click(); // Trigger the hidden file input
+    });
+
+    // Handle file input change
+    fileInput.addEventListener("change", (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            uploadProfilePicture(file, currentUser); // Upload profile picture
+        }
+    });
+
+    // Handle Save button click
+    const saveButton = document.querySelector(".btn-primary");
+    saveButton.addEventListener("click", () => {
+        updateUserData(currentUser); // Update contact number when Save button is clicked
+    });
 });
 
 // Function to fetch user information from Firebase
@@ -72,5 +98,49 @@ function populateUserInfo(user) {
     document.getElementById("contact-number").value = user.contactNumber || '';
     document.getElementById("department").value = user.department || '';
     document.getElementById("role").value = user.role || '';
-
+   // document.getElementById("profile-picture").src = user.profilePicture || './icons/default-profile.jpg'; // Set the profile picture if available
 }
+
+// Function to upload the profile picture to Firebase Storage
+//function uploadProfilePicture(file, username) {
+  //  const profilePicRef = storageRef(storage, `profile_pictures/${username}`);
+ //   uploadBytes(profilePicRef, file).then((snapshot) => {
+  //      console.log("Profile picture uploaded successfully:", snapshot);
+//
+        // Get the download URL
+ //       getDownloadURL(profilePicRef).then((url) => {
+   //         console.log("Profile picture URL:", url);
+
+            // Update the profile picture URL in the database under the profilePicture field
+   //         const userRef = ref(database, `users/${username}`);
+    //        update(userRef, { profilePicture: url }).then(() => {
+      //          console.log("Profile picture URL updated in database.");
+     //           document.getElementById("profile-picture").src = url; // Update UI with new profile picture
+  //          });
+  //      });
+ //   }).catch((error) => {
+//        console.error("Error uploading profile picture:", error.message);
+ //       alert("Failed to upload profile picture. Please try again.");
+ //   });
+//}
+
+// Function to update user data in Firebase Realtime Database (only contact number)
+// Function to update user data in Firebase Realtime Database (only contact number)
+function updateUserData(user) {
+    const contactNumber = document.getElementById("contact-number").value;
+
+    // Reference to the user's data in the database
+    const userRef = ref(database, `users/${username}`);
+
+    // Update only the contact number in the existing user data
+    update(userRef, {
+        contactNumber: contactNumber
+    }).then(() => {
+        console.log("Contact number updated successfully.");
+        alert("Your contact number has been updated.");
+    }).catch((error) => {
+        console.error("Error updating contact number:", error.message);
+        alert("Failed to update contact number. Please try again.");
+    });
+}
+
