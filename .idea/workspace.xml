@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Password Strength Updated" />
+    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Password Strength Updated">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pentest-result.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/pentest-result.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -67,6 +71,7 @@
     &quot;JavaScript Debug.sidebar.html.executor&quot;: &quot;Run&quot;,
     &quot;JavaScript Debug.userinfo.html.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.home.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.nmap-network.js.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.register.js.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.sidebar.js.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.userinfo.js.executor&quot;: &quot;Run&quot;,
@@ -114,7 +119,9 @@
       <workItem from="1729486763965" duration="834000" />
       <workItem from="1729924232747" duration="30374000" />
       <workItem from="1730534198139" duration="5688000" />
-      <workItem from="1731950022649" duration="382000" />
+      <workItem from="1731950022649" duration="4353000" />
+      <workItem from="1733218831575" duration="837000" />
+      <workItem from="1733220036877" duration="13000" />
     </task>
     <task id="LOCAL-00001" summary="Port Reports Update">
       <option name="closed" value="true" />
