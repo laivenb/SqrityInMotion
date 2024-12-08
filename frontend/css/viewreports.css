@@ -6,7 +6,7 @@ body {
 }
 
 .main-content {
-    margin-left: 260px; /* Sidebar width adjustment */
+    margin-left: 290px;
     padding: 20px;
     min-height: 100vh;
     width: calc(100% - 260px); /* Use remaining screen width after sidebar */
@@ -77,4 +77,11 @@ body {
 
 .view-btn:hover {
     background-color: #218838;
+}
+.dataTables_wrapper .dataTables_filter {
+    text-align: right; /* Aligns the entire search container to the right */
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    text-align: left; /* Ensures text inside the input box remains left-aligned */
 }

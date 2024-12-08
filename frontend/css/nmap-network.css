@@ -5,10 +5,9 @@ body {
 }
 
 .main-content {
-    margin-left: 270px;
+    margin-left: 290px;
     padding: 30px;
-    width: calc(100% - 270px);
-    background-color: #ffffff;
+    width: calc(100% - 290px);
     /* Make the background flat with no shadows */
 }
 
@@ -99,4 +98,23 @@ body {
     padding: 5px 10px;
     margin: 2px;
     border-radius: 5px;
+}
+
+.dataTables_wrapper .dataTables_filter {
+    text-align: right; /* Aligns the search bar container to the right */
+    margin-bottom: 15px; /* Adds some spacing below the search bar */
+}
+
+.dataTables_wrapper .dataTables_filter label {
+    font-weight: 500; /* Optional: Makes the label slightly more prominent */
+    color: #555; /* Optional: Adjusts the label color for better visibility */
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-left: 10px; /* Adds spacing between the label and input */
+    width: 300px; /* Sets a consistent width for the input box */
 }

@@ -9,7 +9,7 @@ body {
 
 /* Main content area */
 .main-content {
-    margin-left: 270px; /* Adjust for sidebar */
+    margin-left: 290px;
     padding: 20px; /* Reduced padding for a more open look */
     background-color: #ffffff;
     width: calc(100% - 270px); /* Full width minus sidebar */

@@ -1,6 +1,5 @@
 /* Sidebar general styles */
 .sidebar {
-    width: 260px;
     background-color: #2A3F54;
     color: white;
     height: 100vh;
@@ -31,7 +30,8 @@
 .profile-section {
     display: flex;
     align-items: center;
-    padding: 15px;
+    padding-bottom: 15px;
+padding-left: 10px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     margin-bottom: 40px;
 }

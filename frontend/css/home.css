@@ -15,8 +15,7 @@ body {
 
 /* Main content area */
 .main-content {
-    margin-left: 260px;
-    padding: 400px;
+    margin-left: 290px;
     width: calc(100% - 250px);
     background-color: #f5f5f5;
     overflow-y: auto;
@@ -104,7 +103,7 @@ body {
 /* More main content */
 .main-content {
     flex: 1;
-    padding: 40px;
+    padding: 20px;
     background-color: #f5f5f5;
     overflow-y: auto;
 }
@@ -155,6 +154,15 @@ body {
     color: #dc3545;
     /* Red for closed */
 }
+
+.dataTables_wrapper .dataTables_filter {
+    text-align: right; /* Aligns the entire search container to the right */
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    text-align: left; /* Ensures text inside the input box remains left-aligned */
+}
+
 
 /* DataTables customizations */
 .dataTables_wrapper .dataTables_filter input {
