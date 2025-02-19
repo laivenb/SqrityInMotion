@@ -31,7 +31,7 @@ h2 {
 }
 
  .accordion-button {
-    background: #004ea2;
+    background: #4e6c93;
     color: white;
     font-weight: 600;
     padding: 12px;
@@ -50,7 +50,7 @@ h2 {
 }
 
 .accordion-button:hover {
-    background: #003f8c;
+    background: #2A3F54;
 }
 
 .accordion-button:focus {
