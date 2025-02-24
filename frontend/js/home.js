@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.1.24:5000';
+const BASE_URL = 'http://192.168.1.48:5000';
 let openPorts = [];
 
 function getIPFromURL() {
