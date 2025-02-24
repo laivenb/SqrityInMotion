@@ -1,9 +1,12 @@
 const BASE_URL = "http://192.168.1.48:5000";
 
+let portTable = {}; // Declare globally so it's accessible
+
 (async () => {
     const { initializeApp } = await import("https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js");
     const { getDatabase, ref, get } = await import("https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js");
 
+    // Firebase configuration
     const firebaseConfig = {
         apiKey: "AIzaSyAGRcp5vGb3jkEHQRLqpteltbjKalDYb00",
         authDomain: "sqrity-f02ee.firebaseapp.com",
@@ -14,24 +17,63 @@ const BASE_URL = "http://192.168.1.48:5000";
         databaseURL: "https://sqrity-f02ee-default-rtdb.asia-southeast1.firebasedatabase.app"
     };
 
+    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const database = getDatabase(app);
 
     console.log("Firebase initialized.");
+
+    // Function to get service details (type and attack)
+    async function fetchPortTable() {
+        const portsRef = ref(database, "port");
+        try {
+            const snapshot = await get(portsRef);
+            if (snapshot.exists()) {
+                portTable = snapshot.val(); // Store globally
+                console.log("Port Table from Database:", portTable);
+            } else {
+                console.warn("No port data found in the database.");
+            }
+        } catch (error) {
+            console.error("Error fetching port table:", error);
+        }
+    }
+
+    // Fetch the port table before continuing
+    await fetchPortTable();
 })();
 
-window.addEventListener("load", async () => {
+// Function to get IP from URL
+function getIPFromURL() {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get('ip') || "Unknown IP";
+}
+
+// Redirect if user is not logged in
+window.addEventListener("load", () => {
     const currentUser = sessionStorage.getItem("username");
     if (!currentUser) {
         window.location.href = "login.html";
-        return;
-    }
-    console.log("Logged in as:", currentUser);
+    } else {
+        console.log("Logged in as:", currentUser);
 
+        const ipAddress = getIPFromURL();
+        const ipAddressElement = document.querySelector('.ip-address');
+
+        if (ipAddressElement) {
+            ipAddressElement.textContent = ipAddress;
+            console.log("IP Address:", ipAddress);
+        }
+    }
+});
+
+document.addEventListener("DOMContentLoaded", async function () {
     const portInfo = sessionStorage.getItem("selectedPortInfo");
     const portDetailsElement = document.getElementById("portDetails");
     const searchSploitButton = document.getElementById("searchSploitButton");
+    const metasploitButton = document.getElementById("metasploitButton");
     const resultsDiv = document.getElementById("searchSploitResults");
+    const metasploitDiv = document.getElementById("metasploitResults");
 
     if (!portInfo) {
         console.error("No port information found in sessionStorage.");
@@ -39,96 +81,129 @@ window.addEventListener("load", async () => {
     }
 
     const parsedPortInfo = JSON.parse(portInfo);
-    const portNumber = parsedPortInfo.port;
     const service = parsedPortInfo.service || "N/A";
 
-    async function getPortData(port) {
-        const portsRef = ref(database, "ports");
-        try {
-            const snapshot = await get(portsRef);
-            if (snapshot.exists()) {
-                const retrievedData = snapshot.val();
-                console.log("Retrieved data from database:", retrievedData);
-                for (let key in retrievedData) {
-                    if (retrievedData[key].port == port) {
-                        console.log("Matching port found in database:", retrievedData[key]);
-                        return retrievedData[key];
-                    }
-                }
-            }
-        } catch (error) {
-            console.error("Error fetching port data:", error);
-        }
-        return null;
-    }
-
-    const portData = await getPortData(portNumber);
-    if (portData && portDetailsElement) {
+    if (portDetailsElement) {
         portDetailsElement.innerHTML = `
-            <strong>Port:</strong> ${portData.port}<br>
-            <strong>Service:</strong> ${portData.sname || "N/A"}<br>
-            <strong>Type:</strong> ${portData.type || "N/A"}<br>
-            <strong>Attack:</strong> ${portData.attack || "No attack data found."}<br>
+            <strong>Port:</strong> ${parsedPortInfo.port}<br>
+            <strong>Service:</strong> ${service}<br>
+            <strong>CVE ID:</strong> ${parsedPortInfo.cveId || "N/A"}<br>
+            <strong>Version:</strong> ${parsedPortInfo.version || "N/A"}
         `;
     }
 
-    if (!searchSploitButton) {
-        console.error("SearchSploit button not found.");
-        return;
-    }
+    // SearchSploit event listener
+    if (searchSploitButton) {
+        searchSploitButton.addEventListener("click", async function () {
+            let serviceName = parsedPortInfo.service || "N/A";
 
-    searchSploitButton.addEventListener("click", async function () {
-        let serviceName = service;
-
-        if (serviceName.includes("Samba smbd")) {
-            serviceName = "Samba";
-        }
-
-        console.log("Searching exploits for:", serviceName);
-
-        if (serviceName === "N/A") {
-            alert("No service information available to search.");
-            return;
-        }
-
-        try {
-            const response = await fetch(`${BASE_URL}/search_exploit`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name: serviceName }),
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
+            if (serviceName.includes("Samba smbd")) {
+                serviceName = "Samba";
             }
 
-            const data = await response.json();
-            console.log("API Response:", data);
+            console.log("Searching exploits for:", serviceName);
 
-            if (data.error) {
-                alert(`Error: ${data.error}`);
+            if (serviceName === "N/A") {
+                alert("No service information available to search.");
                 return;
             }
 
-            let cleanedArray = Array.isArray(data.output)
-                ? data.output.map(item =>
-                    typeof item === "string"
-                        ? item.replace(/\u001b\[[0-9;]*m/g, '').replace(/[^\x20-\x7E\n]/g, "").trim()
-                        : item
-                ).filter(item => item !== "")
-                : [];
+            try {
+                const response = await fetch(`${BASE_URL}/search_exploit`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ name: serviceName }),
+                });
 
-            console.log("Cleaned Array:", cleanedArray);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
 
-            if (resultsDiv) {
-                resultsDiv.innerText = cleanedArray.join("\n");
-            } else {
-                console.error("Results div not found.");
+                const data = await response.json();
+                console.log("API Response:", data);
+
+                if (data.error) {
+                    alert(`Error: ${data.error}`);
+                    return;
+                }
+
+                let cleanedArray = Array.isArray(data.output)
+                    ? data.output.map(item =>
+                        typeof item === "string"
+                            ? item.replace(/\u001b\[[0-9;]*m/g, '').replace(/[^\x20-\x7E\n]/g, "").trim()
+                            : item
+                    ).filter(item => item !== "")
+                    : [];
+
+                console.log("Cleaned Exploit Results:", cleanedArray);
+
+                if (resultsDiv) {
+                    resultsDiv.innerHTML = `<pre>${cleanedArray.join("\n")}</pre>`;
+                } else {
+                    console.error("Results div not found.");
+                }
+
+            } catch (error) {
+                console.error("Error fetching search results:", error);
+                alert("Failed to retrieve exploit data. Please try again later.");
+            }
+        });
+    } else {
+        console.error("SearchSploit button not found.");
+    }
+
+    // Metasploit button event listener
+    if (metasploitButton) {
+        metasploitButton.addEventListener("click", function () {
+            console.log("Metasploit button clicked");
+
+            if (!parsedPortInfo.port || parsedPortInfo.port === "N/A") {
+                alert("No port information available.");
+                return;
             }
 
-        } catch (error) {
-            console.error("Error fetching search results:", error);
-            alert("Failed to retrieve exploit data. Please try again later.");
-        }
-    });
+            const portNumber = parsedPortInfo.port;
+            const portDetails = portTable[portNumber];
+
+            if (!portDetails || !portDetails.description) {
+                console.error(`No attack details found for port ${portNumber}`);
+                metasploitDiv.innerHTML = `<pre>No attack details available for port ${portNumber}</pre>`;
+                return;
+            }
+
+            console.log(`Metasploit Attack Data for Port ${portNumber}:`, portDetails.description);
+
+            // Function to format Metasploit output for IT professionals
+            function formatMetasploitDescription(text) {
+                return text
+                    // Format section headers (h2 for main, h3 for sub)
+                    .replace(/^(Overview|Example Exploit|Step-by-Step Guide):/gm, "<h2>$1:</h2>")
+                    .replace(/^(Start Metasploit|Search for the Exploit|Select the Exploit|Set Target Options|Check the Payload|Run the Exploit|Shell Access|Useful Commands):/gm, "<h3>$1:</h3>")
+
+                    // Remove extra spaces after new lines
+                    .replace(/\n\s+/g, "\n")
+
+                    // Convert new lines to paragraph breaks only when not inside code blocks
+                    .replace(/\n(?!<\/?pre>)/g, "<br>")
+
+                    // Highlight commands inside <pre> blocks with proper styling
+                    .replace(/(sudo msfconsole|search vsftpd|use exploit\/[\w\/]+|set RHOSTS [^<]+|set LHOST [^<]+|'exploit'|show options|exit|nmap -p \d+ [^<]+)/g,
+                        "<pre style='font-size: 18px; background: #3333FF; color: #0c0c0c; padding: 8px; border-radius: 5px;'>$1</pre>")
+
+                    // Ensure strong (bold) formatting for important labels
+                    .replace(/(\bRHOSTS\b|\bLHOST\b)/g, "<strong>$1</strong>");
+            }
+
+
+
+            // Apply formatting to description
+            const formattedDescription = formatMetasploitDescription(portDetails.description);
+
+            // Display formatted output in metasploitDiv
+            metasploitDiv.innerHTML = `<pre>${formattedDescription}</pre>`;
+        });
+    } else {
+        console.error("Metasploit button not found.");
+    }
+
 });
