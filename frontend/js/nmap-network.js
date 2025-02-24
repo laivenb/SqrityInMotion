@@ -15,6 +15,8 @@ window.addEventListener('load', () => {
         showSpinner();
         startScanning(ip, subnet);
     }
+    alert("Scanning completed!");
+
 });
 
 function getQueryParam(param) {
