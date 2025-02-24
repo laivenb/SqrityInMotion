@@ -50,3 +50,5 @@ document.getElementById('startDeviceScanBtn').addEventListener('click', function
     }
 });
 
+
+
