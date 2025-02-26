@@ -35,14 +35,6 @@ function navigateToHome() {
     window.location.href = `home.html?ip=${ipAddress}`;
 }
 
-function showSpinner() {
-    document.getElementById("spinnerOverlay").style.display = "block";
-}
-
-function hideSpinner() {
-    document.getElementById("spinnerOverlay").style.display = "none";
-}
-
 // DOMContentLoaded event listener for session validation and setting up button click
 document.addEventListener('DOMContentLoaded', function () {
     // Session check for current user
@@ -80,8 +72,6 @@ function updateIPAddress(resultsContainer) {
     ipAddress = getIPFromURL();
 
     console.log(ipAddress);
-
-    showSpinner();
 
     if (ipAddress) {
         document.querySelector('h2').textContent = ipAddress;
@@ -131,11 +121,8 @@ function updateIPAddress(resultsContainer) {
                 console.log("Open Ports:", openPorts);
             })
             .catch(error => console.error('Error:', error));
-        hideSpinner();
-        alert("Scanning completed!");
     } else {
         document.querySelector('h2').textContent = "Unknown IP";
-        hideSpinner();
     }
 }
 
