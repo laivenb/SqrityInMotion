@@ -5,22 +5,26 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
+/* Sidebar sticky styling */
+#sidebar-container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* Sticky Header Content */
+.header-content {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 20px 50px; /* Added padding for spacing */
+}
+
 /* Main Content Area Styling */
 .main-content {
     margin-left: 50px;
-
     width: calc(100% - 270px);
-}
-
-/* Header styling similar to other page */
-.header-content h1 {
-    font-size: 32px;
-    font-weight: 600;
-    color: #333;
-    text-align: left;
-    margin-left: 50px;
-    margin-top: 20px;
-
 }
 
 /* IP Address Header Styling */
@@ -38,19 +42,22 @@ body {
     overflow: hidden;
 }
 
-/* Table styling to match the other page */
+/* Table styling */
 #scan-results {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0;
-    background-color: white;
+
     border-radius: 8px;
     font-size: 0.95rem;
     color: #495057;
     border: 1px solid #ddd;
 }
 
-#scan-results th {
+/* Sticky table header styling */
+#scan-results thead th {
+    position: sticky;
+    top: 60px;  /* Adjust this value if you have additional sticky elements above */
     background-color: #f8f9fa;
     color: #333;
     font-weight: 600;
@@ -58,6 +65,7 @@ body {
     padding: 12px;
     text-align: left;
     border-bottom: 1px solid #dee2e6;
+    z-index: 1;
 }
 
 #scan-results td {
@@ -70,12 +78,12 @@ body {
     border-bottom: none;
 }
 
-/* Row background color for hover effect */
+/* Row hover effect */
 #scan-results tbody tr:hover {
     background-color: #f1f3f5;
 }
 
-/* Action button styling */
+/* Action button styling inside table */
 #scan-results td .btn {
     padding: 8px 12px;
     font-size: 14px;
@@ -90,7 +98,7 @@ body {
     background-color: #0056b3;
 }
 
-/* DataTables input, select, and pagination styling */
+/* DataTables styling for inputs, selects, and pagination */
 .dataTables_wrapper .dataTables_length select {
     border-radius: 5px;
     padding: 5px;
@@ -125,6 +133,14 @@ body {
     border: 1px solid #0056b3;
 }
 
+.dataTables_wrapper .dataTables_filter {
+    text-align: right; /* Aligns the entire search container to the right */
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    text-align: left; /* Ensures text inside the input box remains left-aligned */
+}
+
 /* "View Results" Button styling */
 #viewResultsButton {
     background-color: #28a745;
@@ -141,6 +157,7 @@ body {
     background-color: #218838;
 }
 
+/* "Save Report" Button styling */
 #saveButton {
     background-color: #28a745;
     color: white;
@@ -156,15 +173,7 @@ body {
     background-color: #218838;
 }
 
-.dataTables_wrapper .dataTables_filter {
-    text-align: right; /* Aligns the entire search container to the right */
-}
-
-.dataTables_wrapper .dataTables_filter input {
-    text-align: left; /* Ensures text inside the input box remains left-aligned */
-}
-
-
+/* Spinner Overlay Styling */
 #spinnerOverlay {
     position: fixed;
     top: 0;

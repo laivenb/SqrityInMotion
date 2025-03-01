@@ -1,16 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-
 body {
     font-family: 'Poppins', sans-serif;
 }
 
+/* Make the sidebar sticky so it remains in view */
+#sidebar-container {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* Main Content Styling */
 .main-content {
     margin-left: 290px;
     padding: 30px;
     width: calc(100% - 290px);
 }
 
+/* Sticky Header Content */
 .header-content {
     display: flex;
     justify-content: space-between;
@@ -18,6 +27,10 @@ body {
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 2px solid #dedede;
+    position: sticky;
+    top: 0;
+    background-color: white; /* Ensure the header background covers content underneath */
+    z-index: 1000;
 }
 
 .header-content h1 {
@@ -27,7 +40,7 @@ body {
     margin: 0;
 }
 
-
+/* Additional IP Header Styling */
 .IPheader {
     margin: 20px 0;
     text-align: center;
@@ -39,12 +52,14 @@ body {
     font-weight: 500;
 }
 
+/* Table Wrapper Styling */
 .table-wrapper {
     margin-top: 30px;
     border-radius: 8px;
     overflow: hidden;
 }
 
+/* Port Table Styling */
 .port-table {
     background-color: white;
     border-radius: 8px;
@@ -52,7 +67,6 @@ body {
     width: 100%;
     text-align: left;
     border: 1px solid #ddd;
-
 }
 
 .port-table th,
@@ -62,10 +76,14 @@ body {
     vertical-align: middle;
 }
 
+/* Sticky Table Headers */
 .port-table th {
     background-color: #f8f9fa;
     color: #333;
     font-weight: 600;
+    position: sticky;
+    top: 60px; /* Adjust this offset if your header height changes */
+    z-index: 1;
 }
 
 .port-table td {
@@ -79,8 +97,7 @@ body {
     transition: background-color 0.3s ease;
 }
 
-
-
+/* DataTables Input, Select, and Pagination Styling */
 .dataTables_wrapper .dataTables_length select {
     border-radius: 5px;
     padding: 5px;
@@ -102,12 +119,12 @@ body {
 
 .dataTables_wrapper .dataTables_filter {
     text-align: right; /* Aligns the search bar container to the right */
-    margin-bottom: 15px; /* Adds some spacing below the search bar */
+    margin-bottom: 15px; /* Adds spacing below the search bar */
 }
 
 .dataTables_wrapper .dataTables_filter label {
-    font-weight: 500; /* Optional: Makes the label slightly more prominent */
-    color: #555; /* Optional: Adjusts the label color for better visibility */
+    font-weight: 500; /* Optional: makes the label slightly more prominent */
+    color: #555; /* Adjusts the label color for better visibility */
 }
 
 .dataTables_wrapper .dataTables_filter input {
@@ -118,7 +135,3 @@ body {
     margin-left: 10px;
     width: 300px;
 }
-
-
-
-
