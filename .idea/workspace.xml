@@ -4,13 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Wheel v2">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/nmap-specific.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/nmap-specific.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-specific.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/nmap-specific.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/nmap-specific.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/port-specific.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/port-specific.html" afterDir="false" />
-    </list>
+    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Wheel v2" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +24,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="chingBranch" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -81,7 +80,7 @@
     "Node.js.sidebar.js.executor": "Run",
     "Python.app.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "chingBranch",
+    "git-widget-placeholder": "uyBranch",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
