@@ -5,14 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Wheel v3">
+      <change afterPath="$PROJECT_DIR$/frontend/Credentials/Android/common_android_passwords.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/Credentials/Android/common_android_usernames.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/cvereport-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/cvereport-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/cvereport-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/cvereport-details.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/portreport-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/portreport-details.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/userinfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/userinfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/portreport-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/portreport-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/userinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/userinfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-network.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-network.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-specific.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/port-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/port-specific.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/port-specific.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/port-specific.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,6 +104,8 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ching\PhpstormProjects\SqrityInMotion\frontend\Credentials" />
+      <recent name="C:\Users\ching\PhpstormProjects\SqrityInMotion\frontend\Credentials\Android" />
       <recent name="$PROJECT_DIR$/frontend" />
       <recent name="$PROJECT_DIR$/backend" />
     </key>

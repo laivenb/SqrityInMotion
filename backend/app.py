@@ -33,7 +33,7 @@ def get_vulnerabilities():
     logging.info("Received request for vulnerabilities")
     data = request.get_json()
     logging.info("Data received: %s", data)
-    
+
     ports_and_versions = data.get('ports_and_versions', [])
 
     # Load vulnerability data
@@ -48,7 +48,7 @@ def get_vulnerabilities():
         except (ValueError, TypeError):
             logging.error("Invalid port value: %s", item.get('port'))
             continue  # Skip to the next item if port is invalid
-        
+
         version = item.get('version')
         logging.info("Checking vulnerabilities for port: %d, version: %s", port, version)
 
@@ -174,20 +174,20 @@ def scan_device():
 def scan_network():
     data = request.get_json()
     network = data.get("network")
-    
+
     if not network:
         return jsonify({"error": "Network address is missing"}), 400
 
     print(f"Scanning network: {network}")
-    
+
     try:
         result = subprocess.run(
             ["nmap", "-p-", "-sS", "-n", network],  # Scan all ports
-            capture_output=True, 
-            text=True, 
+            capture_output=True,
+            text=True,
             timeout=150
         )
-        
+
         if result.returncode != 0:
             return jsonify({"error": "Nmap scan failed", "details": result.stderr}), 500
 
@@ -237,22 +237,22 @@ def scan_subnet():
     data = request.get_json()
     ip = data.get("ip")
     subnet = data.get("subnet")
-    
+
     if not ip or not subnet:
         return jsonify({"error": "IP address and subnet are required."}), 400
-    
+
     try:
         # Validate the subnet input
         network = ipaddress.ip_network(subnet, strict=False)
         print(f"Starting scan on subnet {subnet}...")
 
         results = []
-        
+
         for ip in network.hosts():
             print(f"\nScanning device: {ip}")
             result = subprocess.run(["nmap", "-p-", "-sS", "-n", str(ip)], capture_output=True, text=True)  # Scan all ports
             output = result.stdout
-            
+
             results.append({
                 "ip": str(ip),
                 "output": output
@@ -319,9 +319,9 @@ def parse_vulnerability_summary(output):
 # SearchSploit Start
 @app.route('/searchSploit', methods=['GET'])
 def search():
-    service = request.args.get('service')  
+    service = request.args.get('service')
     if service:
-        command = f"searchsploit {service}" 
+        command = f"searchsploit {service}"
         result = subprocess.run(command, shell=True, capture_output=True, text=True)
 
         # Check if the command executed successfully
@@ -338,18 +338,18 @@ def search():
 @app.route('/searchmsf', methods=['GET'])
 def searchmsf():
     service = request.args.get('service')
-    
+
     if service:
         # Check if "grmiregistry" is part of the service name
         if "grmiregistry" in service.lower():
             service = "java rmi"
-        
+
         # Initialize Metasploit command
         init_command = f"msfconsole -x 'search {service}; exit'"
-        
+
         # Log the command for debugging
         app.logger.info(f"Executing command: {init_command}")
-        
+
         # Execute the Metasploit command
         result = subprocess.run(init_command, shell=True, capture_output=True, text=True)
 
@@ -360,7 +360,7 @@ def searchmsf():
         else:
             # Return error details if command fails
             return jsonify({"output": None, "error": result.stderr.strip()})
-    
+
     return jsonify({"output": None, "error": "No service specified."}), 400
 
 

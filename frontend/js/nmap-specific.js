@@ -16,7 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-const BASE_URL = 'http://192.168.68.63:5000';
+const BASE_URL = 'http://192.168.68.62:5000';
 let openPorts = [];  // This will store all the ports info
 let ipAddress;
 let currentUserID;

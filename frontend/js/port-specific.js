@@ -1,4 +1,4 @@
-const BASE_URL = "http://192.168.68.63:5000";
+const BASE_URL = "http://192.168.68.62:5000"; // Update as needed
 
 let portTable = {}; // Declare globally so it's accessible
 
@@ -23,13 +23,13 @@ let portTable = {}; // Declare globally so it's accessible
 
     console.log("Firebase initialized.");
 
-    // Function to get service details (type and attack)
+    // Fetch Port Table
     async function fetchPortTable() {
         const portsRef = ref(database, "port");
         try {
             const snapshot = await get(portsRef);
             if (snapshot.exists()) {
-                portTable = snapshot.val(); // Store globally
+                portTable = snapshot.val();
                 console.log("Port Table from Database:", portTable);
             } else {
                 console.warn("No port data found in the database.");
@@ -39,17 +39,16 @@ let portTable = {}; // Declare globally so it's accessible
         }
     }
 
-    // Fetch the port table before continuing
     await fetchPortTable();
 })();
 
-// Function to get IP from URL
+// Get IP from URL
 function getIPFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get('ip') || "Unknown IP";
 }
 
-// Redirect if user is not logged in
+// Redirect if not logged in
 window.addEventListener("load", () => {
     const currentUser = sessionStorage.getItem("username");
     if (!currentUser) {
@@ -57,12 +56,10 @@ window.addEventListener("load", () => {
     } else {
         console.log("Logged in as:", currentUser);
 
-        const ipAddress = getIPFromURL();
+        // Ensure .ip-address exists before modifying textContent
         const ipAddressElement = document.querySelector('.ip-address');
-
         if (ipAddressElement) {
-            ipAddressElement.textContent = ipAddress;
-            console.log("IP Address:", ipAddress);
+            ipAddressElement.textContent = getIPFromURL();
         }
     }
 });
@@ -72,8 +69,14 @@ document.addEventListener("DOMContentLoaded", async function () {
     const portDetailsElement = document.getElementById("portDetails");
     const searchSploitButton = document.getElementById("searchSploitButton");
     const metasploitButton = document.getElementById("metasploitButton");
+    const hydraButton = document.getElementById("hydraButton");
     const resultsDiv = document.getElementById("searchSploitResults");
     const metasploitDiv = document.getElementById("metasploitResults");
+    const hydraResultsDiv = document.getElementById("hydraResults");
+    const medusaButton = document.getElementById("medusaButton");
+    const medusaResultsDiv = document.getElementById("medusaResults");
+    const nfsButton = document.getElementById("nfsButton");
+    const nfsResultsDiv = document.getElementById("nfsResults");
 
     if (!portInfo) {
         console.error("No port information found in sessionStorage.");
@@ -91,15 +94,12 @@ document.addEventListener("DOMContentLoaded", async function () {
             <strong>Version:</strong> ${parsedPortInfo.version || "N/A"}
         `;
     }
-
-    // SearchSploit event listener
+    //  SearchSploit
     if (searchSploitButton) {
         searchSploitButton.addEventListener("click", async function () {
             let serviceName = parsedPortInfo.service || "N/A";
 
-            if (serviceName.includes("Samba smbd")) {
-                serviceName = "Samba";
-            }
+            if (serviceName.includes("Samba smbd")) serviceName = "Samba";
 
             console.log("Searching exploits for:", serviceName);
 
@@ -115,9 +115,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                     body: JSON.stringify({ name: serviceName }),
                 });
 
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
                 const data = await response.json();
                 console.log("API Response:", data);
@@ -135,75 +133,122 @@ document.addEventListener("DOMContentLoaded", async function () {
                     ).filter(item => item !== "")
                     : [];
 
-                console.log("Cleaned Exploit Results:", cleanedArray);
-
-                if (resultsDiv) {
-                    resultsDiv.innerHTML = `<pre>${cleanedArray.join("\n")}</pre>`;
-                } else {
-                    console.error("Results div not found.");
-                }
+                resultsDiv.innerHTML = `<pre>${cleanedArray.join("\n")}</pre>`;
 
             } catch (error) {
                 console.error("Error fetching search results:", error);
                 alert("Failed to retrieve exploit data. Please try again later.");
             }
         });
-    } else {
-        console.error("SearchSploit button not found.");
     }
 
-    // Metasploit button event listener
+    //  Metasploit
     if (metasploitButton) {
         metasploitButton.addEventListener("click", function () {
             console.log("Metasploit button clicked");
-
-            if (!parsedPortInfo.port || parsedPortInfo.port === "N/A") {
-                alert("No port information available.");
-                return;
-            }
 
             const portNumber = parsedPortInfo.port;
             const portDetails = portTable[portNumber];
 
             if (!portDetails || !portDetails.description) {
-                console.error(`No attack details found for port ${portNumber}`);
                 metasploitDiv.innerHTML = `<pre>No attack details available for port ${portNumber}</pre>`;
                 return;
             }
 
-            console.log(`Metasploit Attack Data for Port ${portNumber}:`, portDetails.description);
-
-            // Function to format Metasploit output for IT professionals
-            function formatMetasploitDescription(text) {
-                return text
-                    // Format section headers (h2 for main, h3 for sub)
-                    .replace(/^(Overview|Example Exploit|Step-by-Step Guide):/gm, "<h2>$1:</h2>")
-                    .replace(/^(Start Metasploit|Search for the Exploit|Select the Exploit|Set Target Options|Check the Payload|Run the Exploit|Shell Access|Useful Commands):/gm, "<h3>$1:</h3>")
-
-                    // Remove extra spaces after new lines
-                    .replace(/\n\s+/g, "\n")
-
-                    // Convert new lines to paragraph breaks only when not inside code blocks
-                    .replace(/\n(?!<\/?pre>)/g, "<br>")
-
-                    // Highlight commands inside <pre> blocks with proper styling
-                    .replace(/(sudo msfconsole|search vsftpd|use exploit\/[\w\/]+|set RHOSTS [^<]+|set LHOST [^<]+|'exploit'|show options|exit|nmap -p \d+ [^<]+)/g,
-                        "<pre style='font-size: 18px; background: #3333FF; color: #0c0c0c; padding: 8px; border-radius: 5px;'>$1</pre>")
-
-                    // Ensure strong (bold) formatting for important labels
-                    .replace(/(\bRHOSTS\b|\bLHOST\b)/g, "<strong>$1</strong>");
-            }
-
-
-
-            // Apply formatting to description
-            const formattedDescription = formatMetasploitDescription(portDetails.description);
-
-            // Display formatted output in metasploitDiv
-            metasploitDiv.innerHTML = `<pre>${formattedDescription}</pre>`;
+            metasploitDiv.innerHTML = `<pre>${portDetails.description}</pre>`;
         });
-    } else {
-        console.error("Metasploit button not found.");
     }
 
+    // Hydra (Credential Download)
+    if (hydraButton) {
+        hydraButton.addEventListener("click", function () {
+            console.log("Hydra button clicked");
+
+            const files = [
+                "Credentials/Android/common_android_passwords.txt",
+                "Credentials/Android/common_android_usernames.txt",
+                "Credentials/Cisco/common_cisco_passwords.txt",
+                "Credentials/Cisco/common_cisco_usernames.txt",
+                "Credentials/IOS/common_ios_passwords.txt",
+                "Credentials/IOS/common_ios_usernames.txt",
+                "Credentials/SSH/common_ssh_passwords.txt",
+                "Credentials/SSH/common_ssh_usernames.txt",
+                "Credentials/Windows/common_windows_passwords.txt",
+                "Credentials/Windows/common_windows_usernames.txt"
+            ];
+
+            hydraResultsDiv.innerHTML = "<strong>Download Credentials:</strong><br>";
+            files.forEach(file => {
+                const fileName = file.split("/").pop();
+                const link = document.createElement("a");
+                link.href = file; // Adjust this if needed
+                link.download = fileName;
+                link.textContent = fileName;
+                link.style.display = "block";
+                hydraResultsDiv.appendChild(link);
+            });
+
+
+
+
+
+        });
+    }
+
+
+    // Hydra (Credential Download)
+    if (medusaButton) {
+        medusaButton.addEventListener("click", function () {
+            console.log("Medusa button clicked");
+
+            const files2 = [
+                "Credentials/Android/common_android_passwords.txt",
+                "Credentials/Android/common_android_usernames.txt",
+                "Credentials/Cisco/common_cisco_passwords.txt",
+                "Credentials/Cisco/common_cisco_usernames.txt",
+                "Credentials/IOS/common_ios_passwords.txt",
+                "Credentials/IOS/common_ios_usernames.txt",
+                "Credentials/SSH/common_ssh_passwords.txt",
+                "Credentials/SSH/common_ssh_usernames.txt",
+                "Credentials/Windows/common_windows_passwords.txt",
+                "Credentials/Windows/common_windows_usernames.txt"
+            ];
+
+            hydraResultsDiv.innerHTML = "<strong>Download Credentials:</strong><br>";
+            files2.forEach(file3 => {
+                const fileName = file3.split("/").pop();
+                const link = document.createElement("a");
+                link.href = file3; // Adjust this if needed
+                link.download = fileName;
+                link.textContent = fileName;
+                link.style.display = "block";
+                medusaResultsDiv.appendChild(link);
+            });
+
+
+
+
+
+        });
+    }
+
+
+    if (nfsButton) {
+        nfsButton.addEventListener("click", function () {
+            console.log("Metasploit button clicked");
+
+            const portNumber = parsedPortInfo.port;
+            const portDetails = portTable[portNumber];
+
+            if (!portDetails || !portDetails.description) {
+                nfsResultsDiv.innerHTML = `<pre>No attack details available for port ${portNumber}</pre>`;
+                return;
+            }
+
+            nfsResultsDiv.innerHTML = `<pre>${portDetails.description}</pre>`;
+        });
+    }
+
+
 });
+
