@@ -129,10 +129,10 @@ function updateIPAddress(resultsContainer) {
                 }
 
                 console.log("Open Ports:", openPorts);
+                hideSpinner();
+                alert("Scanning completed!");
             })
             .catch(error => console.error('Error:', error));
-        hideSpinner();
-        alert("Scanning completed!");
     } else {
         document.querySelector('h2').textContent = "Unknown IP";
         hideSpinner();
