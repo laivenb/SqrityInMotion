@@ -1,4 +1,4 @@
-const BASE_URL = "http://192.168.1.48:5000";
+const BASE_URL = "http://192.168.68.63:5000";
 
 let portTable = {}; // Declare globally so it's accessible
 

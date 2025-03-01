@@ -16,7 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-const BASE_URL = 'http://192.168.1.48:5000';
+const BASE_URL = 'http://192.168.68.63:5000';
 let openPorts = [];  // This will store all the ports info
 let ipAddress;
 let currentUserID;
@@ -119,6 +119,8 @@ function updateIPAddress(resultsContainer) {
                 }
 
                 console.log("Open Ports:", openPorts);
+                hideSpinner();
+                alert("Scanning completed!");
             })
             .catch(error => console.error('Error:', error));
     } else {

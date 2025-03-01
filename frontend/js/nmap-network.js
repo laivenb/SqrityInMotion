@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.1.48:5000';
+const BASE_URL = 'http://192.168.68.63:5000';
 
 // On page load, check session and automatically start scanning if parameters exist
 window.addEventListener('load', () => {
@@ -13,9 +13,10 @@ window.addEventListener('load', () => {
     const subnet = getQueryParam('subnet');
     if (ip && subnet) {
         showSpinner();
-        startScanning(ip, subnet);
+        startScanning(ip, subnet).then(() => {
+            alert("Scanning completed!");
+        });
     }
-    alert("Scanning completed!");
 
 });
 
@@ -33,147 +34,58 @@ function hideSpinner() {
 }
 
 function startScanning(ip, subnet) {
-    const baseIP = ip.split('.').map(Number);
-    let startHost = 0;
-    let endHost = 0;
-    const ipList = [];
-    const tableBody = document.querySelector('#portTable tbody');
-    if (tableBody) {
-        tableBody.innerHTML = '';
-    }
+    return new Promise(async (resolve) => {
+        const baseIP = ip.split('.').map(Number);
+        let startHost = 0, endHost = 0;
+        const ipList = [];
+        const tableBody = document.querySelector('#portTable tbody');
 
-    // Build the IP list based on the provided subnet
-    switch (subnet) {
-        case '/16':
-            startHost = 0;
-            endHost = 255;
-            for (let i = startHost; i <= endHost; i++) {
-                for (let j = 0; j <= 255; j++) {
-                    ipList.push(`${baseIP[0]}.${baseIP[1]}.${i}.${j}`);
-                }
-            }
-            break;
-        case '/17':
-            startHost = 0;
-            endHost = 127;
-            for (let i = startHost; i <= endHost; i++) {
-                for (let j = 0; j <= 255; j++) {
-                    ipList.push(`${baseIP[0]}.${baseIP[1]}.${i}.${j}`);
-                }
-            }
-            break;
-        case '/18':
-            startHost = 0;
-            endHost = 63;
-            for (let i = startHost; i <= endHost; i++) {
-                for (let j = 0; j <= 255; j++) {
-                    ipList.push(`${baseIP[0]}.${baseIP[1]}.${i}.${j}`);
-                }
-            }
-            break;
-        case '/19':
-            startHost = 0;
-            endHost = 31;
-            for (let i = startHost; i <= endHost; i++) {
-                for (let j = 0; j <= 255; j++) {
-                    ipList.push(`${baseIP[0]}.${baseIP[1]}.${i}.${j}`);
-                }
-            }
-            break;
-        case '/20':
-            startHost = 0;
-            endHost = 15;
-            for (let i = startHost; i <= endHost; i++) {
-                for (let j = 0; j <= 255; j++) {
-                    ipList.push(`${baseIP[0]}.${baseIP[1]}.${i}.${j}`);
-                }
-            }
-            break;
-        case '/21':
-            startHost = 0;
-            endHost = 7;
-            for (let i = startHost; i <= endHost; i++) {
-                for (let j = 0; j <= 255; j++) {
-                    ipList.push(`${baseIP[0]}.${baseIP[1]}.${i}.${j}`);
-                }
-            }
-            break;
-        case '/22':
-            startHost = 0;
-            endHost = 3;
-            for (let i = startHost; i <= endHost; i++) {
-                for (let j = 0; j <= 255; j++) {
-                    ipList.push(`${baseIP[0]}.${baseIP[1]}.${i}.${j}`);
-                }
-            }
-            break;
-        case '/23':
-            startHost = 0;
-            endHost = 1;
-            for (let i = startHost; i <= endHost; i++) {
-                for (let j = 0; j <= 255; j++) {
-                    ipList.push(`${baseIP[0]}.${baseIP[1]}.${i}.${j}`);
-                }
-            }
-            break;
-        case '/24':
-            startHost = 1;
-            endHost = 254;
-            for (let i = startHost; i <= endHost; i++) {
-                ipList.push(`${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`);
-            }
-            break;
-        case '/25':
-            startHost = 1;
-            endHost = 126;
-            for (let i = startHost; i <= endHost; i++) {
-                ipList.push(`${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`);
-            }
-            break;
-        case '/26':
-            startHost = 1;
-            endHost = 62;
-            for (let i = startHost; i <= endHost; i++) {
-                ipList.push(`${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`);
-            }
-            break;
-        case '/27':
-            startHost = 1;
-            endHost = 30;
-            for (let i = startHost; i <= endHost; i++) {
-                ipList.push(`${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`);
-            }
-            break;
-        case '/28':
-            startHost = 1;
-            endHost = 14;
-            for (let i = startHost; i <= endHost; i++) {
-                ipList.push(`${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`);
-            }
-            break;
-        case '/29':
-            startHost = 1;
-            endHost = 6;
-            for (let i = startHost; i <= endHost; i++) {
-                ipList.push(`${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`);
-            }
-            break;
-        case '/30':
-            startHost = baseIP[3];
-            endHost = baseIP[3] + 3;
-            for (let i = startHost; i <= endHost; i++) {
-                ipList.push(`${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`);
-            }
-            break;
-        default:
-            console.error('Unsupported subnet prefix.');
-            hideSpinner();
-            return;
-    }
+        if (tableBody) {
+            tableBody.innerHTML = ''; // Clear table on new scan
+        }
 
-    console.log('Scanning started...');
-    scanHost(ipList);
+        switch (subnet) {
+            case '/16': startHost = 0; endHost = 255; break;
+            case '/17': startHost = 0; endHost = 127; break;
+            case '/18': startHost = 0; endHost = 63; break;
+            case '/19': startHost = 0; endHost = 31; break;
+            case '/20': startHost = 0; endHost = 15; break;
+            case '/21': startHost = 0; endHost = 7; break;
+            case '/22': startHost = 0; endHost = 3; break;
+            case '/23': startHost = 0; endHost = 1; break;
+            case '/24': startHost = 1; endHost = 254; break;
+            case '/25': startHost = 1; endHost = 126; break;
+            case '/26': startHost = 1; endHost = 62; break;
+            case '/27': startHost = 1; endHost = 30; break;
+            case '/28': startHost = 1; endHost = 14; break;
+            case '/29': startHost = 1; endHost = 6; break;
+            case '/30': startHost = baseIP[3]; endHost = baseIP[3] + 3; break;
+            default:
+                console.error('Unsupported subnet prefix.');
+                hideSpinner();
+                resolve();
+                return;
+        }
+
+        if (subnet.startsWith('/16') || subnet.startsWith('/17') || subnet.startsWith('/18')) {
+            for (let i = startHost; i <= endHost; i++) {
+                for (let j = 0; j <= 255; j++) {
+                    ipList.push(`${baseIP[0]}.${baseIP[1]}.${i}.${j}`);
+                }
+            }
+        } else {
+            for (let i = startHost; i <= endHost; i++) {
+                ipList.push(`${baseIP[0]}.${baseIP[1]}.${baseIP[2]}.${i}`);
+            }
+        }
+
+        console.log('Scanning started...');
+        await scanHost(ipList);  // Wait until scanHost completes
+        hideSpinner();
+        resolve();  // Signal that scanning is done
+    });
 }
+
 
 async function scanHost(ipList) {
     const tableBody = document.querySelector('#portTable tbody');
