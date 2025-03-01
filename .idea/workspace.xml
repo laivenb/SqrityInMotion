@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Wheel v3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/cvereport-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/cvereport-details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/cvereport-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/cvereport-details.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/portreport-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/portreport-details.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/userinfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/userinfo.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/portreport-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/portreport-details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/sidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/userinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/userinfo.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -172,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740815443280</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Wheel v3">
+      <option name="closed" value="true" />
+      <created>1740816026049</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1740816026050</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

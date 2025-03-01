@@ -71,32 +71,63 @@ async function loadReportDetails(userID) {
     }
 }
 
+
 // Helper function to populate CVE details in the table
 function populateCveDetails(ports) {
     const tableBody = document.querySelector("#cveDetailsTable tbody");
     tableBody.innerHTML = ""; // Clear existing data
 
-    // Check if the ports array exists and has data
+    let openPortsCount = 0;
+    let criticalPortsCount = 0;
+
     if (Array.isArray(ports) && ports.length > 0) {
         ports.forEach(port => {
             const row = document.createElement("tr");
+
+            // Determine color for port state (open/closed)
+            const stateColor = port.state === "open" ? "#348ae6" : "green";
+            const stateLabel = `<span style="color: ${stateColor}; font-weight: bold;">${port.state || "N/A"}</span>`;
+
+            // Count open ports
+            if (port.state === "open") {
+                openPortsCount++;
+            }
+
+            // Determine background color for CVE score
+            const cveScore = parseFloat(port.cve_score) || 0;
+            let scoreBackgroundColor = "#d4edda"; // Low (green)
+
+            if (cveScore >= 7.0) {
+                scoreBackgroundColor = "#f8d7da"; // High/Critical (red)
+                criticalPortsCount++;
+            } else if (cveScore >= 4.0) {
+                scoreBackgroundColor = "#fff3cd"; // Medium (yellow)
+            }
+
+            // Add row with colored cells
             row.innerHTML = `
                 <td>${port.port || "N/A"}</td>
-                <td>${port.state || "N/A"}</td>
+                <td>${stateLabel}</td>
                 <td>${port.version || "N/A"}</td>
                 <td>${port.cve_id || "N/A"}</td>
-                <td>${port.cve_score || "N/A"}</td>
+                <td style="background-color: ${scoreBackgroundColor}; font-weight: bold; text-align: center;">
+                    ${port.cve_score || "N/A"}
+                </td>
             `;
             tableBody.appendChild(row);
         });
     } else {
         const row = document.createElement("tr");
-        row.innerHTML = `
-            <td colspan="5" class="text-center">No CVE data available</td>
-        `;
+        row.innerHTML = `<td colspan="5" class="text-center">No CVE data available</td>`;
         tableBody.appendChild(row);
     }
+
+    // Update counts in the UI (these should exist in your HTML)
+    document.getElementById('openPortsCount').textContent = openPortsCount;
+    document.getElementById('criticalPortsCount').textContent = criticalPortsCount;
 }
+
+
 
 // Function to retrieve query parameters from the URL
 function getQueryParam(param) {

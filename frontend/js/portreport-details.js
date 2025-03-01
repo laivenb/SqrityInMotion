@@ -67,21 +67,42 @@ async function loadReportDetails(userID) {
 }
 
 // Helper function to populate port details in the table
+// Helper function to populate port details in the table
 function populatePortDetails(ports) {
     const tableBody = document.querySelector("#portDetailsTable tbody");
     tableBody.innerHTML = ""; // Clear existing data
 
+    let openPorts = 0;
+    let criticalPorts = 0;
+
     ports.forEach(port => {
+        const stateColor = port.state === "open" ? "#348ae6" : "green";
+        const stateLabel = `<span style="color: ${stateColor}; font-weight: bold;">${port.state}</span>`;
+
+        if (port.state === "open") {
+            openPorts++;  // Count open ports
+        }
+
+        // Optional: If your port details contain CVE Scores (depends if your scan includes CVEs)
+        if (port.cve_score && parseFloat(port.cve_score) >= 7.0) {
+            criticalPorts++;
+        }
+
         const row = document.createElement("tr");
         row.innerHTML = `
             <td>${port.port}</td>
-            <td>${port.state}</td>
+            <td>${stateLabel}</td>
             <td>${port.service}</td>
             <td>${port.version}</td>
         `;
         tableBody.appendChild(row);
     });
+
+    // Update counts in the HTML
+    document.getElementById('openPortsCount').textContent = openPorts;
 }
+
+
 
 // Function to retrieve query parameters from the URL
 function getQueryParam(param) {

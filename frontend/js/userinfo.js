@@ -57,29 +57,25 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Function to fetch user information from Firebase
-function fetchUserInfo(username) {
-    const dbRef = ref(database);
-    get(child(dbRef, `users/`)).then((snapshot) => {
+function fetchUserInfo() {
+    const userUID = sessionStorage.getItem("uid");
+
+    if (!userUID) {
+        console.error("No UID found in sessionStorage");
+        alert("No user data found. Please log in again.");
+        window.location.href = "login.html";
+        return;
+    }
+
+    const userRef = ref(database, `users/${userUID}`);
+
+    get(userRef).then((snapshot) => {
         if (snapshot.exists()) {
-            let userFound = false;
-
-            snapshot.forEach((childSnapshot) => {
-                const userData = childSnapshot.val();
-
-                if (userData.username === username) {
-                    userFound = true;
-                    populateUserInfo(userData); // Call function to populate user info on the page
-                }
-            });
-
-            if (!userFound) {
-                console.error("User not found in Firebase");
-                alert("User not found. Please check your username.");
-            }
+            const userData = snapshot.val();
+            populateUserInfo(userData);
         } else {
-            console.error("No user data available");
-            alert("No user data available.");
+            console.error("User data not found in Firebase for UID:", userUID);
+            alert("User data not found.");
         }
     }).catch((error) => {
         console.error("Error fetching user data:", error.message);
@@ -87,25 +83,22 @@ function fetchUserInfo(username) {
     });
 }
 
-// Function to populate user information fields
 function populateUserInfo(user) {
     console.log("User data being populated:", user); // Debug log
+
     document.getElementById("first-name").value = user.firstName || '';
-    document.getElementById("middle-name").value = user.middleName || '';
     document.getElementById("last-name").value = user.lastName || '';
     document.getElementById("user-name").value = user.username || '';
     document.getElementById("email").value = user.email || '';
     document.getElementById("contact-number").value = user.contactNumber || '';
-    document.getElementById("department").value = user.department || '';
-    document.getElementById("role").value = user.role || '';
 
+    // Optional: Handle profile picture if you decide to keep that
     const profilePictureElement = document.getElementById("profile-picture");
     if (profilePictureElement) {
-        profilePictureElement.src = user.profilePicture || './icons/default-profpic.webp'; // Use default if profilePicture is null
-    } else {
-        console.warn("Profile picture element not found in DOM.");
+        profilePictureElement.src = user.profilePicture || './icons/default-profpic.webp';
     }
 }
+
 
 // Function to handle profile picture upload and update the database
 
