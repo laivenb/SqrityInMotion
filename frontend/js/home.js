@@ -83,36 +83,70 @@ function initializeDataTable() {
 
 function initializeCharts() {
     const doughnutCanvas = document.getElementById("doughnutChart");
-    const progressChartCanvas = document.getElementById('progressChart');
+    const progressChartCanvas = document.getElementById("progressChart");
+
     if (!doughnutCanvas || !progressChartCanvas) return;
 
-    const doughnutCtx = doughnutCanvas.getContext("2d");
-    doughnutChart = new Chart(doughnutCtx, {
-        type: 'doughnut',
+    const doughnutCtx = document.getElementById("doughnutChart").getContext("2d");
+
+    new Chart(doughnutCtx, {
+        type: "doughnut",
         data: {
-            labels: ['Critical', 'Medium', 'Low'],
+            labels: ["Critical", "High", "Medium", "Low"],
             datasets: [{
-                data: [10, 30, 40],
-                backgroundColor: ['#ff6384', '#ffcd56', '#4bc0c0']
+                data: [10, 25, 30, 35],
+                backgroundColor: ["#ff6384", "#ff9f40", "#ffcd56", "#4bc0c0"],
+                borderWidth: 0,
+                cutout: "70%" // Increases the inner hole size, making the chart larger
             }]
         },
-        options: { responsive: true, plugins: { legend: { display: false } } }
+        options: {
+            responsive: true,
+            maintainAspectRatio: false, // Allows better resizing
+            plugins: {
+                legend: {
+                    position: "top",  // Moves the legend above the chart
+                    align: "center",  // Centers the legend
+                    labels: {
+                        boxWidth: 12, // Makes the legend color boxes smaller
+                        padding: 8,  // Reduces spacing between legend items
+                        font: {
+                            size: 12 // Decreases font size of legend
+                        }
+                    }
+                }
+            },
+            layout: {
+                padding: {
+                    top: 15, // Adds slight spacing between legend and chart
+                    bottom: 10 // Adds space below chart
+                }
+            }
+        }
     });
 
-    const progressCtx = progressChartCanvas.getContext('2d');
-    progressChart = new Chart(progressCtx, {
-        type: 'bar',
+
+    const progressCtx = progressChartCanvas.getContext("2d");
+    new Chart(progressCtx, {
+        type: "bar",
         data: {
-            labels: [''],
+            labels: [""],  // Only one category on Y-axis
             datasets: [
-                { label: 'Critical', data: [40], backgroundColor: '#ff6384' },
-                { label: 'Medium', data: [30], backgroundColor: '#ffcd56' },
-                { label: 'Low', data: [30], backgroundColor: '#4bc0c0' }
+                { label: "Critical", data: [10], backgroundColor: "#ff6384" },
+                { label: "High", data: [25], backgroundColor: "#ff9f40" },
+                { label: "Medium", data: [30], backgroundColor: "#ffcd56" },
+                { label: "Low", data: [35], backgroundColor: "#4bc0c0" }
             ]
         },
-        options: { responsive: true, indexAxis: 'y', scales: { x: { max: 100 } } }
+        options: {
+            responsive: true,
+            indexAxis: "y",
+            scales: { x: { max: 100, beginAtZero: true } }
+        }
     });
 }
+
+
 
 function fetchVulnerabilities(openPorts) {
     $.ajax({

@@ -4,15 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Wheel v3">
+    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Sticky">
+      <change afterPath="$PROJECT_DIR$/frontend/css/superHome.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/js/superHome.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/js/superSide.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/superHome.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/superSide.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/cvereport-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/cvereport-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/cvereport-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/cvereport-details.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/portreport-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/portreport-details.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/userinfo.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/userinfo.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/portreport-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/portreport-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/userinfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/userinfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/adminside.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/adminside.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/sidebar.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/sidebar.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/home.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,8 +111,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PS-242.22855.113" />
-        <option value="bundled-php-predefined-a98d8de5180a-90914f2295cb-com.jetbrains.php.sharedIndexes-PS-242.22855.113" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-PS-242.23726.107" />
+        <option value="bundled-php-predefined-a98d8de5180a-90914f2295cb-com.jetbrains.php.sharedIndexes-PS-242.23726.107" />
       </set>
     </attachedChunks>
   </component>
@@ -131,6 +132,7 @@
       <workItem from="1729924232747" duration="30374000" />
       <workItem from="1730534198139" duration="5688000" />
       <workItem from="1740815460046" duration="236000" />
+      <workItem from="1741424324003" duration="3602000" />
     </task>
     <task id="LOCAL-00001" summary="Port Reports Update">
       <option name="closed" value="true" />
@@ -188,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740816026050</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Sticky">
+      <option name="closed" value="true" />
+      <created>1740849720909</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1740849720909</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -200,7 +210,9 @@
     <MESSAGE value="Wheel" />
     <MESSAGE value="Wheel v2" />
     <MESSAGE value="Wheel v3" />
-    <option name="LAST_COMMIT_MESSAGE" value="Wheel v3" />
+    <MESSAGE value="Wheel v3 and unser info" />
+    <MESSAGE value="Sticky" />
+    <option name="LAST_COMMIT_MESSAGE" value="Sticky" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SqrityInMotion$app.coverage" NAME="app Coverage Results" MODIFIED="1723378591676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
