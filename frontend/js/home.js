@@ -47,16 +47,33 @@ $('#pentestButton').on('click', function() {
     window.location.href = `pentest-result.html?ip=${getIPFromURL()}`;
 });
 
+$.fn.dataTable.ext.type.order['cve-id-desc'] = function (a, b) {
+    // Extract the numeric part from CVE format (CVE-YYYY-XXXX)
+    const numA = a.match(/CVE-(\d+)-(\d+)/);
+    const numB = b.match(/CVE-(\d+)-(\d+)/);
+
+    if (!numA || !numB) return 0; // If no match, do nothing
+
+    // Parse year and number separately
+    const yearA = parseInt(numA[1], 10);
+    const idA = parseInt(numA[2], 10);
+    const yearB = parseInt(numB[1], 10);
+    const idB = parseInt(numB[2], 10);
+
+    // First compare by year, then by CVE number
+    return yearB - yearA || idB - idA;
+};
+
 function initializeDataTable() {
     const firstLogin = sessionStorage.getItem('firstLogin') === 'true';
     const portTable = $('#portTable').DataTable({
         "pagingType": "simple_numbers",
         "searching": true,
         "ordering": true,
-        "order": [[3, "desc"]], // Sort by CVE Number (column index 3) in descending order
+        "order": [[3, "desc"]], // Sort by CVE Number column (index 3)
         "columnDefs": [{
             "targets": 3, // Targets the CVE ID column
-            "type": "natural" // Ensures correct sorting of alphanumeric CVE numbers
+            "type": "cve-id-desc" // Apply custom sorting for CVE IDs
         }],
         "createdRow": function(row, data) {
             $(row).on('click', function() {
