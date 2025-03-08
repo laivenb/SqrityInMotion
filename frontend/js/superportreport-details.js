@@ -1,6 +1,6 @@
 // Import Firebase modules
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -22,40 +22,39 @@ const currentUser = sessionStorage.getItem("username");
 const userID = sessionStorage.getItem("uid");
 
 if (!currentUser || !userID) {
-    // Redirect to login page if no user is logged in
     window.location.href = "login.html";
 } else {
-    // Load the report details for the current user
-    loadReportDetails(userID);
+    // Retrieve reportID from URL and load details
+    const reportID = getQueryParam('reportID');
+    if (reportID) {
+        loadReportDetails(reportID);
+    } else {
+        console.error("No report ID provided in the URL.");
+    }
 }
 
-// Function to load the report details for a specific user
-async function loadReportDetails(userID) {
+// Function to load the port report details
+async function loadReportDetails(reportID) {
     try {
-        // Retrieve the reportID from the URL
-        const reportID = getQueryParam('reportID');
-
-        if (!reportID) {
-            console.error("No report ID provided in the URL.");
-            return;
-        }
-
-        // Access the specific report for the user by reportID in portReports
         const reportRef = ref(database, `portReports/${reportID}`);
-
         const snapshot = await get(reportRef);
+
         if (snapshot.exists()) {
             const reportData = snapshot.val();
-            if (reportData && reportData.userID === userID) {  // Ensure report belongs to the user
-                document.getElementById('reportName').textContent = reportData.reportName || "Untitled Report";
-                document.getElementById('dateCreated').textContent = `Date Created: ${reportData.dateCreated || "N/A"}`;
 
-                // Populate other report details here, such as port data
-                populatePortDetails(reportData.ports || []);
-            } else {
-                document.getElementById('reportName').textContent = "Report Not Found";
-                document.getElementById('dateCreated').textContent = "";
+            // Ensure elements exist before updating them
+            const reportNameElem = document.getElementById('reportName');
+            const dateCreatedElem = document.getElementById('dateCreated');
+
+            if (reportNameElem) {
+                reportNameElem.textContent = reportData.reportName || "Untitled Report";
             }
+            if (dateCreatedElem) {
+                dateCreatedElem.textContent = `Date Created: ${reportData.dateCreated || "N/A"}`;
+            }
+
+            // Populate port details
+            populatePortDetails(reportData.ports || []);
         } else {
             console.error("No such report found in Firebase.");
             document.getElementById('reportName').textContent = "Report Not Found";
@@ -66,43 +65,39 @@ async function loadReportDetails(userID) {
     }
 }
 
-// Helper function to populate port details in the table
-// Helper function to populate port details in the table
+// Function to populate port details in the table
 function populatePortDetails(ports) {
     const tableBody = document.querySelector("#portDetailsTable tbody");
     tableBody.innerHTML = ""; // Clear existing data
 
-    let openPorts = 0;
-    let criticalPorts = 0;
+    let openPortsCount = 0;
 
-    ports.forEach(port => {
-        const stateColor = port.state === "open" ? "#348ae6" : "green";
-        const stateLabel = `<span style="color: ${stateColor}; font-weight: bold;">${port.state}</span>`;
+    if (Array.isArray(ports) && ports.length > 0) {
+        ports.forEach(port => {
+            const row = document.createElement("tr");
+            const stateColor = port.state === "open" ? "#348ae6" : "green";
+            const stateLabel = `<span style="color: ${stateColor}; font-weight: bold;">${port.state || "N/A"}</span>`;
 
-        if (port.state === "open") {
-            openPorts++;  // Count open ports
-        }
+            if (port.state === "open") {
+                openPortsCount++;
+            }
 
-        // Optional: If your port details contain CVE Scores (depends if your scan includes CVEs)
-        if (port.cve_score && parseFloat(port.cve_score) >= 7.0) {
-            criticalPorts++;
-        }
-
+            row.innerHTML = `
+                <td>${port.port || "N/A"}</td>
+                <td>${stateLabel}</td>
+                <td>${port.service || "N/A"}</td>
+                <td>${port.version || "N/A"}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+    } else {
         const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${port.port}</td>
-            <td>${stateLabel}</td>
-            <td>${port.service}</td>
-            <td>${port.version}</td>
-        `;
+        row.innerHTML = `<td colspan="4" class="text-center">No port data available</td>`;
         tableBody.appendChild(row);
-    });
+    }
 
-    // Update counts in the HTML
-    document.getElementById('openPortsCount').textContent = openPorts;
+    document.getElementById('openPortsCount').textContent = openPortsCount;
 }
-
-
 
 // Function to retrieve query parameters from the URL
 function getQueryParam(param) {
@@ -111,8 +106,6 @@ function getQueryParam(param) {
 }
 
 // Back button function
-export function goBack() {
-    window.location.href = 'port-reports.html';
-}
-
-document.getElementById('backButton').addEventListener('click', goBack);
+document.getElementById('backButton')?.addEventListener('click', () => {
+    window.location.href = 'superport-reports.html';
+});

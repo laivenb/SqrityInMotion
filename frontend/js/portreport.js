@@ -47,6 +47,14 @@ $(document).ready(function () {
         const reportID = $(this).closest('tr').find('td:first').text();
         exportReportAsJSON(userID, reportID);
     });
+    $('#reportsTable').on('click', '.send-btn', function () {
+        const reportID = $(this).closest('tr').find('td:first').text();
+        const userID = sessionStorage.getItem("uid"); // Get logged-in user ID
+
+        if (confirm("Are you sure you want to send this report to the supervisor?")) {
+            sendToSupervisor(userID, reportID);
+        }
+    });
 });
 
 // Function to load reports for the current user from Firebase Realtime Database
@@ -57,7 +65,7 @@ async function loadReports(userID) {
     try {
         // Reference to the Firebase Realtime Database
         const db = getDatabase();
-        const reportsRef = ref(db, "portReports"); // Assuming reports are stored under "portReports"
+        const reportsRef = ref(db, "portReports"); // Assuming reports are stored under "cveReports"
 
         // Query reports based on userID
         const snapshot = await get(reportsRef);
@@ -65,44 +73,56 @@ async function loadReports(userID) {
         let reportsFound = false;
 
         if (!snapshot.exists()) {
-            // If no reports exist in the database, show "No Report Found"
-            tableBody.append('<tr><td colspan="4">No Report Found</td></tr>');
+            tableBody.append('<tr><td colspan="5">No Report Found</td></tr>');
         } else {
-            snapshot.forEach((childSnapshot) => {
-                const data = childSnapshot.val();
+            const reportRows = []; // Store rows temporarily for performance optimization
+            const userCache = {}; // Cache to avoid duplicate queries for usernames
 
-                // Filter reports by userID
-                if (data.userID === userID) {
-                    const newRow = `
-                        <tr>
-                            <td>${childSnapshot.key}</td>
-                            <td>${data.reportName || "Unnamed Report"}</td>
-                            <td>${data.dateCreated || "N/A"}</td>
-                            <td>
-                                <button class="btn btn-primary view-btn">View Report</button>
-                                <button class="btn btn-secondary export-btn">Export as JSON</button>
-                            </td>
-                        </tr>
-                    `;
-                    tableBody.append(newRow);
-                    reportsFound = true;
-                }
-            });
+            // Process each report
+            for (const childKey in snapshot.val()) {
+                const data = snapshot.val()[childKey];
+                const reportUserID = data.userID;
 
-            // If no reports for the user were found, show "No Report Found"
+                // Skip reports that do not belong to the current user
+                if (reportUserID !== userID) continue;
+
+                // Get username (either from cache or Firebase)
+                let username = userCache[reportUserID] || await getUsernameFromUserID(reportUserID);
+                userCache[reportUserID] = username; // Cache the retrieved username
+
+                // Append the report row
+                const newRow = `
+                    <tr>
+                        <td>${childKey}</td>
+                        <td>${data.reportName || "Unnamed Report"}</td>
+                        <td>${data.dateCreated ? new Date(data.dateCreated).toLocaleString() : "N/A"}</td>
+                        <td>${username}</td> 
+                        <td>
+                            <button class="btn btn-primary view-btn">View Report</button>
+                            <button class="btn btn-secondary export-btn">Export as JSON</button>
+                             <button class="btn btn-warning send-btn">Send to Supervisor</button>
+                        </td>
+                    </tr>
+                `;
+                reportRows.push(newRow);
+                reportsFound = true;
+            }
+
+            // Append all report rows at once (better performance)
+            tableBody.append(reportRows.join(""));
+
             if (!reportsFound) {
-                tableBody.append('<tr><td colspan="4">No Report Found</td></tr>');
+                tableBody.append('<tr><td colspan="5">No Report Found</td></tr>');
             }
         }
 
-        // Only initialize DataTable if there's data to display (reportsFound is true)
         if (reportsFound) {
             initializeDataTable();
         }
 
     } catch (error) {
         console.error("Error loading reports from Firebase:", error);
-        tableBody.append('<tr><td colspan="4">Error loading reports. Please try again.</td></tr>');
+        tableBody.append('<tr><td colspan="5">Error loading reports. Please try again.</td></tr>');
     }
 }
 
@@ -189,6 +209,54 @@ async function updateAuditInFirebase(userID, reportID) {
         });
 }
 
+async function sendToSupervisor(userID, reportID) {
+    const db = getDatabase();
+
+    try {
+        // Get all users to find supervisors (role = 2)
+        const usersRef = ref(db, "users");
+        const usersSnapshot = await get(usersRef);
+
+        if (!usersSnapshot.exists()) {
+            alert("No supervisors found.");
+            return;
+        }
+
+        let supervisorsFound = false;
+        const dateSubmitted = new Date().toISOString(); // Get current timestamp
+
+        // Loop through users to find supervisors
+        usersSnapshot.forEach((childSnapshot) => {
+            const userData = childSnapshot.val();
+            if (userData.role === 2) { // Ensure it's a supervisor
+                const supervisorID = childSnapshot.key; // Get supervisor UID
+
+                // Reference for supervisorcveReports/{supervisorID}/{reportID}
+                const supervisorRef = ref(db, `supervisorportReports/${supervisorID}/${reportID}`);
+
+                // Store only reportID, dateSubmitted, and submittedBy
+                set(supervisorRef, {
+                    reportID: reportID,
+                    dateSubmitted: dateSubmitted,
+                    submittedBy: userID
+                });
+
+                supervisorsFound = true;
+            }
+        });
+
+        if (supervisorsFound) {
+            alert("Report successfully sent to all supervisors!");
+        } else {
+            alert("No supervisors found with role = 2.");
+        }
+
+    } catch (error) {
+        console.error("Error sending report to supervisor:", error);
+        alert("Failed to send report. Please try again.");
+    }
+}
+
 async function generateCustomPortId() {
     // Prefix is now set to '02'
     const prefix = '04';
@@ -214,4 +282,21 @@ async function generateCustomPortId() {
 // Function to generate a random key (for security)
 function generateRandomKey() {
     return Math.random().toString(36).substring(2, 15);
+}
+
+async function getUsernameFromUserID(userID) {
+    const db = getDatabase();
+    const userRef = ref(db, `users/${userID}/username`); // Adjust based on your database structure
+
+    try {
+        const snapshot = await get(userRef);
+        if (snapshot.exists()) {
+            return snapshot.val(); // Return the username
+        } else {
+            return "Unknown User"; // Default if username not found
+        }
+    } catch (error) {
+        console.error("Error retrieving username:", error);
+        return "Error Fetching User";
+    }
 }

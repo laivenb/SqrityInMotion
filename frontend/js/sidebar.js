@@ -42,20 +42,3 @@ function setUsername() {
     }
 }
 
-// Function to set the profile picture in the sidebar
-function setProfilePicture() {
-    const profilePictureElement = document.getElementById("profile-picture");
-    if (!profilePictureElement) {
-        console.warn("Profile picture element not found.");
-        return;
-    }
-
-    // Simulate fetching profilePicture from the database or sessionStorage
-    const profilePicture = sessionStorage.getItem("profilePicture"); // Replace with database call if needed
-
-    if (profilePicture) {
-        profilePictureElement.src = profilePicture; // Use the profile picture from storage
-    } else {
-        profilePictureElement.src = "./icons/default-profpic.webp"; // Use the default profile picture
-    }
-}
