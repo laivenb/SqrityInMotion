@@ -53,7 +53,11 @@ function initializeDataTable() {
         "pagingType": "simple_numbers",
         "searching": true,
         "ordering": true,
-        "order": [[4, "desc"]], // Sort by CVE Score (column index 4) in descending order
+        "order": [[3, "desc"]], // Sort by CVE Number (column index 3) in descending order
+        "columnDefs": [{
+            "targets": 3, // Targets the CVE ID column
+            "type": "natural" // Ensures correct sorting of alphanumeric CVE numbers
+        }],
         "createdRow": function(row, data) {
             $(row).on('click', function() {
                 sessionStorage.setItem('selectedPortInfo', JSON.stringify({
@@ -80,6 +84,7 @@ function initializeDataTable() {
 
     if (firstLogin) emptyDash();
 }
+
 
 function initializeCharts() {
     const doughnutCanvas = document.getElementById("doughnutChart");
