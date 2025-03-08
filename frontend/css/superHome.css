@@ -1,116 +1,191 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+/* Font import */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900&display=swap');
 
 * {
     margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: Poppins, sans-serif;
     background-color: #f4f4f4;
+    height: 100vh;
+    margin: 0;
 }
 
-/* Main Content Layout */
+/* Main content area */
 .main-content {
-    margin-left: 270px; /* Space for sidebar */
-    padding: 20px; /* Reduced padding to utilize screen space */
+    margin-left: 290px;
     width: calc(100% - 250px);
     background-color: #f5f5f5;
     overflow-y: auto;
 }
 
-/* Header styling with full width alignment */
+/* Header styles */
 .header {
-    padding-bottom: 15px;
-    border-bottom: 1px solid #ddd;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.dashboard-title {
-    font-size: 2rem;
-    font-weight: 700;
-}
-
-.dashboard-date {
-    font-size: 1.2rem;
-    font-weight: 500;
-    margin-left: auto;
-    margin-right: 0;
-}
-
-/* Dashboard Grid for Cards */
-.dashboard-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive column layout */
-    gap: 20px; /* Space between cards */
-    margin-top: 20px;
-    width: 100%;
-}
-
-/* Dashboard Card Styling */
-.dashboard-card {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    color: #333;
-    transition: transform 0.3s ease;
-    position: relative;
-}
-
-.dashboard-card:hover {
-    transform: translateY(-3px);
-}
-
-.dashboard-card h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
+    align-items: flex-start;
     margin-bottom: 10px;
 }
 
-.dashboard-stat {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin: 5px 0;
+.scan-info {
+    display: flex;
+    flex-direction: column;
 }
 
-/* Icon Styling for Each Card */
-.card-icon {
-    font-size: 2.5rem;
-    position: absolute;
-    top: 20px;
-    left: 20px;
+.vulnerability {
+    margin-top: auto;
+    align-self: flex-end;
 }
 
-.card-users .card-icon {
-    color: #007bff; /* Blue for Users */
+
+.header h1 {
+    font-size: 22px;
+    color: #4f4f4f;
 }
 
-.card-requests .card-icon {
-    color: #28a745; /* Green for Requests */
+.header .ip-address {
+    color: #8a2be2;
 }
 
-.card-users {
-    border-left: 5px solid #007bff;
+.header .vulnerability {
+    color: #ff4d4d;
 }
 
-.card-requests {
-    border-left: 5px solid #28a745;
+/* Alerts section */
+.alerts-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e0e7ff;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 30px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .main-content {
-        margin-left: 0; /* Remove sidebar space on small screens */
-        padding: 10px;
-    }
 
-    .dashboard-date {
-        font-size: 1rem;
-    }
+.alert-levels {
+    flex-grow: 1;
+    padding-left: 30px;
 }
+
+.alert {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#progressChart {
+    width: 100% !important;
+    height: 170px !important;
+}
+
+.alert.high {
+    color: #ff3333;
+}
+
+.alert.medium {
+    color: #ff9900;
+}
+
+.alert.low {
+    color: #99cc33;
+}
+
+/* Dashboard layout */
+.dashboard-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+/* More main content */
+.main-content {
+    flex: 1;
+    padding: 20px;
+    background-color: #f5f5f5;
+    overflow-y: auto;
+}
+
+/* Formal table styles */
+.port-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    color: #495057;
+}
+
+.port-table th {
+    background-color: #f8f9fa;
+    /* Softer background color for a more formal look */
+    color: #343a40;
+    font-weight: bold;
+    font-size: 1rem;
+    border-bottom: 2px solid #dee2e6;
+    padding: 15px;
+}
+
+.port-table td {
+    padding: 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Table row hover effect */
+.port-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.port-table tbody tr:hover {
+    background-color: #e9ecef;
+}
+
+/* Open/Closed states for table */
+.port-table td.state.open {
+    color: #28a745;
+    /* Green for open */
+}
+
+.port-table td.state.closed {
+    color: #dc3545;
+    /* Red for closed */
+}
+
+.dataTables_wrapper .dataTables_filter {
+    text-align: right; /* Aligns the entire search container to the right */
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    text-align: left; /* Ensures text inside the input box remains left-aligned */
+}
+
+
+/* DataTables customizations */
+.dataTables_wrapper .dataTables_filter input {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 300px;
+    margin-left: 0.5rem;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    color: #495057 !important;
+    margin-left: 10px;
+}
+
+.port-table tbody tr {
+    cursor: pointer; /* Changes cursor to indicate row is clickable */
+}
+
+

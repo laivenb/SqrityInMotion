@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Proceed to fetch the sidebar content
-    fetch('/frontend/adminside.html')
+    fetch('/frontend/superSide.html')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Failed to load sidebar: ' + response.statusText);

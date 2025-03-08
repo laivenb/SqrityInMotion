@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Wheel v3">
-      <change beforePath="$PROJECT_DIR$/frontend/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/port-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/port-specific.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/supercve-reports.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/superport-reports.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/superHome.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/superHome.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/superSide.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/superSide.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/superHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/superHome.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/superSide.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/superSide.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
