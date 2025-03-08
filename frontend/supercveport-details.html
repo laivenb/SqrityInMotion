@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SQrity | CVE Report Details</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/viewreports.css">
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <!-- Sidebar -->
+        <div id="sidebar-container">
+            <!-- Sidebar content will be injected here dynamically -->
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Back Button -->
+            <button id="backButton" class="btn btn-secondary mb-3">
+                <i class="fas fa-arrow-left"></i> Back to CVE Reports
+            </button>
+
+            <!-- Dynamic Header for Report Title and Date Created -->
+            <div class="d-flex justify-content-between align-items-center report-header">
+                <h2 id="reportName" class="font-weight-bold mb-0">Report Details</h2>
+                <p id="dateCreated:" class="text-muted mb-0"></p>
+            </div>
+
+            <div class="report-summary my-3 d-flex justify-content-end align-items-center">
+    <span class="p-1 text-white" style="background-color: #348ae6; font-size: 1rem; font-weight: bold; border-radius: 3px;">
+        Open Ports: <span id="openPortsCount">0</span>
+    </span>
+                <span class="p-1 text-white" style="background-color: #e33737; font-size: 1rem; font-weight: bold; border-radius: 3px; margin-left: 8px;">
+        Critical Ports: <span id="criticalPortsCount">0</span>
+    </span>
+            </div>
+
+            <button id="saveButton">Save Report</button>
+
+            <!-- CVE Details Table -->
+            <div class="cve-details">
+                <table id="cveDetailsTable" class="table table-striped table-bordered mt-3">
+                    <thead>
+                    <tr>
+                        <th>Port</th>
+                        <th>State</th>
+                        <th>Service</th>
+                        <th>CVE ID</th>
+                        <th>CVE Score</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <!-- Sample data row -->
+                    <tr>
+                        <td>21/tcp</td>
+                        <td>open</td>
+                        <td>ftp</td>
+                        <td>CVE-2021-1234</td>
+                        <td>7.5</td>
+                    </tr>
+                    <tr>
+                        <td>22/tcp</td>
+                        <td>open</td>
+                        <td>ssh</td>
+                        <td>CVE-2020-5678</td>
+                        <td>8.2</td>
+                    </tr>
+                    <tr>
+                        <td>80/tcp</td>
+                        <td>open</td>
+                        <td>http</td>
+                        <td>CVE-2019-9101</td>
+                        <td>9.1</td>
+                    </tr>
+                    <!-- More rows as needed -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="js/superSide.js"></script>
+<script type="module" src="js/supercvereport-details.js"></script>
+</body>
+</html>
