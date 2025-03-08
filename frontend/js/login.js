@@ -81,12 +81,18 @@ document.getElementById("loginButton").addEventListener("click", (e) => {
                     if (userData.role === 0) {
                         // Redirect to admin home page
                         window.location.href = "adminHome.html";
-                    } else if (userData.role === 1 || userData.role === 2) {
+                    } else if (userData.role === 1) {
                         // Redirect to regular home page
                         sessionStorage.removeItem("vulnerabilitiesData");
                         sessionStorage.setItem('firstLogin', firstLogin.toString());
                         console.log(sessionStorage.getItem('firstLogin'));
                         window.location.href = "home.html";
+                    }else if (userData.role === 2) {
+                        // Redirect to regular home page
+                        sessionStorage.removeItem("vulnerabilitiesData");
+                        sessionStorage.setItem('firstLogin', firstLogin.toString());
+                        console.log(sessionStorage.getItem('firstLogin'));
+                        window.location.href = "superHome.html";
                     }
                 } else {
                     console.log("User status is not accepted. Please contact support.");

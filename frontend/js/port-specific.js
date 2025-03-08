@@ -100,6 +100,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             let serviceName = parsedPortInfo.service || "N/A";
 
             if (serviceName.includes("Samba smbd")) serviceName = "Samba";
+            if (serviceName.includes("GNU Classpath grmiregistry")) serviceName = "java rmi";
 
             console.log("Searching exploits for:", serviceName);
 
