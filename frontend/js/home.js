@@ -53,7 +53,7 @@ function initializeDataTable() {
         "pagingType": "simple_numbers",
         "searching": true,
         "ordering": true,
-        "order": [[0, "asc"]],
+        "order": [[4, "desc"]], // Sort by CVE Score (column index 4) in descending order
         "createdRow": function(row, data) {
             $(row).on('click', function() {
                 sessionStorage.setItem('selectedPortInfo', JSON.stringify({
