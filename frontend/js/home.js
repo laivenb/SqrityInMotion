@@ -70,10 +70,10 @@ function initializeDataTable() {
         "pagingType": "simple_numbers",
         "searching": true,
         "ordering": true,
-        "order": [[3, "desc"]], // Sort by CVE Number column (index 3)
+        "order": [[4, "desc"]], // Sort by CVE Score (column index 4) in descending order
         "columnDefs": [{
-            "targets": 3, // Targets the CVE ID column
-            "type": "cve-id-desc" // Apply custom sorting for CVE IDs
+            "targets": 4, // Targeting CVE Score column
+            "type": "num" // Ensures numerical sorting
         }],
         "createdRow": function(row, data) {
             $(row).on('click', function() {
@@ -95,12 +95,14 @@ function initializeDataTable() {
             '<td class="state open">open</td>',
             portInfo.service || 'N/A',
             portInfo.version || 'N/A',
-            portInfo.cveId || 'N/A'
+            portInfo.cveId || 'N/A',
+            portInfo.cveScore || 0 // Ensure CVE Score is stored as a number
         ]).draw();
     });
 
     if (firstLogin) emptyDash();
 }
+
 
 
 function initializeCharts() {
