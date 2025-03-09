@@ -101,6 +101,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             if (serviceName.includes("Samba smbd")) serviceName = "Samba";
             if (serviceName.includes("GNU Classpath grmiregistry")) serviceName = "java rmi";
+            if (serviceName.includes("Metasploitable root shell")) serviceName = "1524";
 
             console.log("Searching exploits for:", serviceName);
 
@@ -236,7 +237,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (nfsButton) {
         nfsButton.addEventListener("click", function () {
-            console.log("Metasploit button clicked");
+            console.log("NFS button clicked");
 
             const portNumber = parsedPortInfo.port;
             const portDetails = portTable[portNumber];
