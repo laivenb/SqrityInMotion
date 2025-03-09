@@ -1,66 +1,117 @@
-/* General styling */
+/* General Styling */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f9fa;
-    color: #333;
+    margin: 0;
+    padding: 0;
 }
 
+
+/* Main Content */
 .main-content {
-    margin-left: 290px;
+    margin-left: 260px;
     padding: 20px;
     min-height: 100vh;
+    width: calc(100% - 280px);
+    overflow-x: hidden;  /* Ensures no horizontal scrolling */
 }
 
+/* User Records Container */
 .user-records {
-    width: 95%; /* Increase width for a wider layout */
-    max-width: 1200px; /* Limit maximum width for better readability */
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
-.user-records h2 {
+/* Table Styling */
+#userRecordsTable {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed; /* Forces columns to fit */
+}
+
+/* Table Headers & Cells */
+/* Table Cell Styling - Allow Wrapping */
+#userRecordsTable th,
+#userRecordsTable td {
+    padding: 8px;
+    text-align: left;
+    font-size: 13px;
+    border: 1px solid #ddd;
+    white-space: normal;
+    word-wrap: break-word; /* Breaks long words */
+    overflow-wrap: break-word; /* Ensures wrapping in all browsers */
+    max-width: 150px; /* Prevents columns from stretching too much */
+}
+
+/* Column Sizing */
+#userRecordsTable th:nth-child(1),
+#userRecordsTable td:nth-child(1) {
+    width: 12%; /* Adjust User ID column */
+}
+
+#userRecordsTable th:nth-child(5),
+#userRecordsTable td:nth-child(5) {
+    width: 18%; /* Adjust Email column */
+}
+
+#userRecordsTable th:last-child,
+#userRecordsTable td:last-child {
+    width: 8%; /* Role column */
+}
+
+/* Buttons - Delete & Edit */
+.delete-btn,
+.edit-role-btn {
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    display: inline-block;
+    width: auto; /* Adjust button size */
+    margin: 2px;
+}
+
+ h2 {
     font-size: 42px;
     font-weight: 600;
     color: #2c3e50;
     margin-bottom: 15px;
 }
 
-#userRecordsTable {
-    width: 110%;
-    margin-top: 10px;
-    border-collapse: collapse;
-}
-
-#userRecordsTable th,
-#userRecordsTable td {
-    padding: 12px; /* Increased padding for a more spacious layout */
-    text-align: left;
-    font-size: 14px;
-    border: 1px solid #ddd;
-}
-
-#userRecordsTable th {
-    background-color: #f0f0f0;
-    color: #333;
-    font-weight: 600;
-}
-
-.delete-btn {
-    padding: 6px 12px;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-/* Modal styles */
-.modal-header .modal-title {
-    font-weight: 600;
-    color: #dc3545;
-}
-
-.modal-footer .btn-secondary {
-    background-color: #6c757d;
+/* Edit Button */
+.edit-role-btn {
+    background-color: #007bff;
     color: white;
+    border: none;
+    border-radius: 4px;
 }
 
-.modal-footer .btn-danger {
-    background-color: #dc3545;
-    color: white;
+.edit-role-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Prevents Table from Overflowing */
+@media (max-width: 1200px) {
+    .main-content {
+        margin-left: 0;
+        width: 95%;
+        padding: 10px;
+    }
+
+    .user-records {
+        width: 100%;
+    }
+
+    #userRecordsTable {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+    }
+
+    /* Stack buttons when needed */
+    .delete-btn,
+    .edit-role-btn {
+        width: 100%;
+        margin-top: 5px;
+    }
 }

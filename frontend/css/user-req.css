@@ -6,7 +6,7 @@ body {
 }
 
 .main-content {
-    margin-left: 180px; /* Space for sidebar */
+    margin-left: 170px; /* Space for sidebar */
     padding: 20px;
     min-height: 100vh;
 }
