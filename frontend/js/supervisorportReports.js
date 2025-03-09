@@ -74,9 +74,9 @@ async function loadSupervisorReports(supervisorID) {
                     <td>${reportID}</td>
                     <td>${dateSubmitted}</td>
                     <td>${username}</td>
-                    <td>
-                        <button class="btn btn-primary view-btn">View Report</button>
-                        <button class="btn btn-secondary export-btn">Export as JSON</button>
+                    <td class="button-container">
+                        <button class=" view-btn">View Report</button>
+                        <button class=" export-btn">Export as JSON</button>
                     </td>
                 </tr>
             `;
