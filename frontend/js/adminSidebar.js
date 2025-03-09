@@ -19,51 +19,13 @@ document.addEventListener('DOMContentLoaded', function () {
             sidebarElement.innerHTML = data; // Insert sidebar HTML into the page
             console.log("Sidebar loaded successfully");
             setUsername(); // Call to set the username in the sidebar after loading
-            setupLogoutButton(); // Setup the logout functionality
+            setupLogoutButton(); // Set up the logout functionality
         })
         .catch(error => {
             console.error("Error loading sidebar:", error);
         });
 });
 
-// Firebase database reference
-const db = firebase.database();
-
-// Fetch total users and total requests from Firebase
-function fetchData() {
-    // Fetch total users
-    db.ref('/path_to_total_users').once('value')
-        .then(snapshot => {
-            const totalUsers = snapshot.val();
-            const totalUsersElement = document.getElementById("total-users");
-            if (totalUsersElement) {
-                totalUsersElement.textContent = totalUsers;
-            } else {
-                console.warn("Total Users element not found.");
-            }
-        })
-        .catch(error => {
-            console.error("Error fetching total users:", error);
-        });
-
-    // Fetch total requests
-    db.ref('/path_to_total_requests').once('value')
-        .then(snapshot => {
-            const totalRequests = snapshot.val();
-            const totalRequestsElement = document.getElementById("total-requests");
-            if (totalRequestsElement) {
-                totalRequestsElement.textContent = totalRequests;
-            } else {
-                console.warn("Total Requests element not found.");
-            }
-        })
-        .catch(error => {
-            console.error("Error fetching total requests:", error);
-        });
-}
-
-// Call fetchData on page load
-fetchData();
 
 // Function to set the username in the sidebar
 function setUsername() {
