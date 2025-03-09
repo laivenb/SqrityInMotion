@@ -24,12 +24,14 @@ body {
     color: #2c3e50;
     margin-bottom: 20px;
     text-align: left;
+
 }
 
 #reportsTable {
     width: 100%; /* Full width of user-records container */
     margin-top: 20px;
     border-collapse: collapse;
+
 }
 
 #reportsTable th,
@@ -84,4 +86,55 @@ body {
 
 .dataTables_wrapper .dataTables_filter input {
     text-align: left; /* Ensures text inside the input box remains left-aligned */
+}
+/* Stack buttons with slight size reduction */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stack vertically */
+    gap: 6px; /* Reduce spacing slightly */
+    align-items: center; /* Center-align buttons */
+    width: 100%;
+}
+
+/* Make buttons smaller */
+.view-btn,
+.export-btn,
+.send-btn {
+    padding: 6px 12px; /* Reduce padding */
+    font-size: 13px; /* Slightly smaller text */
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    width: 90%; /* Reduce width slightly */
+    max-width: 170px; /* Prevents buttons from being too wide */
+    text-align: center;
+}
+
+/* Button Colors */
+.view-btn {
+    background-color: #28a745;
+    color: white;
+}
+
+.export-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.send-btn {
+    background-color: #ffc107;
+    color: black;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .button-container {
+        width: 100%;
+    }
+
+    .view-btn,
+    .export-btn,
+    .send-btn {
+        max-width: 160px; /* Make buttons slightly smaller on mobile */
+    }
 }

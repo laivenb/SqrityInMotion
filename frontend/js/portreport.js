@@ -97,11 +97,11 @@ async function loadReports(userID) {
                         <td>${data.reportName || "Unnamed Report"}</td>
                         <td>${data.dateCreated ? new Date(data.dateCreated).toLocaleString() : "N/A"}</td>
                         <td>${username}</td> 
-                        <td>
-                            <button class="btn btn-primary view-btn">View Report</button>
-                            <button class="btn btn-secondary export-btn">Export as JSON</button>
-                             <button class="btn btn-warning send-btn">Send to Supervisor</button>
-                        </td>
+                        <td class="button-container">
+    <button class="btn view-btn">View Report</button>
+    <button class="btn export-btn">Export as JSON</button>
+    <button class="btn send-btn">Send to Supervisor</button>
+</td>
                     </tr>
                 `;
                 reportRows.push(newRow);
