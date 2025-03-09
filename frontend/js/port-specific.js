@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             <h4>For SSH Login (Port 22)</h4>
             <pre><code>
-hydra -L ~/Desktop/users.txt -P ~/Desktop/passwords.txt -t 4 ssh://<target-IP>
+            hydra -L ~/Desktop/users.txt -P ~/Desktop/passwords.txt -t 4 ssh://&lt;target-IP&gt;
 </code></pre>
 
             <p>Replace <code>&lt;target-IP&gt;</code> with the actual IP address of the target.</p>
@@ -223,7 +223,7 @@ hydra -L ~/Desktop/users.txt -P ~/Desktop/passwords.txt -t 4 ssh://<target-IP>
 
 
 
-    // Hydra (Credential Download)
+    // Medusa (Credential Download)
     if (medusaButton) {
         medusaButton.addEventListener("click", function () {
             console.log("Medusa button clicked");
