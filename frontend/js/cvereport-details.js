@@ -31,6 +31,14 @@ if (!currentUser || !userID) {
     console.log("Vulnerabilities data saved to sessionStorage:", vulnerabilitiesData);
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const exportPDFBtn = document.getElementById('exportPDFBtn');
+
+    exportPDFBtn.addEventListener('click', function() {
+        window.print();
+    });
+});
+
 // Function to load the CVE report details for a specific user
 async function loadReportDetails(userID) {
     try {

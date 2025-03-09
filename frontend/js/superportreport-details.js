@@ -33,6 +33,14 @@ if (!currentUser || !userID) {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const exportPDFBtn = document.getElementById('exportPDFBtn');
+
+    exportPDFBtn.addEventListener('click', function() {
+        window.print();
+    });
+});
+
 // Function to load the port report details
 async function loadReportDetails(reportID) {
     try {

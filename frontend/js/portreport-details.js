@@ -29,6 +29,14 @@ if (!currentUser || !userID) {
     loadReportDetails(userID);
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    const exportPDFBtn = document.getElementById('exportPDFBtn');
+
+    exportPDFBtn.addEventListener('click', function() {
+        window.print();
+    });
+});
+
 // Function to load the report details for a specific user
 async function loadReportDetails(userID) {
     try {
