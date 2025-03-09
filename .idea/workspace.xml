@@ -6,14 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Super - Button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/user-records.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/user-records.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/css/user-req.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/user-req.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/cve-reports.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/cve-reports.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/supervisorcveReports.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/supervisorcveReports.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/supervisorportReports.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/supervisorportReports.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/user-records.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/user-records.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/superHome.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/superHome.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/user-records.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/user-records.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

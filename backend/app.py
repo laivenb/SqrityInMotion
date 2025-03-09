@@ -140,7 +140,7 @@ def scan_device_version():
     try:
         # Only scan the top 100 common ports with version detection
         result = subprocess.check_output(
-            ['nmap', '-sV', '--top-ports', '100', '--version-intensity', '1', ip],
+            ['nmap', '-sV', '-p-', '--version-intensity', '1', ip],
             universal_newlines=True
         )
         return jsonify(output=result)  # Directly return the raw output
@@ -279,7 +279,7 @@ def vul_scan():
     target_ip = data.get("target_ip")
     try:
         print(f"Running vulnerability scan on {target_ip}...")
-        command = ["sudo", "nmap", "-sV", "-p21-8000", "--script", "vulners", target_ip]
+        command = ["sudo", "nmap", "-sV", "--script", "vulners", target_ip]
         result = subprocess.run(command, capture_output=True, text=True)
         output = result.stdout
 
@@ -406,7 +406,27 @@ def exploit_rmi():
 
     return jsonify({"output": None, "error": "No valid IP address specified."}), 400
 
+@app.route('/search_exploit', methods=['POST'])
+def search_exploit():
+    try:
+        data = request.json
+        service_name = data.get('name')
 
+        if not service_name:
+            return jsonify({"error": "No service name provided"}), 400
+
+        # Run searchsploit command
+        result = subprocess.run(["searchsploit", service_name], capture_output=True, text=True)
+
+        # Extract relevant lines from output (ignore headers)
+        output_lines = result.stdout.split("\n")
+        exploits = [line for line in output_lines if "|" in line]  # Keep lines containing "|"
+
+        # Return output or message if no results found
+        return jsonify({"output": exploits if exploits else "No exploits found."})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 
