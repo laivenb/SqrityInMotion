@@ -166,6 +166,35 @@ document.addEventListener("DOMContentLoaded", async function () {
         hydraButton.addEventListener("click", function () {
             console.log("Hydra button clicked");
 
+            // Append the Hydra instructions first
+            hydraResultsDiv.innerHTML = `
+            <h2>Instructions for Using Hydra with Text Files</h2>
+
+            <h3>1. Import Files to Kali Linux</h3>
+            <p>After obtaining the text files, transfer them to your Kali Linux virtual machine.</p>
+            <ol>
+              <li>Open your Kali Linux VM.</li>
+              <li>Drag the text files to your Kali Desktop.</li>
+            </ol>
+
+            <h3>2. Use Hydra to Brute Force SSH (Port 22)</h3>
+            <p>Open your Kali terminal and use the following command to brute force:</p>
+
+            <h4>For SSH Login (Port 22)</h4>
+            <pre><code>
+hydra -L ~/Desktop/users.txt -P ~/Desktop/passwords.txt -t 4 ssh://<target-IP>
+</code></pre>
+
+            <p>Replace <code>&lt;target-IP&gt;</code> with the actual IP address of the target.</p>
+            <p>The <code>-t 4</code> flag sets the number of parallel tasks.</p>
+
+            <h3>3. Verify Results</h3>
+            <p>Once Hydra completes the attack, it will display valid login credentials if successful.</p>
+            <br>
+            <strong>Download Credentials:</strong><br>
+        `;
+
+            // Append download links after instructions
             const files = [
                 "Credentials/Android/common_android_passwords.txt",
                 "Credentials/Android/common_android_usernames.txt",
@@ -179,23 +208,19 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "Credentials/Windows/common_windows_usernames.txt"
             ];
 
-            hydraResultsDiv.innerHTML = "<strong>Download Credentials:</strong><br>";
             files.forEach(file => {
                 const fileName = file.split("/").pop();
                 const link = document.createElement("a");
-                link.href = file; // Adjust this if needed
+                link.href = file;
                 link.download = fileName;
                 link.textContent = fileName;
                 link.style.display = "block";
                 hydraResultsDiv.appendChild(link);
             });
-
-
-
-
-
         });
     }
+
+
 
 
     // Hydra (Credential Download)
@@ -203,6 +228,38 @@ document.addEventListener("DOMContentLoaded", async function () {
         medusaButton.addEventListener("click", function () {
             console.log("Medusa button clicked");
 
+            // Clear any previous content
+            medusaResultsDiv.innerHTML = "";
+
+            // Add instructions
+            medusaResultsDiv.innerHTML += `
+        <h2>Instructions for Using Medusa with Text Files</h2>
+
+        <h3>1. Import Files to Kali Linux</h3>
+        <p>After obtaining the text files, transfer them to your Kali Linux virtual machine.</p>
+        <ol>
+          <li>Open your Kali Linux VM.</li>
+          <li>Drag the text files to your Kali Desktop.</li>
+        </ol>
+
+        <h3>2. Use Medusa to Brute Force</h3>
+        <p>Open your Kali terminal and use the following command to brute force:</p>
+
+        <h4>SSH Login</h4>
+        <pre><code>medusa -h &lt;target-IP&gt; -U ~/Desktop/users.txt -P ~/Desktop/passwords.txt -M ssh</code></pre>
+
+        <h4>FTP Login</h4>
+        <pre><code>medusa -h &lt;target-IP&gt; -U ~/Desktop/users.txt -P ~/Desktop/passwords.txt -M ftp</code></pre>
+
+        <h4>HTTP Login</h4>
+        <pre><code>medusa -h &lt;target-IP&gt; -U ~/Desktop/users.txt -P ~/Desktop/passwords.txt -M http -m DIR:/admin</code></pre>
+
+        <p><strong>Note:</strong> Replace <code>&lt;target-IP&gt;</code> with the actual IP address of the target.</p>
+
+        <h3>3. Download Credential Files</h3>
+      `;
+
+            // Add download links
             const files2 = [
                 "Credentials/Android/common_android_passwords.txt",
                 "Credentials/Android/common_android_usernames.txt",
@@ -216,21 +273,15 @@ document.addEventListener("DOMContentLoaded", async function () {
                 "Credentials/Windows/common_windows_usernames.txt"
             ];
 
-            hydraResultsDiv.innerHTML = "<strong>Download Credentials:</strong><br>";
             files2.forEach(file3 => {
                 const fileName = file3.split("/").pop();
                 const link = document.createElement("a");
-                link.href = file3; // Adjust this if needed
+                link.href = file3;
                 link.download = fileName;
                 link.textContent = fileName;
                 link.style.display = "block";
                 medusaResultsDiv.appendChild(link);
             });
-
-
-
-
-
         });
     }
 
