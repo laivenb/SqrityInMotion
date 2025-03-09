@@ -25,78 +25,41 @@
       <h1 class="header">User Information</h1>
 
       <!-- Profile Section -->
-      <div class="profile-section">
-        <div class="profile-placeholder">
-          <span class="upload-icon"></span>
-          <a href="#" class="edit-link" id="edit-link">Edit</a> <!-- Clickable Edit link -->
-          <input type="file" id="file-input" style="display: none;"> <!-- Hidden file input -->
-        </div>
-        <div class="ml-4"> <!-- Profile details -->
-          <div class="personal-info">
-            <div class="user-info-row">
-              <div class="form-group">
-                <label for="last-name">Last Name</label>
-                <input type="text" id="last-name" value="" readonly>
-              </div>
-              <div class="form-group">
-                <label for="contact-number">
-                  Contact Number
-                  <i class="fas fa-edit" title="Edit Contact Number" style="cursor: pointer; color: #007bff;"></i>
-                </label>
-                <input type="text" id="contact-number" value=""> <!-- Made editable -->
-              </div>
+      <div class="ml-4">
+        <div class="personal-info">
+          <div class="user-info-row">
+            <div class="form-group">
+              <label for="last-name">Last Name</label>
+              <input type="text" id="last-name" value="" readonly>
             </div>
-            <div class="user-info-row">
-              <div class="form-group">
-                <label for="first-name">First Name</label>
-                <input type="text" id="first-name" value="" readonly>
-              </div>
-              <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" value="" readonly>
-              </div>
+            <div class="form-group">
+              <label for="contact-number">
+                Contact Number
+                <i class="fas fa-edit" title="Edit Contact Number" style="cursor: pointer; color: #007bff;"></i>
+              </label>
+              <input type="text" id="contact-number" value=""> <!-- Made editable -->
             </div>
-            <div class="user-info-row">
-              <div class="form-group">
-                <label for="middle-name">Middle Name</label>
-                <input type="text" id="middle-name" value="" readonly>
-              </div>
-              <div class="form-group">
-                <label for="user-name">Username</label>
-                <input type="text" id="user-name" value="" readonly>
-                <button class="btn btn-primary btn-sm mt-3">Save</button> <!-- Adjusted margin -->
-              </div>
+          </div>
+          <div class="user-info-row">
+            <div class="form-group">
+              <label for="first-name">First Name</label>
+              <input type="text" id="first-name" value="" readonly>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" value="" readonly>
+            </div>
+          </div>
+          <div class="user-info-row">
+            <div class="form-group">
+              <label for="user-name">Username</label>
+              <input type="text" id="user-name" value="" readonly>
+              <button class="btn btn-primary btn-sm mt-3">Save</button> <!-- Adjusted margin -->
             </div>
           </div>
         </div>
       </div>
-
-      <hr class="divider">
-
-      <!-- Department Information Section -->
-      <div class="department-info">
-        <h2>Department Information</h2>
-        <div class="form-group">
-          <label for="department">Department</label>
-          <input type="text" id="department" value="Engineering" readonly>
-        </div>
-        <div class="form-group">
-          <label for="department-head">Department Head</label>
-          <input type="text" id="department-head" value="Jane Smith" readonly>
-        </div>
-        <div class="form-group">
-          <label for="role">Role</label>
-          <input type="text" id="role" value="Software Developer" readonly>
-        </div>
-        <div class="form-group">
-          <label for="email-duplicate">Supervisor Email Address</label>
-          <input type="email" id="email-duplicate" value="johndoe@sqrity.com" readonly>
-        </div>
-      </div>
     </div>
-  </div>
-</div>
-
 <!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
