@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Super">
-      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/cvereport-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/cvereport-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/cvereport-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/cvereport-details.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/portreport-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/portreport-details.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/supercvereport-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/supercvereport-details.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/js/superportreport-details.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/superportreport-details.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/portreport-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/portreport-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/supercvereport-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/supercvereport-details.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/superportreport-details.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/superportreport-details.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/css/viewreports.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/css/viewreports.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/portreport.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/portreport.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/port-reports.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/port-reports.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +25,6 @@
         <option value="CSS File" />
         <option value="HTML File" />
         <option value="JavaScript File" />
-        <option value="package.json" />
       </list>
     </option>
   </component>
@@ -67,44 +60,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JavaScript Debug.adminside.html.executor": "Run",
-    "JavaScript Debug.home.html.executor": "Run",
-    "JavaScript Debug.login.html.executor": "Run",
-    "JavaScript Debug.nmap-network.html.executor": "Run",
-    "JavaScript Debug.nmap-report.html.executor": "Run",
-    "JavaScript Debug.nmap-specific.html.executor": "Run",
-    "JavaScript Debug.nmap.html.executor": "Run",
-    "JavaScript Debug.nmapNetwork.html.executor": "Run",
-    "JavaScript Debug.pentest-result.html.executor": "Run",
-    "JavaScript Debug.port-specific.html.executor": "Run",
-    "JavaScript Debug.register.html.executor": "Run",
-    "JavaScript Debug.server-Test.html.executor": "Run",
-    "JavaScript Debug.sidebar.html.executor": "Run",
-    "JavaScript Debug.userinfo.html.executor": "Run",
-    "Node.js.home.js.executor": "Run",
-    "Node.js.nmap-network.js.executor": "Run",
-    "Node.js.nmap-specific.js.executor": "Run",
-    "Node.js.nmap.js.executor": "Run",
-    "Node.js.port-specific.js.executor": "Run",
-    "Node.js.register.js.executor": "Run",
-    "Node.js.sidebar.js.executor": "Run",
-    "Python.app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "uyBranch",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.tools",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.adminside.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.home.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.login.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.nmap-network.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.nmap-report.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.nmap-specific.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.nmap.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.nmapNetwork.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.pentest-result.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.port-specific.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.register.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.server-Test.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.sidebar.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.userinfo.html.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.home.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.nmap-network.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.nmap.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.port-specific.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.register.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.sidebar.js.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;uyBranch&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.tools&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PhpStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend" />
@@ -200,7 +192,39 @@
       <option name="project" value="LOCAL" />
       <updated>1741429905649</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Super">
+      <option name="closed" value="true" />
+      <created>1741430638824</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1741430638824</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Super">
+      <option name="closed" value="true" />
+      <created>1741431835356</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1741431835356</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Super">
+      <option name="closed" value="true" />
+      <created>1741432308121</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1741432308121</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Super">
+      <option name="closed" value="true" />
+      <created>1741432498771</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1741432498771</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
