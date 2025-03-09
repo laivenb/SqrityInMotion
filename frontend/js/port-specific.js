@@ -251,8 +251,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         <h4>FTP Login</h4>
         <pre><code>medusa -h &lt;target-IP&gt; -U ~/Desktop/users.txt -P ~/Desktop/passwords.txt -M ftp</code></pre>
 
-        <h4>HTTP Login</h4>
-        <pre><code>medusa -h &lt;target-IP&gt; -U ~/Desktop/users.txt -P ~/Desktop/passwords.txt -M http -m DIR:/admin</code></pre>
+        <h4>Postgres Login</h4>
+        <pre><code>medusa -h &lt;target-IP&gt; -U ~/Desktop/users.txt -P ~/Desktop/passwords.txt -M postgres</code></pre>
 
         <p><strong>Note:</strong> Replace <code>&lt;target-IP&gt;</code> with the actual IP address of the target.</p>
 
