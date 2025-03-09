@@ -65,17 +65,7 @@ body {
 }
 
 /* View Button Styling */
-.view-btn {
-    padding: 8px 15px; /* Matching the padding and size of export button */
-    font-size: 14px;
-    cursor: pointer;
-    background-color: #28a745; /* Different color for the view button */
-    color: white;
-    border: none;
-    border-radius: 4px;
-    margin-right: 8px; /* Space between buttons */
-    transition: background-color 0.3s ease;
-}
+
 
 .view-btn:hover {
     background-color: #218838;
@@ -90,9 +80,9 @@ body {
 /* Stack buttons with slight size reduction */
 .button-container {
     display: flex;
-    flex-direction: column; /* Stack vertically */
-    gap: 6px; /* Reduce spacing slightly */
-    align-items: center; /* Center-align buttons */
+    flex-direction: column;
+    gap: 8px; /* Adds spacing between buttons */
+    align-items: center; /* Center-aligns buttons */
     width: 100%;
 }
 
