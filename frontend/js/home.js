@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.68.62:5000';
+const BASE_URL = 'http://192.168.68.59:5000';
 let openPorts = [];
 
 function getIPFromURL() {
@@ -8,12 +8,14 @@ function getIPFromURL() {
 
 window.addEventListener('load', () => {
     const currentUser = sessionStorage.getItem("username");
+
     if (!currentUser) {
+        sessionStorage.clear();  // Clears old session data
+        localStorage.clear();    // Clears persistent stored data (optional)
         window.location.href = "login.html";
     } else {
         console.log("Logged in as:", currentUser);
-        const ipAddress = getIPFromURL();
-        document.querySelector('.ip-address').textContent = ipAddress;
+        document.querySelector('.ip-address').textContent = getIPFromURL();
         initializeDataTable();
     }
 });
@@ -105,70 +107,82 @@ function initializeDataTable() {
 
 
 
+let doughnutChart, progressChart; // Declare globally
+
 function initializeCharts() {
     const doughnutCanvas = document.getElementById("doughnutChart");
     const progressChartCanvas = document.getElementById("progressChart");
 
     if (!doughnutCanvas || !progressChartCanvas) return;
 
-    const doughnutCtx = document.getElementById("doughnutChart").getContext("2d");
+    const doughnutCtx = doughnutCanvas.getContext("2d");
+    const progressCtx = progressChartCanvas.getContext("2d");
 
-    new Chart(doughnutCtx, {
+    const storedVulnerabilities = JSON.parse(sessionStorage.getItem("vulnerabilitiesData")) || [];
+
+    console.log("Initializing Charts - Stored Vulnerabilities:", storedVulnerabilities);
+
+    let counts = { critical: 0, high: 0, medium: 0, low: 0 };
+
+    if (storedVulnerabilities.length > 0) {
+        storedVulnerabilities.forEach(v => {
+            if (v.cve_score >= 9) counts.critical++;
+            else if (v.cve_score >= 7) counts.high++;
+            else if (v.cve_score >= 4) counts.medium++;
+            else counts.low++;
+        });
+    }
+
+    doughnutChart = new Chart(doughnutCtx, {
         type: "doughnut",
         data: {
             labels: ["Critical", "High", "Medium", "Low"],
             datasets: [{
-                data: [10, 25, 30, 35],
+                data: [counts.critical, counts.high, counts.medium, counts.low],
                 backgroundColor: ["#ff6384", "#ff9f40", "#ffcd56", "#4bc0c0"],
                 borderWidth: 0,
-                cutout: "70%" // Increases the inner hole size, making the chart larger
+                cutout: "70%"
             }]
         },
         options: {
             responsive: true,
-            maintainAspectRatio: false, // Allows better resizing
+            maintainAspectRatio: false,
             plugins: {
                 legend: {
-                    position: "top",  // Moves the legend above the chart
-                    align: "center",  // Centers the legend
-                    labels: {
-                        boxWidth: 12, // Makes the legend color boxes smaller
-                        padding: 8,  // Reduces spacing between legend items
-                        font: {
-                            size: 12 // Decreases font size of legend
-                        }
-                    }
+                    position: "top",
+                    align: "center",
+                    labels: { boxWidth: 12, padding: 8, font: { size: 12 } }
                 }
             },
-            layout: {
-                padding: {
-                    top: 15, // Adds slight spacing between legend and chart
-                    bottom: 10 // Adds space below chart
-                }
-            }
+            layout: { padding: { top: 15, bottom: 10 } }
         }
     });
 
-
-    const progressCtx = progressChartCanvas.getContext("2d");
-    new Chart(progressCtx, {
+    progressChart = new Chart(progressCtx, {
         type: "bar",
         data: {
-            labels: [""],  // Only one category on Y-axis
+            labels: [""],
             datasets: [
-                { label: "Critical", data: [10], backgroundColor: "#ff6384" },
-                { label: "High", data: [25], backgroundColor: "#ff9f40" },
-                { label: "Medium", data: [30], backgroundColor: "#ffcd56" },
-                { label: "Low", data: [35], backgroundColor: "#4bc0c0" }
+                { label: "Critical", data: [counts.critical], backgroundColor: "#ff6384" },
+                { label: "High", data: [counts.high], backgroundColor: "#ff9f40" },
+                { label: "Medium", data: [counts.medium], backgroundColor: "#ffcd56" },
+                { label: "Low", data: [counts.low], backgroundColor: "#4bc0c0" }
             ]
         },
         options: {
             responsive: true,
             indexAxis: "y",
-            scales: { x: { max: 100, beginAtZero: true } }
+            scales: { x: { max: Math.max(10, counts.critical + counts.high + counts.medium + counts.low), beginAtZero: true } }
         }
     });
+
+    if (storedVulnerabilities.length === 0) {
+        console.log("No vulnerabilities found, clearing dashboard.");
+        emptyDash();
+    }
 }
+
+
 
 
 
@@ -189,13 +203,25 @@ function fetchVulnerabilities(openPorts) {
 }
 
 function emptyDash() {
+    console.log("Resetting Dashboard - Clearing Charts & Table");
+
     $('#portTable').DataTable().clear().draw();
     $('#saveCveReportBtn').hide();
     sessionStorage.removeItem('vulnerabilitiesData');
-    doughnutChart.data.datasets[0].data = [0, 0, 0];
-    doughnutChart.update();
-    progressChart.data.datasets.forEach(dataset => dataset.data = [0]);
-    progressChart.update();
+    sessionStorage.removeItem('chartData');
+
+    if (doughnutChart) {
+        doughnutChart.data.datasets[0].data = [0, 0, 0, 0];
+        doughnutChart.update();
+        console.log("Doughnut chart reset:", doughnutChart.data.datasets[0].data);
+    }
+
+    if (progressChart) {
+        progressChart.data.datasets.forEach(dataset => dataset.data = [0]);
+        progressChart.update();
+        console.log("Progress chart reset:", progressChart.data.datasets.map(ds => ds.data));
+    }
+
     $('.vulnerability').text("VULNERABILITY: 0%");
 }
 
@@ -219,23 +245,48 @@ function updatePortTable(vulnerabilities) {
 }
 
 function updateCharts(vulnerabilities) {
-    const counts = { critical: 0, medium: 0, low: 0 };
+    console.log("Updating Charts - Received Vulnerabilities:", vulnerabilities);
+
+    if (!vulnerabilities || vulnerabilities.length === 0) {
+        console.log("No vulnerabilities received, resetting charts.");
+        emptyDash();
+        return;
+    }
+
+    const counts = { critical: 0, high: 0, medium: 0, low: 0 };
+
     vulnerabilities.forEach(v => {
-        if (v.cve_score >= 7) counts.critical++;
+        if (v.cve_score >= 9) counts.critical++;
+        else if (v.cve_score >= 7) counts.high++;
         else if (v.cve_score >= 4) counts.medium++;
         else counts.low++;
     });
-    const total = counts.critical + counts.medium + counts.low;
-    if (total > 0) {
-        doughnutChart.data.datasets[0].data = [counts.critical, counts.medium, counts.low];
+
+    console.log("Computed Vulnerability Counts:", counts);
+    sessionStorage.setItem("chartData", JSON.stringify(counts));
+
+    if (doughnutChart) {
+        doughnutChart.data.datasets[0].data = [counts.critical, counts.high, counts.medium, counts.low];
         doughnutChart.update();
-        progressChart.data.datasets[0].data = [counts.critical];
-        progressChart.data.datasets[1].data = [counts.medium];
-        progressChart.data.datasets[2].data = [counts.low];
-        progressChart.update();
-        $('.vulnerability').text(`VULNERABILITY: ${(total / 100).toFixed(2)}%`);
+        console.log("Doughnut chart updated:", doughnutChart.data.datasets[0].data);
+    } else {
+        console.error("Doughnut chart is not initialized.");
     }
+
+    if (progressChart) {
+        progressChart.data.datasets[0].data = [counts.critical];
+        progressChart.data.datasets[1].data = [counts.high];
+        progressChart.data.datasets[2].data = [counts.medium];
+        progressChart.data.datasets[3].data = [counts.low];
+        progressChart.update();
+        console.log("Progress chart updated:", progressChart.data.datasets.map(ds => ds.data));
+    } else {
+        console.error("Progress chart is not initialized.");
+    }
+
+    $('.vulnerability').text(`VULNERABILITY: ${((counts.critical + counts.high + counts.medium + counts.low) / 100).toFixed(2)}%`);
 }
+
 
 document.getElementById('saveCveReportBtn').addEventListener('click', function(e) {
     e.preventDefault();

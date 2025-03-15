@@ -4,9 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Super - Button">
+    <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Super">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_8_25,_6_07 PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_8_25__6_07PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/adminHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/adminHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-network.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-network.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-specific.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pentest-result.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/pentest-result.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/port-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/port-specific.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/register.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/superHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/superHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/superSide.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/superSide.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +64,7 @@
 }</component>
   <component name="ProjectId" id="2kVoBi26YQawoMxhLI6Uq0qCkOU" />
   <component name="ProjectLevelVcsManager">
+    <OptionsSetting value="false" id="Update" />
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -222,15 +235,7 @@
       <option name="project" value="LOCAL" />
       <updated>1741432498771</updated>
     </task>
-    <task id="LOCAL-00013" summary="Super - Button">
-      <option name="closed" value="true" />
-      <created>1741503606789</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1741503606790</updated>
-    </task>
-    <option name="localTasksCounter" value="14" />
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -243,8 +248,7 @@
     <MESSAGE value="Wheel v2" />
     <MESSAGE value="Wheel v3" />
     <MESSAGE value="Super" />
-    <MESSAGE value="Super - Button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Super - Button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Super" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/SqrityInMotion$app.coverage" NAME="app Coverage Results" MODIFIED="1723378591676" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

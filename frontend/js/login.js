@@ -1,4 +1,4 @@
-// Import the functions you need from the SDKs you need
+// Import Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
 import { getDatabase, ref, get, child } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
 
@@ -16,97 +16,87 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
-
-// Log the entire database to the console for debugging
 const dbRef = ref(database);
-get(child(dbRef, '/')).then((snapshot) => {
-    if (snapshot.exists()) {
-        // Log entire database data
-        console.log("Database data:", snapshot.val());
-    } else {
-        console.error("No data available");
-    }
-}).catch((error) => {
-    console.error("Error fetching database data:", error.message);
-});
 
 // Function to handle login
-document.getElementById("loginButton").addEventListener("click", (e) => {
+document.getElementById("loginButton").addEventListener("click", async (e) => {
     e.preventDefault(); // Prevent default form submission
 
-    let firstLogin = true;
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
 
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    if (!username || !password) {
+        alert("Please enter both username and password.");
+        return;
+    }
 
-    // Retrieve user data from the database
-    get(child(dbRef, `users/`)).then((snapshot) => {
-        if (snapshot.exists()) {
-            let userFound = false;
-            let statusAccepted = false;
-            let userID = null;
-            let userData = null;
-
-            // Loop through each user node (user's unique ID)
-            snapshot.forEach((childSnapshot) => {
-                const currentUserData = childSnapshot.val();
-                const currentUserID = childSnapshot.key;
-                console.log("User data:", currentUserData); // Log each user's data
-
-                // Check if username and password match
-                if (currentUserData.username === username && currentUserData.password === password) {
-                    userFound = true;
-                    userData = currentUserData;
-                    userID = currentUserID;
-
-                    // Check if status is accepted
-                    if (currentUserData.status === "accepted") {
-                        statusAccepted = true;
-                    }
-                }
-            });
-
-            // Now handle the login flow based on userFound and statusAccepted
-            if (userFound) {
-                if (statusAccepted) {
-                    console.log("Login successful:", userData);
-
-                    // Store session data using sessionStorage
-                    sessionStorage.setItem("uid", userID);
-                    sessionStorage.setItem("username", userData.username);
-                    sessionStorage.setItem("role", userData.role); // Store user role
-                    sessionStorage.setItem("isLoggedIn", true);
-
-                    // Redirect based on role
-                    if (userData.role === 0) {
-                        // Redirect to admin home page
-                        window.location.href = "adminHome.html";
-                    } else if (userData.role === 1) {
-                        // Redirect to regular home page
-                        sessionStorage.removeItem("vulnerabilitiesData");
-                        sessionStorage.setItem('firstLogin', firstLogin.toString());
-                        console.log(sessionStorage.getItem('firstLogin'));
-                        window.location.href = "home.html";
-                    }else if (userData.role === 2) {
-                        // Redirect to regular home page
-                        sessionStorage.removeItem("vulnerabilitiesData");
-                        sessionStorage.setItem('firstLogin', firstLogin.toString());
-                        console.log(sessionStorage.getItem('firstLogin'));
-                        window.location.href = "superHome.html";
-                    }
-                } else {
-                    console.log("User status is not accepted. Please contact support.");
-                    alert("Your account has not been accepted. Please wait for admin approval.");
-                }
-            } else {
-                console.log("Invalid username or password.");
-                alert("Invalid username or password.");
-            }
-        } else {
+    try {
+        const snapshot = await get(child(dbRef, "users/"));
+        if (!snapshot.exists()) {
             console.error("No user data available");
+            alert("Invalid username or password.");
+            return;
         }
-    }).catch((error) => {
-        console.error("Error fetching user data:", error.message);
-    });
-});
 
+        let userFound = false;
+        let statusAccepted = false;
+        let userID = null;
+        let userData = null;
+
+        snapshot.forEach((childSnapshot) => {
+            const currentUserData = childSnapshot.val();
+            const currentUserID = childSnapshot.key;
+
+            if (currentUserData.username === username && currentUserData.password === password) {
+                userFound = true;
+                userData = currentUserData;
+                userID = currentUserID;
+
+                if (currentUserData.status === "accepted") {
+                    statusAccepted = true;
+                }
+            }
+        });
+
+        if (!userFound) {
+            alert("Invalid username or password.");
+            return;
+        }
+
+        if (!statusAccepted) {
+            alert("Your account has not been accepted. Please wait for admin approval.");
+            return;
+        }
+
+        // **Clear sessionStorage for new login**
+        sessionStorage.clear();
+        localStorage.clear();
+
+        // **Store session data**
+        sessionStorage.setItem("uid", userID);
+        sessionStorage.setItem("username", userData.username);
+        sessionStorage.setItem("role", userData.role); // Store user role
+        sessionStorage.setItem("isLoggedIn", "true");
+        sessionStorage.setItem("firstLogin", "true"); // Track first login
+
+        console.log("Login successful:", userData);
+
+        // **Redirect based on role**
+        switch (userData.role) {
+            case 0:
+                window.location.href = "adminHome.html";
+                break;
+            case 1:
+                window.location.href = "home.html";
+                break;
+            case 2:
+                window.location.href = "superHome.html";
+                break;
+            default:
+                alert("Unknown role. Contact support.");
+        }
+    } catch (error) {
+        console.error("Error fetching user data:", error.message);
+        alert("An error occurred. Please try again.");
+    }
+});
