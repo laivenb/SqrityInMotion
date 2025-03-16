@@ -5,32 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fabc915-1b57-4130-9601-ca8fa3b28a13" name="Changes" comment="Super">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/SqrityInMotion.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SqrityInMotion.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_8_25,_7_26 PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_8_25__7_26PM__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_8_25,_6_07 PM_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_3_8_25__6_07PM__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/adminHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/adminHome.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/js/home.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-network.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-network.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/nmap-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/nmap-specific.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/pentest-result.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/pentest-result.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/port-specific.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/port-specific.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/js/register.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/register.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/register.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@babel/runtime/helpers/esm/wrapRegExp.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@babel/runtime/helpers/esm/wrapRegExp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@babel/runtime/helpers/wrapRegExp.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@babel/runtime/helpers/wrapRegExp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/@babel/runtime/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/@babel/runtime/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/canvg/lib/Document/Document.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/canvg/lib/Document/Document.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/canvg/lib/Document/Document.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/canvg/lib/Document/Document.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/canvg/lib/Document/Element.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/canvg/lib/Document/Element.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/canvg/lib/Document/Element.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/canvg/lib/Document/Element.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/canvg/lib/Document/FontElement.d.ts.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/canvg/lib/Document/FontElement.d.ts.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/canvg/lib/index.babel.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/canvg/lib/index.babel.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/canvg/lib/index.cjs" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/canvg/lib/index.cjs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/canvg/lib/index.es.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/canvg/lib/index.es.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/canvg/lib/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/canvg/lib/umd.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/canvg/lib/umd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/canvg/lib/umd.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/canvg/lib/umd.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/canvg/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/canvg/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/sidebar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/sidebar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/js/superHome.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/js/superHome.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/superSide.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/superSide.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +58,6 @@
     &quot;accountId&quot;: &quot;4913f226-7113-4432-9a5f-7322d8e4c8e8&quot;
   }
 }</component>
-  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/opt/homebrew/Cellar/php/8.2.8/bin/php" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 3
@@ -84,44 +71,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JavaScript Debug.adminside.html.executor": "Run",
-    "JavaScript Debug.home.html.executor": "Run",
-    "JavaScript Debug.login.html.executor": "Run",
-    "JavaScript Debug.nmap-network.html.executor": "Run",
-    "JavaScript Debug.nmap-report.html.executor": "Run",
-    "JavaScript Debug.nmap-specific.html.executor": "Run",
-    "JavaScript Debug.nmap.html.executor": "Run",
-    "JavaScript Debug.nmapNetwork.html.executor": "Run",
-    "JavaScript Debug.pentest-result.html.executor": "Run",
-    "JavaScript Debug.port-specific.html.executor": "Run",
-    "JavaScript Debug.register.html.executor": "Run",
-    "JavaScript Debug.server-Test.html.executor": "Run",
-    "JavaScript Debug.sidebar.html.executor": "Run",
-    "JavaScript Debug.userinfo.html.executor": "Run",
-    "Node.js.home.js.executor": "Run",
-    "Node.js.nmap-network.js.executor": "Run",
-    "Node.js.nmap.js.executor": "Run",
-    "Node.js.port-specific.js.executor": "Run",
-    "Node.js.register.js.executor": "Run",
-    "Node.js.sidebar.js.executor": "Run",
-    "Python.app.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "uyBranch",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "configurable.group.tools",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\PhpStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript Debug.adminside.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.home.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.login.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.nmap-network.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.nmap-report.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.nmap-specific.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.nmap.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.nmapNetwork.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.pentest-result.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.port-specific.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.register.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.server-Test.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.sidebar.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript Debug.userinfo.html.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.home.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.nmap-network.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.nmap.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.port-specific.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.register.js.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.sidebar.js.executor&quot;: &quot;Run&quot;,
+    &quot;Python.app.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;uyBranch&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.tools&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\PhpStorm 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend" />
@@ -152,7 +138,6 @@
       <workItem from="1729924232747" duration="30374000" />
       <workItem from="1730534198139" duration="5688000" />
       <workItem from="1740815460046" duration="236000" />
-      <workItem from="1742060273550" duration="5641000" />
     </task>
     <task id="LOCAL-00001" summary="Port Reports Update">
       <option name="closed" value="true" />
@@ -255,17 +240,6 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Port Reports Update" />

@@ -26,7 +26,7 @@ document.getElementById("loginButton").addEventListener("click", async (e) => {
     const password = document.getElementById("password").value.trim();
 
     if (!username || !password) {
-        alert("Please enter both username and password.");
+        showModal("Please enter both username and password.");
         return;
     }
 
@@ -59,12 +59,12 @@ document.getElementById("loginButton").addEventListener("click", async (e) => {
         });
 
         if (!userFound) {
-            alert("Invalid username or password.");
+            showModal("Invalid username or password.");
             return;
         }
 
         if (!statusAccepted) {
-            alert("Your account has not been accepted. Please wait for admin approval.");
+            showModal("Your account has not been accepted. Please wait for admin approval.");
             return;
         }
 
@@ -93,10 +93,24 @@ document.getElementById("loginButton").addEventListener("click", async (e) => {
                 window.location.href = "superHome.html";
                 break;
             default:
-                alert("Unknown role. Contact support.");
+                showModal("Unknown role. Contact support.");
         }
     } catch (error) {
         console.error("Error fetching user data:", error.message);
-        alert("An error occurred. Please try again.");
+        showModal("An error occurred. Please try again.");
     }
 });
+
+
+function showModal(message) {
+    document.getElementById('modalMessage').textContent = message;
+    document.getElementById('alertModal').style.display = 'block';
+}
+
+function hideModal() {
+    document.getElementById('alertModal').style.display = 'none';
+}
+
+// Close modal when user clicks the "X"
+document.getElementById('closeModalBtn').addEventListener('click', hideModal);
+
