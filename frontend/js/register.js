@@ -12,6 +12,8 @@ const firebaseConfig = {
     databaseURL: "https://sqrity-f02ee-default-rtdb.asia-southeast1.firebasedatabase.app"
 };
 
+const SECRET_KEY = "kwatro";
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
@@ -24,7 +26,11 @@ function getCurrentDate() {
     return `${year}-${month}-${day}`;
 }
 
-const registerButton = document.getElementById("registerButton");
+function encryptPassword(password) {
+    return CryptoJS.AES.encrypt(password, SECRET_KEY).toString();
+}
+
+
 registerButton.addEventListener("click", async (e) => {
     e.preventDefault();
 
@@ -33,42 +39,38 @@ registerButton.addEventListener("click", async (e) => {
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
 
-    // Check if passwords match
     if (password !== confirmPassword) {
         alert("Passwords do not match.");
         return;
     }
 
-    // Check if password is strong
     if (!isPasswordStrong(password)) {
         alert("Password must be at least 15 characters long, include uppercase, lowercase, a number, and a special character.");
         return;
     }
 
-    // Check if user already exists
     const userExists = await checkUserExists(username, email);
     if (userExists) {
         alert("Username or email already exists. Please choose a different one.");
         return;
     }
 
-    // Generate custom user ID with date and continuous incremental counter
     const userId = await generateCustomUserId();
+    const encryptedPassword = encryptPassword(password);
 
-    // Register user with default status as "pending" and role as 1
     set(ref(database, "users/" + userId), {
         firstName: document.getElementById("firstName").value,
         middleName: document.getElementById("middleName").value,
         lastName: document.getElementById("lastName").value,
         username: username,
-        email: email,
-        password: password,
+        email: email.replace(/\./g, ","),
+        password: encryptedPassword, // Store encrypted password
         contactNumber: document.getElementById("contactNumber").value,
         company: document.getElementById("company").value,
         department: document.getElementById("department").value,
         position: document.getElementById("position").value,
         birthday: document.getElementById("birthday").value,
-        status: "pending", // Registration pending approval
+        status: "pending",
         role: 1,
         requestDate: getCurrentDate()
     })
@@ -89,25 +91,27 @@ async function generateCustomUserId() {
     const year = String(now.getFullYear()).slice(-2);
     const datePart = `01${month}${day}${year}`;
 
-    // Query to find the last user ID in the database
-    const userQuery = query(ref(database, "users"), orderByKey(), limitToLast(1));
-    const snapshot = await get(userQuery);
-
+    const snapshot = await get(ref(database, "users"));
     let increment = 1;
 
     if (snapshot.exists()) {
-        const lastUserId = Object.keys(snapshot.val())[0];
-        const lastIncrement = lastUserId.split('_')[0].slice(-4);
-        increment = parseInt(lastIncrement, 10) + 1;
-    }
+        const userIds = Object.keys(snapshot.val())
+            .map(id => {
+                const parts = id.split("_");
+                return parts.length > 1 ? parseInt(parts[0].slice(-4), 10) : NaN;
+            })
+            .filter(num => !isNaN(num))
+            .sort((a, b) => a - b);
 
+        increment = userIds.length > 0 ? userIds[userIds.length - 1] + 1 : 1;
+    }
 
     const incrementedPart = String(increment).padStart(4, '0');
     const key = generateRandomKey();
 
-
     return `${datePart}${incrementedPart}_${key}`;
 }
+
 
 // Function to generate a random key (for security)
 function generateRandomKey() {
