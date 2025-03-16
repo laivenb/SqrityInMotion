@@ -39,13 +39,8 @@ document.getElementById("loginButton").addEventListener("click", async (e) => {
     const emailInput = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
-<<<<<<< HEAD
     if (!emailInput || !password) {
         alert("Please enter both email and password.");
-=======
-    if (!username || !password) {
-        showModal("Please enter both username and password.");
->>>>>>> e984a09b16411b0e201321493d6e8ccfd5fa9eba
         return;
     }
 
@@ -93,16 +88,12 @@ document.getElementById("loginButton").addEventListener("click", async (e) => {
         });
 
         if (!userFound) {
-<<<<<<< HEAD
             alert("Invalid email or password.");
-=======
-            showModal("Invalid username or password.");
->>>>>>> e984a09b16411b0e201321493d6e8ccfd5fa9eba
             return;
         }
 
         if (!statusAccepted) {
-            showModal("Your account has not been accepted. Please wait for admin approval.");
+            alert("Your account has not been accepted. Please wait for admin approval.");
             return;
         }
 
@@ -134,24 +125,10 @@ document.getElementById("loginButton").addEventListener("click", async (e) => {
                 window.location.href = "superHome.html";
                 break;
             default:
-                showModal("Unknown role. Contact support.");
+                alert("Unknown role. Contact support.");
         }
     } catch (error) {
         console.error("Error fetching user data:", error.message);
-        showModal("An error occurred. Please try again.");
+        alert("An error occurred. Please try again.");
     }
 });
-
-
-function showModal(message) {
-    document.getElementById('modalMessage').textContent = message;
-    document.getElementById('alertModal').style.display = 'block';
-}
-
-function hideModal() {
-    document.getElementById('alertModal').style.display = 'none';
-}
-
-// Close modal when user clicks the "X"
-document.getElementById('closeModalBtn').addEventListener('click', hideModal);
-
