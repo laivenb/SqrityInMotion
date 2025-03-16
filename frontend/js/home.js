@@ -71,9 +71,11 @@ $.fn.dataTable.ext.type.order['cve-id-desc'] = function (a, b) {
 function initializeDataTable() {
     const firstLogin = sessionStorage.getItem('firstLogin') === 'true';
     const portTable = $('#portTable').DataTable({
-        "pagingType": "simple_numbers",
-        "searching": true,
-        "ordering": true,
+        dom: 't',       // Only the table itself, no controls
+        paging: false,
+        searching: false,
+        info: false,
+        lengthChange: false,
         "order": [[4, "desc"]], // Sort by CVE Score (column index 4) in descending order
         "columnDefs": [{
             "targets": 4, // Targeting CVE Score column

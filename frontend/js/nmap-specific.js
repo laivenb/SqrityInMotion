@@ -16,7 +16,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
-const BASE_URL = 'http://192.168.68.59:5000';
+const BASE_URL = 'http://192.168.68.57:5000';
 let openPorts = [];  // This will store all the ports info
 let ipAddress;
 let currentUserID;
@@ -69,7 +69,12 @@ document.addEventListener('DOMContentLoaded', function () {
     // Event listener for the 'Save' button to save the report
     document.getElementById('saveButton').addEventListener('click', uploadPortsToFirebase);
 
-    const resultsContainer = $('#scan-results').DataTable();
+    const resultsContainer = $('#scan-results').DataTable({
+        searching: false,     // Removes the search bar
+        lengthChange: false,  // Removes the "Show [X] entries" dropdown
+        info: false,          // Removes the "Showing 1 to X of Y entries" text (optional)
+        paging: false         // Removes pagination (optional)
+    });
 
     // Call to update IP Address and scan results
     updateIPAddress(resultsContainer);
@@ -130,7 +135,7 @@ function updateIPAddress(resultsContainer) {
 
                 console.log("Open Ports:", openPorts);
                 hideSpinner();
-                alert("Scanning completed!");
+                showModal("Scanning completed!");
             })
             .catch(error => console.error('Error:', error));
     } else {
@@ -173,7 +178,7 @@ async function uploadPortsToFirebase() {
     })
         .then(() => {
             console.log("Port Report uploaded successfully!");
-            alert("Report saved successfully!");
+            showModal("Report saved successfully!");
         })
         .catch((error) => {
             console.error("Error uploading port report:", error);
@@ -207,4 +212,15 @@ function generateRandomKey() {
     return Math.random().toString(36).substring(2, 15);
 }
 
+function showModal(message) {
+    document.getElementById('modalMessage').textContent = message;
+    document.getElementById('alertModal').style.display = 'block';
+}
+
+function hideModal() {
+    document.getElementById('alertModal').style.display = 'none';
+}
+
+// Close modal when user clicks the "X"
+document.getElementById('closeModalBtn').addEventListener('click', hideModal);
 
