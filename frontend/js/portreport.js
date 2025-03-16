@@ -51,9 +51,9 @@ $(document).ready(function () {
         const reportID = $(this).closest('tr').find('td:first').text();
         const userID = sessionStorage.getItem("uid"); // Get logged-in user ID
 
-        if (showConfirmModal("Are you sure you want to send this report to the supervisor?")) {
-            sendToSupervisor(userID, reportID);
+        if (showConfirmModal("Are you sure you want to send this report to the supervisor?"), 'function', reportID) {
         }
+
     });
 });
 
@@ -314,7 +314,7 @@ function hideModal() {
 // Close (X) button event
 document.getElementById('closeModalBtn').addEventListener('click', hideModal);
 
-function showConfirmModal(message, onYes) {
+function showConfirmModal(message, onYes, reportID) {
     // Set the confirmation message
     document.getElementById('confirmMessage').textContent = message;
     // Show the modal
@@ -326,7 +326,8 @@ function showConfirmModal(message, onYes) {
     yesBtn.replaceWith(yesBtn.cloneNode(true));
     document.getElementById('confirmYesBtn').addEventListener('click', function() {
         hideConfirmModal();
-        // Call the onYes callback
+        const userID = sessionStorage.getItem("uid");
+        sendToSupervisor(userID, reportID);
         if (typeof onYes === 'function') onYes();
     });
 }

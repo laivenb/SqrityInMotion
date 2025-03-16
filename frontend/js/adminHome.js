@@ -8,7 +8,7 @@ function getIPFromURL() {
     return ip;
 }
 window.addEventListener('load', () => {
-    const currentUser = sessionStorage.getItem("username");
+    const currentUser = sessionStorage.getItem("uid");
     if (!currentUser) {
         window.location.href = "login.html";
     } else {

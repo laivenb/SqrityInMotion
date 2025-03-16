@@ -9,7 +9,7 @@ function getIPFromURL() {
 
 
 window.addEventListener('load', () => {
-    const currentUser = sessionStorage.getItem("username");
+    const currentUser = sessionStorage.getItem("uid");
 
     if (!currentUser) {
         sessionStorage.clear();  // Clears old session data

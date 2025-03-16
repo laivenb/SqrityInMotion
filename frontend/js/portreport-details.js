@@ -18,7 +18,7 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
 // Check if the user is logged in
-const currentUser = sessionStorage.getItem("username");
+const currentUser = sessionStorage.getItem("uid");
 const userID = sessionStorage.getItem("uid");
 
 if (!currentUser || !userID) {

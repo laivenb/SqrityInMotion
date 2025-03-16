@@ -18,23 +18,40 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const dbRef = ref(database);
 
+// Secret key for AES encryption/decryption
+const secretKey = "kwatro";  // Replace this with your actual encryption key
+
+// Function to decrypt password
+function decryptPassword(encryptedPassword) {
+    try {
+        const bytes = CryptoJS.AES.decrypt(encryptedPassword, secretKey);
+        return bytes.toString(CryptoJS.enc.Utf8);
+    } catch (error) {
+        console.error("Decryption error:", error);
+        return null;
+    }
+}
+
 // Function to handle login
 document.getElementById("loginButton").addEventListener("click", async (e) => {
     e.preventDefault(); // Prevent default form submission
 
-    const username = document.getElementById("username").value.trim();
+    const emailInput = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
 
-    if (!username || !password) {
-        alert("Please enter both username and password.");
+    if (!emailInput || !password) {
+        alert("Please enter both email and password.");
         return;
     }
+
+    // Normalize email for Firebase lookup (replace "." with ",")
+    const normalizedEmail = emailInput.replace(/\./g, ',');
 
     try {
         const snapshot = await get(child(dbRef, "users/"));
         if (!snapshot.exists()) {
             console.error("No user data available");
-            alert("Invalid username or password.");
+            alert("Invalid email or password.");
             return;
         }
 
@@ -47,7 +64,19 @@ document.getElementById("loginButton").addEventListener("click", async (e) => {
             const currentUserData = childSnapshot.val();
             const currentUserID = childSnapshot.key;
 
-            if (currentUserData.username === username && currentUserData.password === password) {
+            // Convert stored email back to its correct format
+            if (currentUserData.email) {
+                currentUserData.email = currentUserData.email.replace(/,/g, '.');
+            }
+
+            // Decrypt stored password
+            const decryptedPassword = decryptPassword(currentUserData.password);
+
+            if (currentUserData.email === emailInput && decryptedPassword === password) {
+
+                console.log(sessionStorage.getItem("uid"));
+                console.log(sessionStorage.getItem("isLoggedIn"));
+
                 userFound = true;
                 userData = currentUserData;
                 userID = currentUserID;
@@ -59,7 +88,7 @@ document.getElementById("loginButton").addEventListener("click", async (e) => {
         });
 
         if (!userFound) {
-            alert("Invalid username or password.");
+            alert("Invalid email or password.");
             return;
         }
 
@@ -75,9 +104,12 @@ document.getElementById("loginButton").addEventListener("click", async (e) => {
         // **Store session data**
         sessionStorage.setItem("uid", userID);
         sessionStorage.setItem("username", userData.username);
-        sessionStorage.setItem("role", userData.role); // Store user role
+        sessionStorage.setItem("email", userData.email);  // Store email instead of username
+        sessionStorage.setItem("role", userData.role);    // Store user role
         sessionStorage.setItem("isLoggedIn", "true");
-        sessionStorage.setItem("firstLogin", "true"); // Track first login
+        sessionStorage.setItem("firstLogin", "true");     // Track first login
+
+
 
         console.log("Login successful:", userData);
 
