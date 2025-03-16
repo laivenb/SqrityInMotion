@@ -56,10 +56,11 @@ export const fetchPendingUsers = async () => {
 
 
                 // Add delete functionality
-                row.querySelector(".delete-btn").addEventListener("click", () => deleteUser(userID));
 
                 // Add edit functionality
                 row.querySelector(".edit-role-btn").addEventListener("click", () => showRoleDropdown(row, userID));
+
+
             });
         } else {
             console.error("No pending user requests available");
