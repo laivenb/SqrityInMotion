@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.68.59:5000';
+const BASE_URL = 'http://192.168.68.63:5000';
 
 // On page load, check session and automatically start scanning if parameters exist
 window.addEventListener('load', () => {
@@ -14,8 +14,7 @@ window.addEventListener('load', () => {
     if (ip && subnet) {
         showSpinner();
         startScanning(ip, subnet).then(() => {
-            alert("Scanning completed!");
-        });
+            showModal("Scanning completed!");        });
     }
 
 });
@@ -163,3 +162,15 @@ function handleAction(button) {
     console.log(`Action for ${clickedIp} triggered`);
     window.location.href = `nmap-specific.html?ip=${clickedIp}`;
 }
+
+function showModal(message) {
+    document.getElementById('modalMessage').textContent = message;
+    document.getElementById('alertModal').style.display = 'block';
+}
+
+function hideModal() {
+    document.getElementById('alertModal').style.display = 'none';
+}
+
+// Close modal when user clicks the "X"
+document.getElementById('closeModalBtn').addEventListener('click', hideModal);

@@ -108,14 +108,12 @@
 <script>
     $(document).ready(function () {
         // Initialize DataTable
-        $('#userRequestsTable').DataTable({
-            "pageLength": 10,
-            "lengthMenu": [5, 10, 25, 50],
-            "ordering": true,
-            "searching": true,
-            "responsive": true,
+        $('#reportsTable').DataTable({
+            dom: 't',       // Only table, no controls
+            paging: false,  // No pagination
+            info: false,    // No "Showing X to Y of Z"
+            searching: false, // No search bar
         });
-
         // Variable to store the action message
         let actionMessage = '';
 

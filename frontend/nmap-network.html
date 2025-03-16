@@ -51,6 +51,13 @@
                     </table>
                 </div>
 
+                <div id="alertModal" class="modal">
+                    <div class="modal-content">
+                        <span id="closeModalBtn" class="close">&times;</span>
+                        <p id="modalMessage"></p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
@@ -69,7 +76,10 @@
     <!-- Initialize DataTable -->
     <script>
         $(document).ready(function () {
-            $('#portTable').DataTable();
+            $('#portTable').DataTable({
+                lengthChange: false,
+                searching: false
+            });
         });
     </script>
 </body>

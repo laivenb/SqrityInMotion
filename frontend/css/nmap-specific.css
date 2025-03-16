@@ -191,3 +191,46 @@ body {
     left: 50%;
     margin: 0;
 }
+
+#scan-results td:nth-child(1) { /* Port column */
+    text-align: right;
+}
+
+.modal {
+    display: none; /* hidden by default */
+    position: fixed;
+    z-index: 9999; /* ensures it’s above other elements */
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* semi-transparent overlay */
+}
+
+/* Modal content box */
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    max-width: 400px;
+    width: 90%;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 5px 15px rgba(0,0,0,.3);
+}
+
+/* Close (X) button */
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* The text inside the modal */
+#modalMessage {
+    margin-top: 40px; /* push content below the close button */
+    font-size: 16px;
+    line-height: 1.4;
+}

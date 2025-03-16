@@ -188,4 +188,51 @@ body {
     cursor: pointer; /* Changes cursor to indicate row is clickable */
 }
 
+.port-table td:nth-child(1), /* Port column */
+.port-table td:nth-child(5) { /* CVE Score column */
+    text-align: right;
+}
+
+/* Example color scheme (Bootstrap-like). Feel free to adjust. */
+.cve-low {
+    background-color: #28a745; /* Green */
+
+}
+.cve-medium {
+    background-color: #ffc107; /* Yellow */
+
+}
+.cve-high {
+    background-color: #fd7e14; /* Orange */
+
+}
+.cve-critical {
+    background-color: #dc3545; /* Red */
+
+}
+
+.color-box {
+    display: inline-block;
+    width: 16px;       /* Adjust to desired size */
+    height: 16px;      /* Keep equal for a square */
+    border-radius: 2px; /* Optional if you want slightly rounded corners */
+}
+
+/* Severity-based colors */
+.color-box.low {
+    background-color: #28a745;
+}
+
+.color-box.medium {
+    background-color: #ffc107;
+}
+
+.color-box.high {
+    background-color: #fd7e14;
+}
+
+.color-box.critical {
+    background-color: #dc3545;
+}
+
 

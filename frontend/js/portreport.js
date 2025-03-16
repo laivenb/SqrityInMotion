@@ -51,7 +51,7 @@ $(document).ready(function () {
         const reportID = $(this).closest('tr').find('td:first').text();
         const userID = sessionStorage.getItem("uid"); // Get logged-in user ID
 
-        if (confirm("Are you sure you want to send this report to the supervisor?")) {
+        if (showConfirmModal("Are you sure you want to send this report to the supervisor?")) {
             sendToSupervisor(userID, reportID);
         }
     });
@@ -135,11 +135,10 @@ function initializeDataTable() {
 
     // Initialize DataTable
     $('#reportsTable').DataTable({
-        "pageLength": 10,
-        "lengthMenu": [5, 10, 25, 50],
-        "ordering": true,
-        "searching": true,
-        "responsive": true
+        dom: 't',       // Only table, no controls
+        paging: false,  // No pagination
+        info: false,    // No "Showing X to Y of Z"
+        searching: false, // No search bar
     });
 }
 
@@ -166,7 +165,7 @@ function exportReportAsJSON(userID, reportID) {
             document.body.removeChild(downloadAnchor);
         } else {
             console.error("No such document!");
-            alert("Report not found.");
+            showModal("Report successfully sent to all supervisors!");
         }
     }).catch((error) => {
         console.error("Error getting document:", error);
@@ -218,7 +217,7 @@ async function sendToSupervisor(userID, reportID) {
         const usersSnapshot = await get(usersRef);
 
         if (!usersSnapshot.exists()) {
-            alert("No supervisors found.");
+            showModal("No supervisors found.");
             return;
         }
 
@@ -246,14 +245,14 @@ async function sendToSupervisor(userID, reportID) {
         });
 
         if (supervisorsFound) {
-            alert("Report successfully sent to all supervisors!");
+            showModal("Report successfully sent to all supervisors!");
         } else {
-            alert("No supervisors found with role = 2.");
+            showModal("No supervisors found with role = 2.");
         }
 
     } catch (error) {
         console.error("Error sending report to supervisor:", error);
-        alert("Failed to send report. Please try again.");
+        showModal("Failed to send report. Please try again.");
     }
 }
 
@@ -300,3 +299,42 @@ async function getUsernameFromUserID(userID) {
         return "Error Fetching User";
     }
 }
+
+// Show the modal with a custom message
+function showModal(message) {
+    document.getElementById('modalMessage').textContent = message;
+    document.getElementById('alertModal').style.display = 'block';
+}
+
+// Hide the modal
+function hideModal() {
+    document.getElementById('alertModal').style.display = 'none';
+}
+
+// Close (X) button event
+document.getElementById('closeModalBtn').addEventListener('click', hideModal);
+
+function showConfirmModal(message, onYes) {
+    // Set the confirmation message
+    document.getElementById('confirmMessage').textContent = message;
+    // Show the modal
+    document.getElementById('confirmModal').style.display = 'block';
+
+    // Handle the "Yes" button
+    const yesBtn = document.getElementById('confirmYesBtn');
+    // Remove any previous event listeners to avoid duplication
+    yesBtn.replaceWith(yesBtn.cloneNode(true));
+    document.getElementById('confirmYesBtn').addEventListener('click', function() {
+        hideConfirmModal();
+        // Call the onYes callback
+        if (typeof onYes === 'function') onYes();
+    });
+}
+
+function hideConfirmModal() {
+    document.getElementById('confirmModal').style.display = 'none';
+}
+
+// Close modal when clicking the "X" or "No" button
+document.getElementById('closeConfirmBtn').addEventListener('click', hideConfirmModal);
+document.getElementById('confirmNoBtn').addEventListener('click', hideConfirmModal);
