@@ -295,5 +295,6 @@ function updateCharts(vulnerabilities) {
 document.getElementById('saveCveReportBtn').addEventListener('click', function(e) {
     e.preventDefault();
     sessionStorage.setItem("isHome", true);
+
     window.location.href = 'cvereport-details.html';
 });

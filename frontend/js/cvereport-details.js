@@ -208,6 +208,29 @@ async function uploadPortsToFirebase() {
 }
 
 
+function showModal(message) {
+    console.log("showModal called with message:", message); // <-- Add this
+
+    const modalMessage = document.getElementById('modalMessage');
+    const alertModal = document.getElementById('alertModal');
+    if (modalMessage && alertModal) {
+        modalMessage.textContent = message;
+        alertModal.style.display = 'block'; // or 'flex'
+    } else {
+        console.error("Modal elements not found.");
+    }
+}
+// Hide the modal
+function hideModal() {
+    const alertModal = document.getElementById('alertModal');
+    if (alertModal) {
+        alertModal.style.display = 'none';
+    }
+}
+
+document.getElementById('closeModalBtn').addEventListener('click', hideModal);
+
+
 async function generateCustomPortId() {
     // Prefix is now set to '02'
     const prefix = '03';
@@ -284,17 +307,8 @@ if (isHome) {
     loadReportDetails(uid);
 }
 
-function showModal(message) {
-    document.getElementById('modalMessage').textContent = message;
-    document.getElementById('alertModal').style.display = 'block';
-}
 
-// Hide the modal
-function hideModal() {
-    document.getElementById('alertModal').style.display = 'none';
-}
 
-// Close (X) button event
-document.getElementById('closeModalBtn').addEventListener('click', hideModal);
+// Close modal when clicking the "X" or "No" button
 
 
