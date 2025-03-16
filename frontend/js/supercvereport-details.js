@@ -43,7 +43,24 @@ async function loadReportDetails(reportID) {
             const reportData = snapshot.val();
             document.getElementById('reportName').textContent = reportData.reportName || "Untitled Report";
             document.getElementById('dateCreated').textContent = `Date Created: ${reportData.dateCreated || "N/A"}`;
+            const userID = reportData.userID;
+            if (userID) {
+                // 3) Do a second fetch to get the username from users/<userID>
+                const userRef = ref(database, `users/${userID}`);
+                const userSnap = await get(userRef);
 
+                if (userSnap.exists()) {
+                    const userData = userSnap.val();
+                    const userName = userData.username || userID; // fallback to userID if username not found
+                    document.getElementById('createdBy').textContent = `Created by: ${userName}`;
+                } else {
+                    // If user record doesn't exist, just show the userID
+                    document.getElementById('createdBy').textContent = `Created by: ${userID}`;
+                }
+            } else {
+                // If there's no userID in the report, fallback
+                document.getElementById('createdBy').textContent = "Created by: Unknown User";
+            }
             // Populate CVE details in the table
             populateCveDetails(reportData.ports || []);
         } else {
@@ -69,13 +86,23 @@ function populateCveDetails(ports) {
             const stateColor = port.state === "open" ? "#348ae6" : "green";
             const stateLabel = `<span style="color: ${stateColor}; font-weight: bold;">${port.state || "N/A"}</span>`;
             if (port.state === "open") openPortsCount++;
+
+
             const cveScore = parseFloat(port.cve_score) || 0;
-            let scoreBackgroundColor = "#d4edda";
-            if (cveScore >= 7.0) {
-                scoreBackgroundColor = "#f8d7da";
+            let scoreBackgroundColor;
+
+            if (cveScore >= 9.0) {
+                scoreBackgroundColor = "#dc3545"; // Critical => bright red
                 criticalPortsCount++;
-            } else if (cveScore >= 4.0) {
-                scoreBackgroundColor = "#fff3cd";
+            }
+            else if (cveScore >= 7.0) {
+                scoreBackgroundColor = "#fd7e14"; // High => orange
+            }
+            else if (cveScore >= 4.0) {
+                scoreBackgroundColor = "#ffc107"; // Medium => yellow
+            }
+            else {
+                scoreBackgroundColor = "#28a745"; // Low => green
             }
             row.innerHTML = `
                 <td>${port.port || "N/A"}</td>

@@ -102,15 +102,24 @@ function populateCveDetails(ports) {
             }
 
             // Determine background color for CVE score
+            // Parse the CVE score. Fallback to 0 if port.cve_score is undefined or invalid.
             const cveScore = parseFloat(port.cve_score) || 0;
-            let scoreBackgroundColor = "#d4edda"; // Low (green)
+            let scoreBackgroundColor;
 
-            if (cveScore >= 7.0) {
-                scoreBackgroundColor = "#f8d7da"; // High/Critical (red)
+             if (cveScore >= 9.0) {
+                scoreBackgroundColor = "#dc3545"; // Critical => bright red
                 criticalPortsCount++;
-            } else if (cveScore >= 4.0) {
-                scoreBackgroundColor = "#fff3cd"; // Medium (yellow)
             }
+             else if (cveScore >= 7.0) {
+                scoreBackgroundColor = "#fd7e14"; // High => orange
+            }
+             else if (cveScore >= 4.0) {
+                scoreBackgroundColor = "#ffc107"; // Medium => yellow
+            }
+             else {
+                scoreBackgroundColor = "#28a745"; // Low => green
+            }
+
 
             // Add row with colored cells
             row.innerHTML = `

@@ -118,11 +118,10 @@ function initializeDataTable() {
         $('#reportsTable').DataTable().clear().destroy();
     }
     $('#reportsTable').DataTable({
-        "pageLength": 10,
-        "lengthMenu": [5, 10, 25, 50],
-        "ordering": true,
-        "searching": true,
-        "responsive": true
+        dom: 't',       // Only table, no controls
+        paging: false,  // No pagination
+        info: false,    // No "Showing X to Y of Z"
+        searching: false, // No search bar
     });
 }
 

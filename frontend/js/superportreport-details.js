@@ -41,6 +41,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+document.getElementById("backButton")?.addEventListener("click", () => {
+    window.location.href = "superport-reports.html";
+});
+
 // Function to load the port report details
 async function loadReportDetails(reportID) {
     try {
@@ -50,9 +54,11 @@ async function loadReportDetails(reportID) {
         if (snapshot.exists()) {
             const reportData = snapshot.val();
 
-            // Ensure elements exist before updating them
-            const reportNameElem = document.getElementById('reportName');
-            const dateCreatedElem = document.getElementById('dateCreated');
+            // -- Fill the header fields --
+            const reportNameElem = document.getElementById("reportName");
+            const dateCreatedElem = document.getElementById("dateCreated");
+            const createdByElem   = document.getElementById("createdBy");
+
 
             if (reportNameElem) {
                 reportNameElem.textContent = reportData.reportName || "Untitled Report";
@@ -60,6 +66,27 @@ async function loadReportDetails(reportID) {
             if (dateCreatedElem) {
                 dateCreatedElem.textContent = `Date Created: ${reportData.dateCreated || "N/A"}`;
             }
+
+            const userID = reportData.userID; // e.g. "-OArWxDOvU0yVBf8ocHB"
+            if (!userID) {
+                createdByElem.textContent = "Created by: Unknown User";
+                return;
+            }
+
+            // 3) Fetch user details from "users/<userID>"
+            const userRef = ref(database, `users/${userID}`);
+            const userSnap = await get(userRef);
+
+            if (userSnap.exists()) {
+                const userData = userSnap.val();
+                // 4) Use userData.username (based on your screenshot)
+                const userName = userData.username || userID;
+                createdByElem.textContent = `Created by: ${userName}`;
+            } else {
+                // If there's no user record, fall back to the raw userID
+                createdByElem.textContent = `Created by: ${userID}`;
+            }
+
 
             // Populate port details
             populatePortDetails(reportData.ports || []);

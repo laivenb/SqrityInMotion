@@ -128,3 +128,118 @@ body {
         max-width: 160px; /* Make buttons slightly smaller on mobile */
     }
 }
+
+/* Right-align the first column (Port) in the table. */
+
+#portDetailsTable td:nth-child(1) {
+    text-align: right;
+}
+
+/* Right-align the 1st and 5th columns in the table with id="cveDetailsTable" */
+
+#cveDetailsTable td:nth-child(1),
+#cveDetailsTable td:nth-child(5) {
+    text-align: right !important;
+}
+
+.color-box {
+    display: inline-block;
+    width: 16px;       /* Adjust to desired size */
+    height: 16px;      /* Keep equal for a square */
+    border-radius: 2px; /* Optional if you want slightly rounded corners */
+}
+
+/* Severity-based colors */
+.color-box.low {
+     background-color: #28a745;
+}
+
+.color-box.medium {
+     background-color: #ffc107;
+}
+
+.color-box.high {
+     background-color: #fd7e14;
+}
+
+.color-box.critical {
+     background-color: #dc3545;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 9999;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* semi-transparent backdrop */
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    max-width: 400px;
+    width: 90%;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 5px 15px rgba(0,0,0,.3);
+}
+
+.close-button {
+    position: absolute;
+    top: 10px; right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#modalMessage {
+    margin-top: 40px; /* push text below close button */
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+#confirmMessage {
+    margin-top: 40px; /* push text below close button */
+    font-size: 16px;
+    line-height: 1.5;
+}
+.modal-buttons {
+    margin-top: 20px;
+    text-align: right;
+}
+.modal-buttons .btn {
+    margin-left: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Blue (Yes) */
+.btn-yes {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-yes:hover {
+    background-color: #0056b3;
+}
+
+/* Red (No) */
+.btn-no {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-no:hover {
+    background-color: #c82333;
+}
+
+

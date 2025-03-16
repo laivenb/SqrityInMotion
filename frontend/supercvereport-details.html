@@ -29,17 +29,45 @@
             <div class="d-flex justify-content-between align-items-center report-header">
                 <h2 id="reportName" class="font-weight-bold mb-0">Report Details</h2>
                 <p id="dateCreated" class="text-muted mb-0"></p>
+                <p id="createdBy" class="text-muted mb-0"></p>
+
             </div>
 
 
             <button id="exportPDFBtn">Export to PDF</button>
-            <div class="report-summary my-3 d-flex justify-content-end align-items-center">
-    <span class="p-1 text-white" style="background-color: #348ae6; font-size: 1rem; font-weight: bold; border-radius: 3px;">
-        Open Ports: <span id="openPortsCount">0</span>
+            <div class="report-summary my-3 d-flex justify-content-between align-items-center">
+                <!-- Legend (Left) -->
+                <div class="score-legend d-flex align-items-center">
+                    <div class="legend-item d-flex align-items-center mr-3">
+                        <span class="color-box low"></span>
+                        <span class="ml-2">Low (0.0 – 3.9)</span>
+                    </div>
+                    <div class="legend-item d-flex align-items-center mr-3">
+                        <span class="color-box medium"></span>
+                        <span class="ml-2">Medium (4.0 – 6.9)</span>
+                    </div>
+                    <div class="legend-item d-flex align-items-center mr-3">
+                        <span class="color-box high"></span>
+                        <span class="ml-2">High (7.0 – 8.9)</span>
+                    </div>
+                    <div class="legend-item d-flex align-items-center">
+                        <span class="color-box critical"></span>
+                        <span class="ml-2">Critical (9.0 – 10.0)</span>
+                    </div>
+                </div>
+
+                <!-- Port Counts (Right) -->
+                <div class="d-flex align-items-center">
+    <span class="p-1 text-white"
+          style="background-color: #348ae6; font-size: 1rem; font-weight: bold; border-radius: 3px;">
+      Open Ports: <span id="openPortsCount">0</span>
     </span>
-                <span class="p-1 text-white" style="background-color: #e33737; font-size: 1rem; font-weight: bold; border-radius: 3px; margin-left: 8px;">
-        Critical Ports: <span id="criticalPortsCount">0</span>
+                    <span class="p-1 text-white ml-3"
+                          style="background-color: #e33737; font-size: 1rem; font-weight: bold; border-radius: 3px;">
+      Critical Ports: <span id="criticalPortsCount">0</span>
     </span>
+                </div>
+
             </div>
 
 
