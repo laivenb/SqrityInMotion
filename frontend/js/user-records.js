@@ -12,6 +12,8 @@ const firebaseConfig = {
     databaseURL: "https://sqrity-f02ee-default-rtdb.asia-southeast1.firebasedatabase.app"
 };
 
+const SECRET_KEY = "kwatro";
+
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
@@ -21,6 +23,63 @@ const roleMapping = {
     "Vulnerability Analyst": 1,
     "Supervisor": 2
 };
+
+$(document).ready(function () {
+    // Initialize DataTable
+    $('#reportsTable').DataTable({
+        dom: 't',       // Only table, no controls
+        paging: false,  // No pagination
+        info: false,    // No "Showing X to Y of Z"
+        searching: false, // No search bar
+    });
+
+    $('#userRecordsTable tbody').on('click', '.reset-password-btn', function () {
+        const row = $(this).closest('tr');
+        selectedUserId = row.find('td:first').text().trim(); // Get userID from the first column
+        $('#resetPasswordConfirmModal').modal('show');
+    });
+
+    $('#confirmResetPasswordConfirmBtn').on('click', function () {
+        $('#resetPasswordConfirmModal').modal('hide');
+        $('#newPasswordModal').modal('show');
+    });
+
+    $('#submitNewPasswordBtn').on('click', async function () {
+        const newPassword = $('#newPasswordInput').val().trim();
+
+        if (newPassword === "") {
+            alert("Password cannot be empty.");
+            return;
+        }
+
+        console.log(`Updating password for User ID: ${selectedUserId}`);
+        await resetUserPassword(selectedUserId, newPassword);
+
+        // Clear input and close modal
+        $('#newPasswordInput').val('');
+        $('#newPasswordModal').modal('hide');
+    });
+
+
+    let selectedUserId;
+
+    // Handle Delete button click
+    $('#userRecordsTable tbody').on('click', '.delete-btn', function () {
+        const row = $(this).closest('tr');
+        selectedUserId = row.find('td:first').text(); // Retrieve UserID from first cell
+        $('#deleteUserModal').modal('show');
+    });
+
+    // Confirm Deletion
+    $('#confirmDeleteBtn').on('click', function () {
+        console.log(`Deleting user with ID: ${selectedUserId}`);
+        $('#userRecordsTable').DataTable().row($(`td:contains('${selectedUserId}')`).parents('tr')).remove().draw();
+        $('#deleteUserModal').modal('hide');
+    });
+
+
+
+});
 
 // Function to fetch pending users and populate the table
 export const fetchPendingUsers = async () => {
@@ -129,6 +188,26 @@ async function updateUserRole(userID, newRoleText, positionCell, editButton) {
         console.log(`User role updated to ${newRoleText} (${newRoleValue}) for user with UID: ${userID}`);
     } catch (error) {
         console.error("Error updating user role:", error);
+    }
+}
+
+function encryptPassword(password) {
+    return CryptoJS.AES.encrypt(password, SECRET_KEY).toString();
+}
+
+// Function to reset user password
+async function resetUserPassword(userID, newPassword) {
+    const userRef = ref(database, `users/${userID}`);
+
+    try {
+        // Update the user's password in Firebase Database
+        const encryptedPassword = encryptPassword(newPassword);
+
+        await update(userRef, { password: encryptedPassword });
+
+        console.log(`Password updated successfully for user with UID: ${userID}`);
+    } catch (error) {
+        console.error("Error updating user password:", error.message);
     }
 }
 

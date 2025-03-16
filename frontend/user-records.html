@@ -153,61 +153,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 <script type="module" src="js/user-records.js"></script>
 <script src="js/adminSidebar.js"></script>
 
 <script>
-    $(document).ready(function () {
-        // Initialize DataTable
-        $('#reportsTable').DataTable({
-            dom: 't',       // Only table, no controls
-            paging: false,  // No pagination
-            info: false,    // No "Showing X to Y of Z"
-            searching: false, // No search bar
-        });
 
-        $('#userRecordsTable tbody').on('click', '.reset-password-btn', function () {
-            console.log("Reset password button clicked");
-            $('#resetPasswordConfirmModal').modal('show');
-        });
-
-        $('#confirmResetPasswordConfirmBtn').on('click', function () {
-            // Hide the confirmation modal and show the new password prompt modal
-            $('#resetPasswordConfirmModal').modal('hide');
-            $('#newPasswordModal').modal('show');
-        });
-        $('#submitNewPasswordBtn').on('click', function () {
-            const newPassword = $('#newPasswordInput').val().trim();
-
-            console.log("New password is: " + newPassword);
-            // Place your password update logic here (for example, update in Firebase)
-
-            // Clear the input field for the next time
-            $('#newPasswordInput').val('');
-            // Hide the new password modal
-            $('#newPasswordModal').modal('hide');
-        });
-
-
-        let selectedUserId;
-
-        // Handle Delete button click
-        $('#userRecordsTable tbody').on('click', '.delete-btn', function () {
-            const row = $(this).closest('tr');
-            selectedUserId = row.find('td:first').text(); // Retrieve UserID from first cell
-            $('#deleteUserModal').modal('show');
-        });
-
-        // Confirm Deletion
-        $('#confirmDeleteBtn').on('click', function () {
-            console.log(`Deleting user with ID: ${selectedUserId}`);
-            $('#userRecordsTable').DataTable().row($(`td:contains('${selectedUserId}')`).parents('tr')).remove().draw();
-            $('#deleteUserModal').modal('hide');
-        });
-
-
-
-    });
 </script>
 </body>
 

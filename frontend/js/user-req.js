@@ -16,6 +16,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 
+
+
 // Function to fetch users with a "pending" status and populate the table
 export const fetchPendingUsers = async () => {
     const dbRef = ref(database, 'users');
