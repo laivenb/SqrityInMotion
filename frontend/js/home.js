@@ -3,8 +3,10 @@ let openPorts = [];
 
 function getIPFromURL() {
     const urlParams = new URLSearchParams(window.location.search);
-    return urlParams.get('ip') || 'Unknown IP';
+    const ip = urlParams.get('ip');
+    return ip === 'Unknown IP' ? '' : ip || '';
 }
+
 
 window.addEventListener('load', () => {
     const currentUser = sessionStorage.getItem("username");
