@@ -24,23 +24,26 @@ const database = getDatabase(app);
 $(document).ready(function () {
     // Get supervisor ID from session storage
     const supervisorID = sessionStorage.getItem("uid");
+    console.log("Supervisor ID:", supervisorID);
 
     if (!supervisorID) {
-        // Redirect to login if no supervisor is logged in
+        console.warn("No supervisor ID found. Redirecting to login.");
         window.location.href = "login.html";
     } else {
-        // Load reports assigned to this supervisor
+        console.log("Loading reports for supervisor:", supervisorID);
         loadSupervisorReports(supervisorID);
     }
 
     // Event delegation for dynamically loaded buttons
     $('#reportsTable').on('click', '.view-btn', function () {
         const reportID = $(this).closest('tr').find('td:first').text();
+        console.log("Viewing report:", reportID);
         window.location.href = `supercvereport-details.html?reportID=${reportID}`;
     });
 
     $('#reportsTable').on('click', '.export-btn', function () {
         const reportID = $(this).closest('tr').find('td:first').text();
+        console.log("Exporting report:", reportID);
         exportReportAsJSON(reportID);
     });
 });
@@ -54,20 +57,29 @@ async function loadSupervisorReports(supervisorID) {
         // Reference to supervisor's assigned reports
         const reportsRef = ref(database, `supervisorcveReports/${supervisorID}`);
         const snapshot = await get(reportsRef);
+        console.log("Retrieved reports snapshot:", snapshot.val());
 
         if (!snapshot.exists()) {
+            console.warn("No reports assigned to this supervisor.");
             tableBody.append('<tr><td colspan="4">No Reports Assigned</td></tr>');
             return;
         }
 
         // Convert snapshot to an array of promises
         const reportPromises = Object.values(snapshot.val()).map(async (data) => {
+            console.log("Processing report:", data);
+            if (!data.reportID || !data.dateSubmitted || !data.submittedBy) {
+                console.warn("Invalid report data:", data);
+                return null;
+            }
+
             const reportID = data.reportID;
             const dateSubmitted = new Date(data.dateSubmitted).toLocaleString();
             const userID = data.submittedBy; // This is currently the userID
 
             // Fetch the username using the userID
             const username = await getUsername(userID);
+            console.log(`Fetched username for userID ${userID}:`, username);
 
             return `
                 <tr>
@@ -83,8 +95,13 @@ async function loadSupervisorReports(supervisorID) {
         });
 
         // Wait for all reports to be processed
-        const reportRows = await Promise.all(reportPromises);
-        tableBody.append(reportRows.join(''));
+        const reportRows = (await Promise.all(reportPromises)).filter(row => row !== null);
+        if (reportRows.length === 0) {
+            tableBody.append('<tr><td colspan="4">No valid reports found.</td></tr>');
+        } else {
+            tableBody.append(reportRows.join(''));
+            console.log("Reports loaded into table.");
+        }
 
         // Initialize DataTable
         initializeDataTable();
@@ -98,13 +115,16 @@ async function loadSupervisorReports(supervisorID) {
 // Function to fetch username from Firebase using userID
 async function getUsername(userID) {
     try {
+        console.log(`Fetching username for userID: ${userID}`);
         const userRef = ref(database, `users/${userID}/username`);
         const snapshot = await get(userRef);
 
         if (snapshot.exists()) {
-            return snapshot.val(); // Return username
+            console.log(`Username found: ${snapshot.val()}`);
+            return snapshot.val();
         } else {
-            return "Unknown User"; // If username is not found
+            console.warn(`Username not found for userID: ${userID}`);
+            return "Unknown User";
         }
     } catch (error) {
         console.error("Error fetching username:", error);
@@ -128,11 +148,13 @@ function initializeDataTable() {
 // Function to export the report as JSON
 async function exportReportAsJSON(reportID) {
     try {
+        console.log(`Exporting report ${reportID} as JSON`);
         const reportRef = ref(database, `cveReports/${reportID}`);
         const snapshot = await get(reportRef);
 
         if (snapshot.exists()) {
             const reportData = snapshot.val();
+            console.log("Report data:", reportData);
 
             // Convert data to JSON and download
             const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(reportData, null, 2));
