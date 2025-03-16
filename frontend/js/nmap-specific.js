@@ -60,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Event listener for the 'viewResultsButton' button to navigate to the home page
     document.getElementById('viewResultsButton').addEventListener('click', function() {
+        sessionStorage.setItem('isHome', 'true');
 
         // Set 'notFirstLogin' in sessionStorage when the button is clicked
         sessionStorage.setItem('firstLogin', 'false');
