@@ -36,8 +36,11 @@ function decryptPassword(encryptedPassword) {
 document.getElementById("loginButton").addEventListener("click", async (e) => {
     e.preventDefault(); // Prevent default form submission
 
+
+
     const emailInput = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value.trim();
+
 
     if (!emailInput || !password) {
         showModal("Please enter both username and password.");
@@ -72,10 +75,10 @@ document.getElementById("loginButton").addEventListener("click", async (e) => {
             // Decrypt stored password
             const decryptedPassword = decryptPassword(currentUserData.password);
 
+
+
             if (currentUserData.email === emailInput && decryptedPassword === password) {
 
-                console.log(sessionStorage.getItem("uid"));
-                console.log(sessionStorage.getItem("isLoggedIn"));
 
                 userFound = true;
                 userData = currentUserData;

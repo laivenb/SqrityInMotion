@@ -162,7 +162,7 @@ function getCurrentDate() {
 async function uploadPortsToFirebase() {
     const userID = currentUid;  // Get the current user's ID (Foreign Key)
     const dateCreated = getCurrentDate();  // Current date and time
-    const reportName = `Test Port Scan Report for ${ipAddress}`; // Report name
+    const reportName = `Port Scan Report for ${ipAddress}`; // Report name
 
     // Generate a custom port ID for the new port report
     const reportID = await generateCustomPortId();

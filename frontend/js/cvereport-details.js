@@ -174,7 +174,7 @@ async function uploadPortsToFirebase() {
     const vulnerabilitiesData = JSON.parse(sessionStorage.getItem("vulnerabilitiesData")); // Fetch the vulnerabilities data from sessionStorage
     const userID = sessionStorage.getItem("uid");  // Get the current user's ID (Foreign Key)
     const dateCreated = getCurrentDate();  // Current date and time
-    const reportName = `Test Port CVE Report for `; // Report name
+    const reportName = `CVE Report for `; // Report name
 
     // Generate a custom port ID for the new port report
     const reportID = await generateCustomPortId();
