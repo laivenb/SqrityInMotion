@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Fetch user information from Firebase
         fetchUserInfo(currentUser);
     } else {
-        alert("You are not logged in. Please log in first.");
+        showModal("You are not logged in. Please log in first.");
         window.location.href = "login.html"; // Redirect to login page
     }
 
@@ -62,7 +62,7 @@ function fetchUserInfo() {
 
     if (!userUID) {
         console.error("No UID found in sessionStorage");
-        alert("No user data found. Please log in again.");
+        showModal("No user data found. Please log in again.");
         window.location.href = "login.html";
         return;
     }
@@ -75,11 +75,11 @@ function fetchUserInfo() {
             populateUserInfo(userData);
         } else {
             console.error("User data not found in Firebase for UID:", userUID);
-            alert("User data not found.");
+            showModal("User data not found.");
         }
     }).catch((error) => {
         console.error("Error fetching user data:", error.message);
-        alert("Error fetching user data.");
+        showModal("Error fetching user data.");
     });
 }
 
@@ -127,3 +127,17 @@ function updateUserData(username) {
         console.log("Cannot update contact number - UID not found");
     }
 }
+
+function showModal(message) {
+    document.getElementById('modalMessage').textContent = message;
+    document.getElementById('alertModal').style.display = 'block';
+}
+
+function hideModal() {
+    document.getElementById('alertModal').style.display = 'none';
+}
+
+// Close modal when user clicks the "X"
+document.getElementById('closeModalBtn').addEventListener('click', hideModal);
+
+

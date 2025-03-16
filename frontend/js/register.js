@@ -35,23 +35,30 @@ registerButton.addEventListener("click", async (e) => {
     e.preventDefault();
 
     const username = document.getElementById("username").value;
-    const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirmPassword").value;
 
+    let localPart = document.getElementById("gmailInput").value.trim();
+    if (!localPart.includes("@")) {
+        localPart += "@gmail.com";
+    }
+    const email = localPart;
+
+
+    // Check if passwords match
     if (password !== confirmPassword) {
-        alert("Passwords do not match.");
+        showModal("Passwords do not match.");
         return;
     }
 
     if (!isPasswordStrong(password)) {
-        alert("Password must be at least 15 characters long, include uppercase, lowercase, a number, and a special character.");
+        showModal("Password must be at least 15 characters long, include uppercase, lowercase, a number, and a special character.");
         return;
     }
 
     const userExists = await checkUserExists(username, email);
     if (userExists) {
-        alert("Username or email already exists. Please choose a different one.");
+        showModal("Username or email already exists. Please choose a different one.");
         return;
     }
 
@@ -75,7 +82,7 @@ registerButton.addEventListener("click", async (e) => {
         requestDate: getCurrentDate()
     })
         .then(() => {
-            alert("Registration successful. Awaiting admin approval.");
+            showModal("Registration successful. Awaiting admin approval.");
             console.log("User data saved successfully with ID: " + userId);
         })
         .catch((error) => {
@@ -165,4 +172,16 @@ Role Guide:
 - Vulnerability Analyst & Penetration Tester (1): Authorized for nmap and pentesting.
 - Read-Only User (2): Can view/download reports, no access for scanning/pentesting.
 */
+
+function showModal(message) {
+    document.getElementById('modalMessage').textContent = message;
+    document.getElementById('alertModal').style.display = 'block';
+}
+
+function hideModal() {
+    document.getElementById('alertModal').style.display = 'none';
+}
+
+// Close modal when user clicks the "X"
+document.getElementById('closeModalBtn').addEventListener('click', hideModal);
 

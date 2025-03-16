@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             console.log("Searching exploits for:", serviceName);
 
             if (serviceName === "N/A") {
-                alert("No service information available to search.");
+                showModal("No service information available to search.");
                 return;
             }
 
@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                 console.log("API Response:", data);
 
                 if (data.error) {
-                    alert(`Error: ${data.error}`);
+                    showModal(`Error: ${data.error}`);
                     return;
                 }
 
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
             } catch (error) {
                 console.error("Error fetching search results:", error);
-                alert("Failed to retrieve exploit data. Please try again later.");
+                showModal("Failed to retrieve exploit data. Please try again later.");
             }
         });
     }
@@ -304,4 +304,18 @@ document.addEventListener("DOMContentLoaded", async function () {
 
 
 });
+
+function showModal(message) {
+    document.getElementById('modalMessage').textContent = message;
+    document.getElementById('alertModal').style.display = 'block';
+}
+
+// Hide the modal
+function hideModal() {
+    document.getElementById('alertModal').style.display = 'none';
+}
+
+// Close (X) button event
+document.getElementById('closeModalBtn').addEventListener('click', hideModal);
+
 

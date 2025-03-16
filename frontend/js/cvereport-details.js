@@ -200,7 +200,7 @@ async function uploadPortsToFirebase() {
     })
         .then(() => {
             console.log("Port Report uploaded successfully!");
-            alert("Report saved successfully!");
+            showModal("Report saved successfully!");
         })
         .catch((error) => {
             console.error("Error uploading port report:", error);
@@ -283,5 +283,18 @@ if (isHome) {
     console.log("isHome parameter is not true.");
     loadReportDetails(uid);
 }
+
+function showModal(message) {
+    document.getElementById('modalMessage').textContent = message;
+    document.getElementById('alertModal').style.display = 'block';
+}
+
+// Hide the modal
+function hideModal() {
+    document.getElementById('alertModal').style.display = 'none';
+}
+
+// Close (X) button event
+document.getElementById('closeModalBtn').addEventListener('click', hideModal);
 
 
