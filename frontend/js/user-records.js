@@ -48,6 +48,8 @@ export const fetchPendingUsers = async () => {
                     <td>${user.requestDate}</td>
                     <td><button class="btn btn-danger btn-sm delete-btn">Delete</button></td>
                     <td><button class="btn btn-primary btn-sm edit-role-btn">Edit</button></td>
+                        <td><button class="btn btn-secondary btn-sm reset-password-btn">Reset</button></td>
+
                 `;
                 tableBody.appendChild(row);
 
