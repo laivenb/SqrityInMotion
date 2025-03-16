@@ -27,7 +27,9 @@ const database = getDatabase(app);
 $(document).ready(function () {
 
     const currentUser = sessionStorage.getItem("username");
+
     const userID = sessionStorage.getItem("uid");
+    console.log(userID);
 
     if (!currentUser || !userID) {
         // Redirect to login if no user is logged in
@@ -82,6 +84,7 @@ async function loadReports(userID) {
             for (const childKey in snapshot.val()) {
                 const data = snapshot.val()[childKey];
                 const reportUserID = data.userID;
+                console.log(reportUserID);
 
                 // Skip reports that do not belong to the current user
                 if (reportUserID !== userID) continue;
