@@ -122,3 +122,25 @@ body {
     font-size: 16px;
     line-height: 1.5;
 }
+
+
+
+
+
+/* Arrange input and label side by side */
+.email-row {
+    display: flex;
+    align-items: center;
+}
+
+#gmailInput {
+    width: 170px;      /* Adjust as needed to be "small" */
+    font-size: 16px;
+    margin-right: 8px; /* Spacing between input and label */
+    box-sizing: border-box;
+}
+
+.gmail-domain {
+    font-size: 16px;
+    color: #555;       /* Slightly darker or lighter to match your design */
+}
