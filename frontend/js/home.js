@@ -241,7 +241,27 @@ function updatePortTable(vulnerabilities) {
     }));
 
     tableData.forEach(data => {
-        portTable.row.add([data.port, '<td class="state open">open</td>', data.version, data.cve_id, data.cve_score]);
+        const cveScore = parseFloat(data.cve_score) || 0;
+        let scoreBackgroundColor;
+        if (cveScore >= 9.0) {
+            scoreBackgroundColor = "#dc3545"; // Critical: bright red
+        } else if (cveScore >= 7.0) {
+            scoreBackgroundColor = "#fd7e14"; // High: orange
+        } else if (cveScore >= 4.0) {
+            scoreBackgroundColor = "#ffc107"; // Medium: yellow
+        } else {
+            scoreBackgroundColor = "#28a745"; // Low: green
+        }
+
+        // Wrap the CVE score with a span that applies the background color
+        const cveScoreCell = `<span style="background-color: ${scoreBackgroundColor}; display: block; padding: 5px;">${data.cve_score}</span>`;
+        portTable.row.add([
+            data.port,
+            '<span class="state open">open</span>',
+            data.version,
+            data.cve_id,
+            cveScoreCell
+        ]);
     });
 
     portTable.draw();
