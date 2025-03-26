@@ -80,6 +80,28 @@ function initializeDataTable() {
         columnDefs: [
             {
                 targets: 4, // The CVE score column index
+                type: 'num', // Numeric sorting
+                render: function (data, type) {
+                    // Attempt to parse the data as a float
+                    const parsed = parseFloat(data);
+
+                    // If the data isn't a valid number...
+                    if (isNaN(parsed)) {
+                        // For sorting, treat non-numeric as 0 (or -1 if you want them last)
+                        if (type === 'sort') {
+                            return 0;
+                        }
+                        // For display in the table, return the original (e.g., "N/A")
+                        return data;
+                    }
+
+                    // If it's valid, return numeric for sorting
+                    if (type === 'sort') {
+                        return parsed;
+                    }
+                    // For display, return the numeric string (e.g., "7.5")
+                    return data;
+                },
                 createdCell: function(td, cellData) {
                     const cveScore = parseFloat(cellData) || 0;
                     let scoreBackgroundColor;
@@ -92,13 +114,14 @@ function initializeDataTable() {
                         scoreBackgroundColor = "#ffc107"; // Medium: yellow
                     } else {
                         scoreBackgroundColor = "#28a745"; // Low: green
-                    } $(td).css({
+                    }
+                    $(td).css({
                         'background-color': scoreBackgroundColor,
-                        'text-align': 'right',
-
+                        'text-align': 'right'
                     });
                 }
-            }  ]
+            }
+        ]
     });
 
     const openPorts = JSON.parse(localStorage.getItem('openPorts')) || [];
