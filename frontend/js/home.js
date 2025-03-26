@@ -76,12 +76,12 @@ function initializeDataTable() {
         searching: false,
         info: false,
         lengthChange: false,
-        "order": [[4, "desc"]], // Sort by CVE Score (column index 4) in descending order
-        "columnDefs": [{
-            "targets": 4, // Targeting CVE Score column
-            "type": "num" // Ensures numerical sorting
+        order: [[5, "desc"]], // Sort by CVE Score (column index 5) in descending order
+        columnDefs: [{
+            targets: 5, // Targeting CVE Score column
+            type: "num" // Ensures numerical sorting
         }],
-        "createdRow": function(row, data) {
+        createdRow: function(row, data) {
             $(row).on('click', function() {
                 sessionStorage.setItem('selectedPortInfo', JSON.stringify({
                     port: data[0],
@@ -96,13 +96,32 @@ function initializeDataTable() {
 
     const openPorts = JSON.parse(localStorage.getItem('openPorts')) || [];
     openPorts.forEach(portInfo => {
+        // Parse the CVE score (using portInfo.cveScore)
+        const cveScore = parseFloat(portInfo.cveScore) || 0;
+        let scoreBackgroundColor;
+
+        if (cveScore >= 9.0) {
+            scoreBackgroundColor = "#dc3545"; // Critical => bright red
+            criticalPortsCount++;
+        } else if (cveScore >= 7.0) {
+            scoreBackgroundColor = "#fd7e14"; // High => orange
+        } else if (cveScore >= 4.0) {
+            scoreBackgroundColor = "#ffc107"; // Medium => yellow
+        } else {
+            scoreBackgroundColor = "#28a745"; // Low => green
+        }
+
+        // Create the CVE score display with the colored background.
+        // "display: block" makes sure the span fills the cell and centers the text.
+        const cveScoreDisplay = `<span style="background-color: ${scoreBackgroundColor}; display: block; text-align: center;">${cveScore}</span>`;
+
         portTable.row.add([
             portInfo.port,
             '<td class="state open">open</td>',
             portInfo.service || 'N/A',
             portInfo.version || 'N/A',
             portInfo.cveId || 'N/A',
-            portInfo.cveScore || 0 // Ensure CVE Score is stored as a number
+            cveScoreDisplay
         ]).draw();
     });
 
