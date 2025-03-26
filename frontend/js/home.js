@@ -71,27 +71,34 @@ $.fn.dataTable.ext.type.order['cve-id-desc'] = function (a, b) {
 function initializeDataTable() {
     const firstLogin = sessionStorage.getItem('firstLogin') === 'true';
     const portTable = $('#portTable').DataTable({
-        dom: 't',       // Only the table itself, no controls
+        dom: 't',
         paging: false,
         searching: false,
         info: false,
         lengthChange: false,
-        "order": [[4, "desc"]], // Sort by CVE Score (column index 4) in descending order
-        "columnDefs": [{
-            "targets": 4, // Targeting CVE Score column
-            "type": "num" // Ensures numerical sorting
-        }],
-        "createdRow": function(row, data) {
-            $(row).on('click', function() {
-                sessionStorage.setItem('selectedPortInfo', JSON.stringify({
-                    port: data[0],
-                    service: data[2],
-                    version: data[3],
-                    cveId: data[4]
-                }));
-                window.location.href = `port-specific.html?ip=${getIPFromURL()}`;
-            });
-        }
+        order: [[4, "desc"]], // Sort by the CVE score column
+        columnDefs: [
+            {
+                targets: 4, // The CVE score column index
+                createdCell: function(td, cellData) {
+                    const cveScore = parseFloat(cellData) || 0;
+                    let scoreBackgroundColor;
+
+                    if (cveScore >= 9.0) {
+                        scoreBackgroundColor = "#dc3545"; // Critical: red
+                    } else if (cveScore >= 7.0) {
+                        scoreBackgroundColor = "#fd7e14"; // High: orange
+                    } else if (cveScore >= 4.0) {
+                        scoreBackgroundColor = "#ffc107"; // Medium: yellow
+                    } else {
+                        scoreBackgroundColor = "#28a745"; // Low: green
+                    } $(td).css({
+                        'background-color': scoreBackgroundColor,
+                        'text-align': 'center',
+                        'color': '#fff' // (Optional) make text white if desired
+                    });
+                }
+            }  ]
     });
 
     const openPorts = JSON.parse(localStorage.getItem('openPorts')) || [];
@@ -229,7 +236,6 @@ function emptyDash() {
 function updatePortTable(vulnerabilities) {
     const portTable = $('#portTable').DataTable();
     portTable.clear();
-
     const tableData = vulnerabilities.map(v => ({
         port: v.port || 'N/A',
         state: 'open',
@@ -239,38 +245,14 @@ function updatePortTable(vulnerabilities) {
     }));
 
     tableData.forEach(data => {
-        // Parse the CVE score as a number
-        const cveScore = parseFloat(data.cve_score) || 0;
-        let scoreBackgroundColor;
-
-        // Determine the background color based on the CVE score value
-        if (cveScore >= 9.0) {
-            scoreBackgroundColor = "#dc3545"; // Critical: bright red
-        } else if (cveScore >= 7.0) {
-            scoreBackgroundColor = "#fd7e14"; // High: orange
-        } else if (cveScore >= 4.0) {
-            scoreBackgroundColor = "#ffc107"; // Medium: yellow
-        } else {
-            scoreBackgroundColor = "#28a745"; // Low: green
-        }
-
-        // Use a div with flex display to fill the cell and center the text.
-        const cveScoreDisplay = `<div style="background-color: ${scoreBackgroundColor}; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">${cveScore}</div>`;
-
-        // Add the row to the DataTable with the colored CVE score cell
-        portTable.row.add([
-            data.port,
-            '<td class="state open">open</td>',
-            data.version,
-            data.cve_id,
-            cveScoreDisplay
-        ]);
+        portTable.row.add([data.port, '<td class="state open">open</td>', data.version, data.cve_id, data.cve_score]);
     });
+
+
 
     portTable.draw();
     sessionStorage.setItem("vulnerabilitiesData", JSON.stringify(tableData));
 }
-
 
 function updateCharts(vulnerabilities) {
     console.log("Updating Charts - Received Vulnerabilities:", vulnerabilities);
