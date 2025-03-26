@@ -1,4 +1,4 @@
-const BASE_URL = "http://192.168.68.57:5000"; // Update as needed
+const BASE_URL = "http://192.168.1.39:5000"; // Update as needed
 
 let portTable = {}; // Declare globally so it's accessible
 
@@ -88,10 +88,10 @@ document.addEventListener("DOMContentLoaded", async function () {
 
     if (portDetailsElement) {
         portDetailsElement.innerHTML = `
-            <strong>Port:</strong> ${parsedPortInfo.port}<br>
-            <strong>Service:</strong> ${service}<br>
-            <strong>CVE ID:</strong> ${parsedPortInfo.cveId || "N/A"}<br>
-            <strong>Version:</strong> ${parsedPortInfo.version || "N/A"}
+            <strong class="pl-2 pr-2">Port:</strong> ${parsedPortInfo.port}<br>
+            <strong class="pl-2 pr-2">Service:</strong> ${service}<br>
+            <strong class="pl-2 pr-2">CVE ID:</strong> ${parsedPortInfo.cveId || "N/A"}<br>
+            <strong class="pl-2 pr-2">Version:</strong> ${parsedPortInfo.version || "N/A"}
         `;
     }
     //  SearchSploit

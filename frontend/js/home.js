@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.68.57:5000';
+const BASE_URL = 'http://192.168.1.39:5000';
 let openPorts = [];
 
 function getIPFromURL() {
@@ -183,6 +183,7 @@ function initializeCharts() {
     if (storedVulnerabilities.length === 0) {
         console.log("No vulnerabilities found, clearing dashboard.");
         emptyDash();
+        $('#saveCveReportBtn').hide();
     }
 }
 
@@ -210,7 +211,6 @@ function emptyDash() {
     console.log("Resetting Dashboard - Clearing Charts & Table");
 
     $('#portTable').DataTable().clear().draw();
-    $('#saveCveReportBtn').hide();
     sessionStorage.removeItem('vulnerabilitiesData');
     sessionStorage.removeItem('chartData');
 
@@ -295,6 +295,5 @@ function updateCharts(vulnerabilities) {
 document.getElementById('saveCveReportBtn').addEventListener('click', function(e) {
     e.preventDefault();
     sessionStorage.setItem("isHome", true);
-
     window.location.href = 'cvereport-details.html';
 });

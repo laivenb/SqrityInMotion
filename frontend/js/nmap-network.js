@@ -1,4 +1,4 @@
-const BASE_URL = 'http://192.168.68.57:5000';
+const BASE_URL = 'http://192.168.1.39:5000';
 
 // On page load, check session and automatically start scanning if parameters exist
 window.addEventListener('load', () => {
