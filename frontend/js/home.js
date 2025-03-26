@@ -69,42 +69,55 @@ $.fn.dataTable.ext.type.order['cve-id-desc'] = function (a, b) {
 };
 
 function initializeDataTable() {
-    const firstLogin = sessionStorage.getItem('firstLogin') === 'true';
     const portTable = $('#portTable').DataTable({
         dom: 't',
         paging: false,
         searching: false,
         info: false,
         lengthChange: false,
-        order: [[4, "desc"]], // Sort by CVE Score column (index 4) descending
-        columnDefs: [{
-            targets: 4,
-            type: "num"
-        }],
-        // Use createdRow to style the CVE Score cell
-        createdRow: function (row, data) {
-            // data[4] is your CVE Score (based on your column order)
-            const cveScore = parseFloat(data[5]) || 0;
-            let bgColor;
-            if (cveScore >= 9.0) {
-                bgColor = "#dc3545"; // Critical => Red
-            } else if (cveScore >= 7.0) {
-                bgColor = "#fd7e14"; // High => Orange
-            } else if (cveScore >= 4.0) {
-                bgColor = "#ffc107"; // Medium => Yellow
-            } else {
-                bgColor = "#28a745"; // Low => Green
-            }
+        // Sort by the CVE Score column (index 5) descending
+        order: [[5, 'desc']],
+        columnDefs: [
+            {
+                targets: 5, // The CVE Score column index
+                render: function (data, type, row, meta) {
+                    // parseFloat handles numeric values, fallback to 0
+                    const cveScore = parseFloat(data) || 0;
+                    let bgColor;
 
-            $('td', row).eq(5).css({
-                'background-color': bgColor,
-                'color': '#fff',          // optional: white text for contrast
-                'text-align': 'center'    // optional: center the text
-            });
-        }
+                    if (isNaN(cveScore)) {
+                        // If you have "N/A" or something non-numeric
+                        bgColor = '#28a745'; // for example, green
+                    } else if (cveScore >= 9.0) {
+                        bgColor = '#dc3545'; // Critical => red
+                    } else if (cveScore >= 7.0) {
+                        bgColor = '#fd7e14'; // High => orange
+                    } else if (cveScore >= 4.0) {
+                        bgColor = '#ffc107'; // Medium => yellow
+                    } else {
+                        bgColor = '#28a745'; // Low => green
+                    }
+
+                    // Use a block-level element to fill the cell and preserve padding
+                    // You can add inline padding if you want more space around the text
+                    return `
+            <div style="
+              background-color: ${bgColor};
+              color: #fff;
+              width: 100%;
+              height: 100%;
+              text-align: center;
+              padding: 8px; /* optional: to control spacing */
+            ">
+              ${data}
+            </div>
+          `;
+                }
+            }
+        ]
     });
 
-    // Then add rows as usual:
+    // Then add your rows
     const openPorts = JSON.parse(localStorage.getItem('openPorts')) || [];
     openPorts.forEach(portInfo => {
         portTable.row.add([
@@ -116,8 +129,6 @@ function initializeDataTable() {
             portInfo.cveScore || 0
         ]).draw();
     });
-
-    if (firstLogin) emptyDash();
 }
 
 
