@@ -94,8 +94,8 @@ function initializeDataTable() {
                         scoreBackgroundColor = "#28a745"; // Low: green
                     } $(td).css({
                         'background-color': scoreBackgroundColor,
-                        'text-align': 'center',
-                        'color': '#fff' // (Optional) make text white if desired
+                        'text-align': 'right',
+
                     });
                 }
             }  ]
@@ -248,9 +248,9 @@ function updatePortTable(vulnerabilities) {
         portTable.row.add([data.port, '<td class="state open">open</td>', data.version, data.cve_id, data.cve_score]);
     });
 
-
-
     portTable.draw();
+    portTable.order([4, 'desc']).draw();
+
     sessionStorage.setItem("vulnerabilitiesData", JSON.stringify(tableData));
 }
 
