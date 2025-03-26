@@ -69,61 +69,40 @@ $.fn.dataTable.ext.type.order['cve-id-desc'] = function (a, b) {
 };
 
 function initializeDataTable() {
+    const firstLogin = sessionStorage.getItem('firstLogin') === 'true';
     const portTable = $('#portTable').DataTable({
-        dom: 't',
+        dom: 't',       // Only the table itself, no controls
         paging: false,
         searching: false,
         info: false,
         lengthChange: false,
-        order: [[4, 'desc']], // Sort by CVE Score (column index 4)
-        columnDefs: [
-            {
-                targets: 4,
-                type: 'num' // Ensures numeric sorting for CVE Score
-            }
-        ],
-        createdRow: function (row, data) {
-            // data is an array of 5 items: [Port, State, Service, CVE ID, CVE Score]
-            let cveScoreText = data[4]; // The raw text in the CVE Score column
-            let bgColor;
-
-            // Check if empty, undefined, null, or "N/A"
-            if (!cveScoreText || cveScoreText.trim() === '' || cveScoreText === 'N/A') {
-                // Mark it as "N/A" explicitly
-                cveScoreText = 'N/A';
-                bgColor = '#28a745'; // e.g. green for no score
-            } else {
-                // Parse as float
-                const cveScore = parseFloat(cveScoreText) || 0;
-                if (cveScore >= 9.0) {
-                    bgColor = '#dc3545'; // Critical => red
-                } else if (cveScore >= 7.0) {
-                    bgColor = '#fd7e14'; // High => orange
-                } else if (cveScore >= 4.0) {
-                    bgColor = '#ffc107'; // Medium => yellow
-                } else {
-                    bgColor = '#28a745'; // Low => green
-                }
-            }
-
-            // Apply the background color to the CVE Score cell (index 4)
-            $('td', row).eq(4).css({
-                'background-color': bgColor,
-                'color': '#fff',         // optional: white text for contrast
-                'text-align': 'center'   // optional: center text
-            }).text(cveScoreText);     // update the cell text (in case we changed it to "N/A")
+        "order": [[4, "desc"]], // Sort by CVE Score (column index 4) in descending order
+        "columnDefs": [{
+            "targets": 4, // Targeting CVE Score column
+            "type": "num" // Ensures numerical sorting
+        }],
+        "createdRow": function(row, data) {
+            $(row).on('click', function() {
+                sessionStorage.setItem('selectedPortInfo', JSON.stringify({
+                    port: data[0],
+                    service: data[2],
+                    version: data[3],
+                    cveId: data[4]
+                }));
+                window.location.href = `port-specific.html?ip=${getIPFromURL()}`;
+            });
         }
     });
 
-    // Add your rows to match the 5 columns exactly
     const openPorts = JSON.parse(localStorage.getItem('openPorts')) || [];
     openPorts.forEach(portInfo => {
         portTable.row.add([
             portInfo.port,
             '<td class="state open">open</td>',
             portInfo.service || 'N/A',
+            portInfo.version || 'N/A',
             portInfo.cveId || 'N/A',
-            portInfo.cveScore || ''   // Leave blank or put 'N/A' if you want
+            portInfo.cveScore || 0 // Ensure CVE Score is stored as a number
         ]).draw();
     });
 
