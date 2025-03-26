@@ -229,6 +229,7 @@ function emptyDash() {
 function updatePortTable(vulnerabilities) {
     const portTable = $('#portTable').DataTable();
     portTable.clear();
+
     const tableData = vulnerabilities.map(v => ({
         port: v.port || 'N/A',
         state: 'open',
@@ -253,8 +254,8 @@ function updatePortTable(vulnerabilities) {
             scoreBackgroundColor = "#28a745"; // Low: green
         }
 
-        // Create a styled display for the CVE score
-        const cveScoreDisplay = `<span style="background-color: ${scoreBackgroundColor}; display: block; text-align: center;">${cveScore}</span>`;
+        // Use a div with flex display to fill the cell and center the text.
+        const cveScoreDisplay = `<div style="background-color: ${scoreBackgroundColor}; display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;">${cveScore}</div>`;
 
         // Add the row to the DataTable with the colored CVE score cell
         portTable.row.add([
@@ -268,13 +269,8 @@ function updatePortTable(vulnerabilities) {
 
     portTable.draw();
     sessionStorage.setItem("vulnerabilitiesData", JSON.stringify(tableData));
-
-
-
-
-
-
 }
+
 
 function updateCharts(vulnerabilities) {
     console.log("Updating Charts - Received Vulnerabilities:", vulnerabilities);
