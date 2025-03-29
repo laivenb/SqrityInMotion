@@ -103,7 +103,15 @@ function initializeDataTable() {
                     return data;
                 },
                 createdCell: function(td, cellData) {
-                    const cveScore = parseFloat(cellData) || 0;
+                    // If the cell value is "N/A", set the background to white.
+                    if (cellData === "N/A") {
+                        $(td).css({
+                            'background-color': "#ffffff",
+                            'text-align': 'right'
+                        });
+                        return;
+                    }
+                    const cveScore = parseFloat(cellData);
                     let scoreBackgroundColor;
 
                     if (cveScore >= 9.0) {
@@ -138,6 +146,7 @@ function initializeDataTable() {
 
     if (firstLogin) emptyDash();
 }
+
 
 
 

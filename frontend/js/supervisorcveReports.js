@@ -49,6 +49,7 @@ $(document).ready(function () {
 });
 
 // Function to load reports assigned to the logged-in supervisor
+// Function to load reports assigned to the logged-in supervisor
 async function loadSupervisorReports(supervisorID) {
     const tableBody = $('#reportsTable tbody');
     tableBody.empty(); // Clear any existing data
@@ -74,7 +75,8 @@ async function loadSupervisorReports(supervisorID) {
             }
 
             const reportID = data.reportID;
-            const dateSubmitted = new Date(data.dateSubmitted).toLocaleString();
+            // Format dateSubmitted to show only the date without the time
+            const dateSubmitted = new Date(data.dateSubmitted).toLocaleDateString();
             const userID = data.submittedBy; // This is currently the userID
 
             // Fetch the username using the userID
@@ -111,6 +113,7 @@ async function loadSupervisorReports(supervisorID) {
         tableBody.append('<tr><td colspan="4">Error loading reports. Please try again.</td></tr>');
     }
 }
+
 
 // Function to fetch username from Firebase using userID
 async function getUsername(userID) {

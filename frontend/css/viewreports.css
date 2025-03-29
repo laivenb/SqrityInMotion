@@ -282,5 +282,10 @@ body {
     line-height: 1.5;
 }
 
+hr {
+    display: block !important;
+    border: 1px solid #dee2e6 !important; /* a light gray, for instance */
+    margin: 1rem 0 !important;
+}
 
 

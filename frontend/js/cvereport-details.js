@@ -55,29 +55,34 @@ async function loadReportDetails(userID) {
 
         // Access the specific report for the user by reportID in cveReports
         const reportRef = ref(database, `cveReports/${reportID}`);
-
         const snapshot = await get(reportRef);
+
         if (snapshot.exists()) {
             const reportData = snapshot.val();
             if (reportData && reportData.userID === userID) {
-                document.getElementById('reportName').textContent = reportData.reportName || "Untitled Report";
-                document.getElementById('dateCreated:').textContent = `Date Created: ${new Date(reportData.dateCreated).toLocaleString() || "N/A"}`;
+                // Hardcode IP address to 192.168.64.63 and format the creation date
+                const ipAddress = "192.168.64.63";
+                const formattedDate = reportData.dateCreated
+                    ? new Date(reportData.dateCreated).toLocaleDateString()
+                    : "N/A";
+                document.getElementById('reportName').textContent =
+                    `CVE report for ${ipAddress}, ${formattedDate}`;
 
                 // Populate CVE details in the table
                 populateCveDetails(reportData.ports || []);
             } else {
                 document.getElementById('reportName').textContent = "Report Not Found";
-                document.getElementById('dateCreated:').textContent = "";
             }
         } else {
             console.error("No such report found in Firebase.");
             document.getElementById('reportName').textContent = "Report Not Found";
-            document.getElementById('dateCreated:').textContent = "";
         }
     } catch (error) {
         console.error("Error loading report details:", error);
     }
 }
+
+
 
 
 // Helper function to populate CVE details in the table
@@ -101,25 +106,26 @@ function populateCveDetails(ports) {
                 openPortsCount++;
             }
 
-            // Determine background color for CVE score
-            // Parse the CVE score. Fallback to 0 if port.cve_score is undefined or invalid.
-            const cveScore = parseFloat(port.cve_score) || 0;
             let scoreBackgroundColor;
+            let displayCveScore = port.cve_score;
 
-             if (cveScore >= 9.0) {
-                scoreBackgroundColor = "#dc3545"; // Critical => bright red
-                criticalPortsCount++;
+            // If the CVE score is "N/A" or not a valid number, set a white background.
+            if (port.cve_score === "N/A" || isNaN(parseFloat(port.cve_score))) {
+                scoreBackgroundColor = "#ffffff";
+                displayCveScore = "N/A";
+            } else {
+                const cveScore = parseFloat(port.cve_score);
+                if (cveScore >= 9.0) {
+                    scoreBackgroundColor = "#dc3545"; // Critical => bright red
+                    criticalPortsCount++;
+                } else if (cveScore >= 7.0) {
+                    scoreBackgroundColor = "#fd7e14"; // High => orange
+                } else if (cveScore >= 4.0) {
+                    scoreBackgroundColor = "#ffc107"; // Medium => yellow
+                } else {
+                    scoreBackgroundColor = "#28a745"; // Low => green
+                }
             }
-             else if (cveScore >= 7.0) {
-                scoreBackgroundColor = "#fd7e14"; // High => orange
-            }
-             else if (cveScore >= 4.0) {
-                scoreBackgroundColor = "#ffc107"; // Medium => yellow
-            }
-             else {
-                scoreBackgroundColor = "#28a745"; // Low => green
-            }
-
 
             // Add row with colored cells
             row.innerHTML = `
@@ -128,7 +134,7 @@ function populateCveDetails(ports) {
                 <td>${port.version || "N/A"}</td>
                 <td>${port.cve_id || "N/A"}</td>
                 <td style="background-color: ${scoreBackgroundColor}; font-weight: bold; text-align: center;">
-                    ${port.cve_score || "N/A"}
+                    ${displayCveScore}
                 </td>
             `;
             tableBody.appendChild(row);
@@ -143,6 +149,7 @@ function populateCveDetails(ports) {
     document.getElementById('openPortsCount').textContent = openPortsCount;
     document.getElementById('criticalPortsCount').textContent = criticalPortsCount;
 }
+
 
 
 

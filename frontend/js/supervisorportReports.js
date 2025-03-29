@@ -63,7 +63,7 @@ async function loadSupervisorReports(supervisorID) {
         // Convert snapshot data into an array of promises
         const reportPromises = Object.values(snapshot.val()).map(async (data) => {
             const reportID = data.reportID;
-            const dateSubmitted = new Date(data.dateSubmitted).toLocaleString();
+            const dateSubmitted = new Date(data.dateSubmitted).toLocaleDateString();
             const userID = data.submittedBy; // This is currently the user ID
 
             // Fetch the username using userID

@@ -46,6 +46,7 @@ document.getElementById("backButton")?.addEventListener("click", () => {
 });
 
 // Function to load the port report details
+// Function to load the port report details
 async function loadReportDetails(reportID) {
     try {
         const reportRef = ref(database, `portReports/${reportID}`);
@@ -56,49 +57,52 @@ async function loadReportDetails(reportID) {
 
             // -- Fill the header fields --
             const reportNameElem = document.getElementById("reportName");
-            const dateCreatedElem = document.getElementById("dateCreated");
-            const createdByElem   = document.getElementById("createdBy");
+            const createdByElem  = document.getElementById("createdBy");
 
-
+            // Format the date to display only the date portion
+            const formattedDate = reportData.dateCreated
+                ? new Date(reportData.dateCreated).toLocaleDateString()
+                : "N/A";
+            // Set the title as desired: "Test Port Scan Report for 192.168.68.60, <date submitted>"
             if (reportNameElem) {
-                reportNameElem.textContent = reportData.reportName || "Untitled Report";
-            }
-            if (dateCreatedElem) {
-                dateCreatedElem.textContent = `Date Created: ${reportData.dateCreated || "N/A"}`;
+                reportNameElem.textContent = `Test Port Scan Report for 192.168.68.60, ${formattedDate}`;
             }
 
             const userID = reportData.userID; // e.g. "-OArWxDOvU0yVBf8ocHB"
             if (!userID) {
-                createdByElem.textContent = "Created by: Unknown User";
+                if (createdByElem) {
+                    createdByElem.textContent = "Created by: Unknown User";
+                }
                 return;
             }
 
-            // 3) Fetch user details from "users/<userID>"
+            // Fetch user details from "users/<userID>"
             const userRef = ref(database, `users/${userID}`);
             const userSnap = await get(userRef);
 
             if (userSnap.exists()) {
                 const userData = userSnap.val();
-                // 4) Use userData.username (based on your screenshot)
                 const userName = userData.username || userID;
-                createdByElem.textContent = `Created by: ${userName}`;
+                if (createdByElem) {
+                    createdByElem.textContent = `Created by: ${userName}`;
+                }
             } else {
-                // If there's no user record, fall back to the raw userID
-                createdByElem.textContent = `Created by: ${userID}`;
+                if (createdByElem) {
+                    createdByElem.textContent = `Created by: ${userID}`;
+                }
             }
-
 
             // Populate port details
             populatePortDetails(reportData.ports || []);
         } else {
             console.error("No such report found in Firebase.");
             document.getElementById('reportName').textContent = "Report Not Found";
-            document.getElementById('dateCreated').textContent = "";
         }
     } catch (error) {
         console.error("Error loading report details:", error);
     }
 }
+
 
 // Function to populate port details in the table
 function populatePortDetails(ports) {
